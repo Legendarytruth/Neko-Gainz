@@ -15,7 +15,7 @@ Coco Email:
 Leila Email:
 Kana Email:
 Jeremy Email:
-Roy Email:
+Roy Email: roy.lu@mail.utoronto.ca
 Arthur Email: arthur.sit@mail.utoronto.ca
 
 Communication Response Time: Discord: 24 hours, Emails: 24 hours
