@@ -1,0 +1,12 @@
+Process
+
+For sprint 0, it was imperative that we were able to meet person since it allowed us to create mockups
+that we could all add to and it made discussion a lot easier. We met in the campus library study rooms weekly for 2 or more hours depending on what we needed to get covered. The first thing we did was write onto the whiteboard what we wanted to get accomplished for the day from project ideas to user stories.
+
+When it came to deciding what we were going to do for the project we left the floor open to any ideas that any of our members had. We then wrote them on the board until we accumulated a substantial list of possible projects. Next we took a majority vote on which idea we liked the most and continued to discuss it into more detail, making changes where necessary so that the decision to move forward with it was unanimous.
+
+The project that was decided on was an android app that combined both elements of a workout app and a
+virtual pet game where working out rewards you with money that can be spent on the pet. We broke up our discussion of the app into the game portion and the workout portion. From there, we wrote down every idea that each of our members had onto the whiteboard until there were enough ideas that we had a solid framework for all of our apps features. We then removed any ideas that we felt weren't necessary or didn't work with our vision of the app. This way we had a concise list of features 
+that we all agreed on and we could turn into a set of user stories.
+
+When it came to creating users we realized it was difficult to know whether a single feature could be encapsulated into a single story or whether it needed to be broken down into multiple. It was also a challenge to figure out which user stories had dependecies on other user stories and therefore needed to have their priority adjusted to reflect that. For example, implementing the personalized workout plans requires a database for the users profile first. For that reason, dependencies was the main focus in our discussion for priorities of user stories. For the points, we followed the planning poker system using the series of numbers [0, 1, 2, 3, 5, 8, 13, 20, 40, 100]. After numbers were submitted, we reviewed over the largest descripencies between each of our team members and discussed their reasonings for the score that they gave. On average it took us about 3 rounds of voting for each user story to come to a consensus on the points given.
