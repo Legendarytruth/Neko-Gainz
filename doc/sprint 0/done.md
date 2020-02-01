@@ -1,8 +1,8 @@
 As a user I want to get coins for doing workouts so that I can spend it on my pet
-Done: When the user is able to gain coins from each workout. When the user is able to use coins to purchase items for their pet.
+Done: When the user finishes a workout
 
 As a user I want to see a progress bar so that I am informed about my workout progression
-Done: When the user can see a
+Done: 
 
 As a user I want to have my location tracked with Google Maps API, so that I can have my distance tracked
 Done: 
