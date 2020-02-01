@@ -1,10 +1,4 @@
-As a user I want to get coins for doing workouts so that I can spend it on my pet
-Done: When the user finishes a workout
-
-As a user I want to see a progress bar so that I am informed about my workout progression
-Done: 
-
-As a user I want to have my location tracked with Google Maps API, so that I can have my distance tracked
+ tracked with Google Maps API, so that I can have my distance tracked
 Done: 
 
 As a user I want to have my experience tracked so that my pet can level up
@@ -58,12 +52,10 @@ Done:
 As a user I want to be able to get daily login rewards so that I am motivated to continue exercising
 Done:
 
-As a user I want to see my pet on the main page so that I can check up on them
-Done:
 
-As a user I want to have more variety of exercises so that I can try more workouts
-Done:
 
-As a user I want to input my height, and weight, so that I can know my BMI changes
-Done:
-
+___________
+Done is when the userstory is finished with functional/ not broken code, and is reviewed, and accepted on Jira by 
+another group member. 
+Done for the entire project is being able to earn coins through exercises; coins will be used to raise and interact
+with a pet.
