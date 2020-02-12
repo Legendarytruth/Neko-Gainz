@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Neko Gains</string>
     <string name="action_settings">Settings</string>
+    <string name="Store_Button">Store</string>
+    <string name="Setting_Button">Setting</string>
+    <string name="Progress_Button">Progress</string>
+    <string name="Home_Button">Home</string>
 </resources>

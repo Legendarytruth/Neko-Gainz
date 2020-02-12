@@ -2,11 +2,14 @@ package com.example.nekogains;
 
 import android.os.Bundle;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import android.view.View;
 import android.view.Menu;
@@ -18,18 +21,50 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.bot_fab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+           @Override
+           public void onClick(View view) {
+                Fragment selectedFragment = null;
+                selectedFragment = new PreworkoutFrag();
+               getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
             }
         });
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    Fragment selectedFragment = null;
+
+                    switch (menuItem.getItemId()){
+                        case R.id.nav_home:
+                            selectedFragment = new HomeFrag();
+                            break;
+                        case R.id.nav_setting:
+                            selectedFragment = new SettingFrag();
+                            break;
+                        case R.id.nav_progress:
+                            selectedFragment = new ProgressFrag();
+                            break;
+                        case R.id.nav_workout:
+                            selectedFragment = new PreworkoutFrag();
+                            break;
+                        case R.id.nav_store:
+                            selectedFragment = new StoreFrag();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
+                    return true;
+                }
+            };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
