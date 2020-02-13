@@ -16,7 +16,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:fontFamily="@font/OpenSans_ExtraBold"
+                    android:fontFamily="@font/opensans_extrabold"
                     android:text="CREATE YOUR PROFILE"
                     android:textSize="24sp"
                     android:gravity="center"
@@ -25,8 +25,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="500dp"/>
                 <TextView
-                    android:fontFamily="@font/OpenSans_SemiBold"
-                    android:text="Which Age Group Do You Belong?"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="How Old Are You?"
                     android:textSize="24sp"
                     android:gravity="center"
                     android:textColor="#555555"
@@ -48,7 +48,6 @@
                         android:background ="#6fc492"/>
                     <RadioButton
                         android:id="@+id/q1b"
-                        android:layout_marginTop = "20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20-30"
@@ -87,7 +86,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:fontFamily="@font/OpenSans_SemiBold"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="How Often Do You Exercise?"
                     android:textSize="24sp"
                     android:gravity="center"
@@ -140,7 +139,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:fontFamily="@font/OpenSans_SemiBold"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="Enter Your Weight and Height"
                     android:textSize="24sp"
                     android:gravity="center"
@@ -172,7 +171,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:fontFamily="@font/OpenSans_SemiBold"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="What Do You Hope to Accomplish?"
                     android:textSize="24sp"
                     android:gravity="center"
@@ -211,7 +210,7 @@
                 </RadioGroup>
             </LinearLayout>
                 <Button
-                    android:fontFamily="@font/OpenSans_SemiBold"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="Submit"
                     android:textSize="24sp"
                     android:gravity="center"

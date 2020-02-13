@@ -3,13 +3,13 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/OpenSans_Bold" />
+        android:font="@font/opensans_bold" />
     <font
         android:fontStyle="italic"
         android:fontWeight="400"
-        android:font="@font/OpenSans_BoldItalic" />
+        android:font="@font/opensans_bolditalic" />
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/OpenSans_ExtraBold" />
+        android:font="@font/opensans_extrabold" />
 </font-family>
