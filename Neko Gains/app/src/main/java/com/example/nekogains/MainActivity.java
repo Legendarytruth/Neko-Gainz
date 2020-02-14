@@ -16,11 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+    DatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myDb = new DatabaseHelper(this);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
