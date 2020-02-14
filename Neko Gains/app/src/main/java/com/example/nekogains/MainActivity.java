@@ -1,5 +1,6 @@
 package com.example.nekogains;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.bot_fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
            @Override
            public void onClick(View view) {
                 Fragment selectedFragment = null;
