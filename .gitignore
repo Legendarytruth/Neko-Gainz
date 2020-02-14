@@ -1,4 +1,13 @@
-Neko Gains/.idea/*
-Neko Gains/.gradle/*
-Neko Gains/app/build/*
-Neko Gains/local.properties
+/'Neko Gains'/*.iml                                                                                                      /'Neko Gains'/.gradle
+/'Neko Gains'/local.properties
+/'Neko Gains'/.idea/caches
+/'Neko Gains'/.idea/libraries
+/'Neko Gains'/.idea/modules.xml
+/'Neko Gains'/.idea/workspace.xml
+/'Neko Gains'/.idea/navEditor.xml
+/'Neko Gains'/.idea/assetWizardSettings.xml
+/'Neko Gains'/.DS_Store
+/'Neko Gains'/build
+/'Neko Gains'/captures
+/'Neko Gains'/.externalNativeBuild
+/'Neko Gains'/.cxx
