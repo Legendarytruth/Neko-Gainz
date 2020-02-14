@@ -1011,6 +1011,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_settings_black_24dp
 drawable ic_store_black_24dp
 drawable ic_trending_up_black_24dp
+drawable image0
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
