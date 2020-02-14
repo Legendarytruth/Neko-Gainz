@@ -1,12 +1,11 @@
 package com.example.nekogains;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.io.FileInputStream;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,11 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validate(String username, String password) {
-
+        //TODO: Implement database
 
         if(username.equals("user") && password.equals("1234")) {
-            //TODO: Set user to "logged in" state
-
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else {
