@@ -1,10 +1,13 @@
 package com.example.nekogains;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.io.FileInputStream;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,13 +30,12 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view) {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
-        //TODO: Hash the password here
         validate(username, password);
     }
 
     private void validate(String username, String password) {
-        // TODO: Once we have some database of users please edit below
-        // TODO: Security: unsalt password
+
+
         if(username.equals("user") && password.equals("1234")) {
             //TODO: Set user to "logged in" state
 
