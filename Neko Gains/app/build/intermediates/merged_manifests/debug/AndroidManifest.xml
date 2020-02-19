@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.example.nekogains.Questionnaire" />
         <activity
             android:name="com.example.nekogains.MainActivity"
             android:label="@string/app_name"
@@ -28,6 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.nekogains.LoginActivity" />
     </application>
 
 </manifest>
