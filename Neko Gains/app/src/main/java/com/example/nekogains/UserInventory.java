@@ -9,6 +9,19 @@ public class UserInventory {
     private String shirt; //The shirt that is currently being worn
     private String pant; //The pant that is currently being worn
 
+    private int money = 200;
+
+    //For Money
+    public int getMoneyAmount() {
+        return this.money;
+    }
+
+    public void addMoney(int amount) {
+        this.money += amount;
+    }
+
+    public void removeMoney(int amount){this.money -= amount;}
+
     //For Food Items
     public boolean hasFood(String key){ return food.containsKey(key);}
 
