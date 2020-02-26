@@ -18,7 +18,8 @@ public class User {
     public User() {
         this.username = "newUser";
         this.password = "1234";
-        this.xp = 0;
+        this.pet = new Cat("temppetname");
+        this.xp = 30100;
     }
 
     //GETTING ATTRIBUTES

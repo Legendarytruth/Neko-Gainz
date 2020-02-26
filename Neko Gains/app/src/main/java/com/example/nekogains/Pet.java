@@ -7,8 +7,8 @@ public abstract class Pet {
 
     public Pet(String newName) {
         this.name = newName;
-        this.hunger = 0;
-        this.level = 0;
+        this.hunger = 80;
+        this.level = 30;
     }
 
     //GETTING ATTRIBUTES
@@ -32,6 +32,16 @@ public abstract class Pet {
     public void setLevel(int newLevel) {
         if (newLevel <= 100) {
             this.level = newLevel;
+        }
+    }
+
+    public void decreaseHunger(int value) {
+        this.hunger += value;
+        if (this.getHunger() > 100) {
+            this.hunger = 100;
+        }
+        else if (this.getHunger() < 0) {
+            this.hunger = 0;
         }
     }
 

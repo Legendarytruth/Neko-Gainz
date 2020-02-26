@@ -23,9 +23,14 @@ public class UserInventory {
     public void removeMoney(int amount){this.money -= amount;}
 
     //For Food Items
-    public boolean hasFood(String key){ return food.containsKey(key);}
+    public boolean hasFood(String key){ return (food.containsKey(key) && food.get(key) > 0);}
 
-    public Integer numofFood(String key){ return food.get(key);}
+    public Integer numofFood(String key){
+        if (hasFood(key)) {
+            return food.get(key);
+        }
+        return 0;
+    }
 
     public void createFood(String key){ food.put(key, 1);}
 
