@@ -2,6 +2,7 @@ package com.example.nekogains;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,7 @@ public class Questionnaire extends AppCompatActivity {
         RadioButton q5_button = findViewById(q3_group.getCheckedRadioButtonId());
         String q5_age = q3_button.getText().toString();
 
+        Intent myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
     }
-
 }

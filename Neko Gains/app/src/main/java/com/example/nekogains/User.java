@@ -4,12 +4,19 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class User {
+
+    DatabaseHelper dbh;
+    int id;
+
+    public User(DatabaseHelper dbh, String name, String habit, String weight, String height, String goal) {
+        this.dbh = dbh;
+        this.dbh.insertNewUser(name, habit, weight, height, goal);
+        this.dbh.insertNewGame("0", "0");
+    }
     private String username;
     private String password;
 
-    private float weight = 0;
-    private float height = 0;
-    private int money = 100;
+
 
     public Pet pet;
     private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
@@ -24,11 +31,11 @@ public class User {
     }
 
     public float getWeight() {
-        return this.weight;
+        return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
     }
 
     public float getHeight() {
-        return this.height;
+        return Float.parseFloat((dbh.getUserData(id, "HEIGHT")));
     }
 
     public ArrayList<Exercise> getExercisePlan(String name) {
@@ -36,7 +43,11 @@ public class User {
     }
 
     public int getMoneyAmount() {
-        return this.money;
+        return Integer.parseInt((dbh.getUserData(id, "MONEY")));
+    }
+
+    public int getExperience() {
+        return Integer.parseInt((dbh.getUserData(id, "EXPERIENCE")));
     }
 
     //CHANGING ATTRIBUTES
@@ -48,12 +59,13 @@ public class User {
         this.password = password;
     }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
+    public void setWeight(String weight) {
+        dbh.updateUserData(id, weight);
     }
 
-    public void setHeight(float height) {
-        this.height = height;
+    public void setHeight(String height) {
+        dbh.updateUserData(id, height);
+
     }
 
     public void addExercisePlan(String planName, ArrayList<Exercise> exercises) {
@@ -64,14 +76,17 @@ public class User {
         this.exercisePlans.get(planName).add(exercise);
     }
 
-    public void addMoney(int amount) {
-        this.money += amount;
+    public void addMoney(String amount) {
+        dbh.updateGame(id, amount);
     }
 
-    public void removeMoney(int amount){this.money -= amount;}
+    public void removeMoney(int amount){
+        int balance = getMoneyAmount();
+        dbh.updateGame(id, Integer.toString(balance-amount));
+    }
 
     //OTHER
-    public float calculateBMI() {
-        return (float) (this.weight/ Math.pow(this.height, 2));
+    public float getBMI() {
+        return Float.parseFloat((dbh.getUserData(id, "BMI")));
     }
 }
