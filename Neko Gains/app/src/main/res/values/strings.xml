@@ -13,4 +13,8 @@
     <string name="Setting_Button">Setting</string>
     <string name="Progress_Button">Progress</string>
     <string name="Home_Button">Home</string>
+    <string name="blueberries">BlueBerries</string>
+    <string name="catfood">Cat Food</string>
+    <string name="fish">Fish</string>
+    <string name="milk">Milk</string>
 </resources>

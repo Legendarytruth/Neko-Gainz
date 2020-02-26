@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.bot_fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
-           @Override
-           public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 Fragment selectedFragment = null;
                 selectedFragment = new PreworkoutFrag();
-               getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
             }
         });
     }

@@ -9,7 +9,7 @@ public class User {
 
     private float weight = 0;
     private float height = 0;
-    private int money = 0;
+    private int money = 100;
 
     public Pet pet;
     private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
@@ -67,6 +67,8 @@ public class User {
     public void addMoney(int amount) {
         this.money += amount;
     }
+
+    public void removeMoney(int amount){this.money -= amount;}
 
     //OTHER
     public float calculateBMI() {
