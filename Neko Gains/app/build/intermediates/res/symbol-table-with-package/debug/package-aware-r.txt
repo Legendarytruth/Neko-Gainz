@@ -996,7 +996,10 @@ drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
 drawable blueberries_small
+drawable blueberries_smallicon
+drawable blueberryicon
 drawable catfood_small
+drawable catfood_smallicon
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1004,6 +1007,8 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable fish_small
+drawable fish_smallicon
+drawable hungericonfinal
 drawable ic_fitness_center_black_24dp
 drawable ic_home_black_24dp
 drawable ic_launcher_background
@@ -1015,6 +1020,8 @@ drawable ic_settings_black_24dp
 drawable ic_store_black_24dp
 drawable ic_trending_up_black_24dp
 drawable milk_small
+drawable milk_smallicon
+drawable moneyiconfinal
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1127,6 +1134,7 @@ id disableHome
 id divider
 id divider2
 id divider3
+id divider6
 id edit_query
 id end
 id enterAlways

@@ -132,10 +132,10 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                     if (user.pet.getHunger() < 100) {
                         user.pet.decreaseHunger(10);
                         user.userInventory.removeFood("blueberries");
-                        setCatFoodAmount(user.userInventory.numofFood("blueberries"));
+                        setBlueberryAmount(user.userInventory.numofFood("blueberries"));
                         setHungerAmount(user.pet.getHunger());
+                        Toast.makeText(getContext(), "-1 Blueberry", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(getContext(), "-1 Blueberry", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Not Enough Blueberry", Toast.LENGTH_SHORT).show();
                 }
@@ -145,10 +145,10 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                     if (user.pet.getHunger() < 100) {
                         user.pet.decreaseHunger(10);
                         user.userInventory.removeFood("fish");
-                        setCatFoodAmount(user.userInventory.numofFood("fish"));
+                        setFishAmount(user.userInventory.numofFood("fish"));
                         setHungerAmount(user.pet.getHunger());
+                        Toast.makeText(getContext(), "-1 Fish", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(getContext(), "-1 Fish", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Not Enough Fish", Toast.LENGTH_SHORT).show();
                 }
@@ -158,10 +158,10 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                     if (user.pet.getHunger() < 100) {
                         user.pet.decreaseHunger(10);
                         user.userInventory.removeFood("milk");
-                        setCatFoodAmount(user.userInventory.numofFood("milk"));
+                        setMilkAmount(user.userInventory.numofFood("milk"));
                         setHungerAmount(user.pet.getHunger());
+                        Toast.makeText(getContext(), "-1 Milk", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(getContext(), "-1 Milk", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Not Enough Milk", Toast.LENGTH_SHORT).show();
                 }
