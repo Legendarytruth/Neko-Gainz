@@ -7,12 +7,20 @@ public class User {
     private String username;
     private String password;
 
-    private float weight = 0;
-    private float height = 0;
-    private int money = 100;
+    private float weight;
+    private float height;
 
-    public Pet pet;
+    private int xp;
+    protected Pet pet;
+    protected UserInventory userInventory = new UserInventory();
     private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
+
+    public User() {
+        this.username = "newUser";
+        this.password = "1234";
+        this.pet = new Cat("temppetname");
+        this.xp = 30100;
+    }
 
     //GETTING ATTRIBUTES
     public String getUsername() {
@@ -35,8 +43,8 @@ public class User {
         return this.exercisePlans.get(name);
     }
 
-    public int getMoneyAmount() {
-        return this.money;
+    public int getXp() {
+        return this.xp;
     }
 
     //CHANGING ATTRIBUTES
@@ -64,11 +72,10 @@ public class User {
         this.exercisePlans.get(planName).add(exercise);
     }
 
-    public void addMoney(int amount) {
-        this.money += amount;
+    public void increaseXp(int addXP) {
+        this.xp += addXP;
+        this.pet.setLevel((int)Math.floor(this.xp/1000));
     }
-
-    public void removeMoney(int amount){this.money -= amount;}
 
     //OTHER
     public float calculateBMI() {

@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb;
+    public User user = new User(); //TEMP: SHOULD TAKE IN THE LOGIN/SIGNUP USER
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
