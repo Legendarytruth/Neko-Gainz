@@ -1,5 +1,6 @@
 package com.example.nekogains;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class StoreFrag extends Fragment implements View.OnClickListener {
-    private User user = new User();
+    private User user;
     private UserInventory userInventory = new UserInventory();
     private View view;
     private TextView textView;
@@ -28,6 +29,8 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+
         view = inflater.inflate(R.layout.store_frag, container, false);
         textView = view.findViewById(R.id.money);
         button1 = view.findViewById(R.id.button1);

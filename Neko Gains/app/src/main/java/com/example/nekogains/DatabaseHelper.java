@@ -6,7 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+import java.io.Serializable;
+
+public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
+
+    private static DatabaseHelper sInstance;
+
     public static final String DATABASE_NAME = "Workout.db";
     public static final String EXERCISE_TABLE = "Exercises";
     public static final String USER_TABLE = "Users";
@@ -16,12 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String[] workouts = {"Push-Ups", "Bench-Dips", "Chin-Ups", "Squats", "Lunges", "Calf-Raises", "Planks", "Sit-Ups", "Leg Raises", "Running", "Burpees", "Jumping Jacks"};
     public static final double[] calories = {1, 3, 1, 14, 0.9, 0.3, 3.5, 0.3, 0.7, 15, 13, 9};
     public static final String COL_5 = "NAME";
-    public static final String COL_6 = "HABITS";
-    public static final String COL_7 = "WEIGHT";
-    public static final String COL_8 = "HEIGHT";
-    public static final String COL_9 = "GOAL";
-    public static final String COL_10 = "HEIGHT";
-    public static final String COL_11 = "GOAL";
+    public static final String COL_6 = "AGE";
+    public static final String COL_7 = "HABITS";
+    public static final String COL_8 = "WEIGHT";
+    public static final String COL_9 = "HEIGHT";
+    public static final String COL_10 = "GOAL";
 
 
 
@@ -30,7 +34,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase db;
 
-    public DatabaseHelper(Context context) {
+    public static synchronized DatabaseHelper getInstance(Context context) {
+
+        if (sInstance == null) {
+            sInstance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         db = this.getWritableDatabase();
     }
@@ -38,19 +50,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + EXERCISE_TABLE + " (ID INTEGER PRIMARY KEY, NAME TEXT, CALORIES INTEGER);");
-        ContentValues contentValues = new ContentValues();
+        ContentValues contentValues;
         for (int i = 0; i < workouts.length; i++) {
+            contentValues = new ContentValues();
             contentValues.put(COL_2, workouts[i]);
             contentValues.put(COL_3, calories[i]);
             db.insert(EXERCISE_TABLE, null, contentValues);
         }
 
-        db.execSQL("CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY, USER_ID INTEGER, NAME TEXT, HABITS TEXT, WEIGHT TEXT, HEIGHT TEXT, GOAL TEXT, USERNAME TEXT, PASSWORD TEXT, BMI TEXT);");
+        db.execSQL("CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY, NAME TEXT, AGE TEXT, HABITS TEXT, WEIGHT TEXT, HEIGHT TEXT, GOAL TEXT, USERNAME TEXT, PASSWORD TEXT, BMI TEXT);");
         //calculates bmi on inserts
-        db.execSQL("CREATE TRIGGER trg_bmi AFTER UPDATE ON USER_TABLE WHEN experience > 0 BEGIN UPDATE USER_TABLE SET BMI=WEIGHT/HEIGHT*HEIGHT; END;");
+        db.execSQL("CREATE TRIGGER trg_bmi AFTER UPDATE ON " + USER_TABLE + " WHEN experience > 0 BEGIN UPDATE USER_TABLE SET BMI=WEIGHT/HEIGHT*HEIGHT; END;");
 
         db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER, BMI INTEGER," +
-                " CONSTRAINT fk_users FOREIGN KEY (USER_ID) REFERENCES USERS(ID));");
+                " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
     }
 
     @Override
@@ -71,25 +84,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean insertNewUser(String name, String habit, String weight, String height, String goal) {
+    public int insertNewUser(String name, String age, String habits, String weight, String height, String goal) {
         ContentValues cv = new ContentValues();
         cv.put(COL_5, name);
-        cv.put(COL_6, habit);
-        cv.put(COL_7, weight);
-        cv.put(COL_8, height);
-        cv.put(COL_9, goal);
+        cv.put(COL_6, age);
+        cv.put(COL_7, habits);
+        cv.put(COL_8, weight);
+        cv.put(COL_9, height);
+        cv.put(COL_10, goal);
 
         long result = db.insert(USER_TABLE, null, cv);
         if (result == -1) {
-            return false;
+            return -1;
         } else {
-            return true;
+            return (int)result;
         }
     }
 
-    public boolean updateUserData(int id, String row) {
+    public boolean updateUserData(int id, String row, String contents) {
         ContentValues cv = new ContentValues();
-        cv.put(COL_5, row);
+        cv.put(row, contents);
 
         long result = db.update(USER_TABLE, cv, "ID="+id, null);
         if (result == -1) {
@@ -103,14 +117,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String data = "";
         Cursor c = null;
         try {
-            c = db.rawQuery("SELECT " + row + " FROM" + USER_TABLE + "WHERE " + id + "=?", new String[] {id + ""});
+            c = db.rawQuery("SELECT " + row + " FROM " + USER_TABLE + " WHERE ID =?", new String[] {id + ""});
             if(c.getCount() > 0) {
                 c.moveToFirst();
                 data = c.getString(c.getColumnIndex(row));
             }
-            return data;
         }finally {
-            c.close();
+            //c.close();
+            return data;
         }
     }
 
@@ -127,11 +141,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean updateGame(int id, String contents) {
+    public boolean updateGame(int id, String row, String contents) {
         ContentValues cv = new ContentValues();
-        cv.put(COL_5, contents);
+        cv.put(row, contents);
 
-        long result = db.update(USER_TABLE, cv, "USER_ID="+id, null);
+        long result = db.update(GAME_TABLE, cv, "ID="+id, null);
         if (result == -1) {
             return false;
         } else {
@@ -143,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String data = "";
         Cursor c = null;
         try {
-            c = db.rawQuery("SELECT " + row + " FROM" + GAME_TABLE + "WHERE " + id + "=?", new String[] {id + ""});
+            c = db.rawQuery("SELECT " + row + " FROM " + GAME_TABLE + " WHERE ID =?", new String[] {id + ""});
             if(c.getCount() > 0) {
                 c.moveToFirst();
                 data = c.getString(c.getColumnIndex(row));
@@ -153,4 +167,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.close();
         }
     }
+
 }

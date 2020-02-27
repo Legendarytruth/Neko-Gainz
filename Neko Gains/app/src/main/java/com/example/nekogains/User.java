@@ -1,16 +1,17 @@
 package com.example.nekogains;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class User {
+public class User implements Serializable {
 
     DatabaseHelper dbh;
     int id;
 
-    public User(DatabaseHelper dbh, String name, String habit, String weight, String height, String goal) {
+    public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
-        this.dbh.insertNewUser(name, habit, weight, height, goal);
+        this.id = id;
         this.dbh.insertNewGame("0", "0");
     }
     private String username;
@@ -43,7 +44,7 @@ public class User {
     }
 
     public int getMoneyAmount() {
-        return Integer.parseInt((dbh.getUserData(id, "MONEY")));
+        return Integer.parseInt((dbh.getGameData(id, "MONEY")));
     }
 
     public int getExperience() {
@@ -60,11 +61,11 @@ public class User {
     }
 
     public void setWeight(String weight) {
-        dbh.updateUserData(id, weight);
+        dbh.updateUserData(id, "WEIGHT", weight);
     }
 
     public void setHeight(String height) {
-        dbh.updateUserData(id, height);
+        dbh.updateUserData(id, "HEIGHT", height);
 
     }
 
@@ -77,16 +78,17 @@ public class User {
     }
 
     public void addMoney(String amount) {
-        dbh.updateGame(id, amount);
+        dbh.updateGame(id, "MONEY", amount);
     }
 
     public void removeMoney(int amount){
         int balance = getMoneyAmount();
-        dbh.updateGame(id, Integer.toString(balance-amount));
+        dbh.updateGame(id, "MONEY", Integer.toString(balance-amount));
     }
 
     //OTHER
     public float getBMI() {
         return Float.parseFloat((dbh.getUserData(id, "BMI")));
     }
+
 }

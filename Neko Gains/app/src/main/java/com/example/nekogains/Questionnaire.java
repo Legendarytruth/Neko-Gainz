@@ -34,16 +34,23 @@ public class Questionnaire extends AppCompatActivity {
 
         RadioGroup q3_group = findViewById(R.id.q3);
         RadioButton q3_button = findViewById(q3_group.getCheckedRadioButtonId());
-        String q3_age = q3_button.getText().toString();
+        String q3_habit = q3_button.getText().toString();
 
         String q4_weight = ((EditText)findViewById(R.id.q4a)).getText().toString();
         String q4_height = ((EditText)findViewById(R.id.q4b)).getText().toString();
 
         RadioGroup q5_group = findViewById(R.id.q5);
         RadioButton q5_button = findViewById(q3_group.getCheckedRadioButtonId());
-        String q5_age = q3_button.getText().toString();
+        String q5_goal = q3_button.getText().toString();
 
-        Intent myIntent = new Intent(this, MainActivity.class);
-        startActivity(myIntent);
+        String[] results = {q1_name, q2_age, q3_habit, q4_weight, q4_height, q5_goal};
+
+        Intent intent = getIntent();
+        //User user = new User(dbh, q1_name, q2_age, q3_habit, q4_weight, q4_height, q5_goal);
+
+        intent = new Intent(this, MainActivity.class);
+        intent.putExtra("RESULTS", results);
+        setResult(MainActivity.REQUEST_CODE, intent);
+        finish();
     }
 }
