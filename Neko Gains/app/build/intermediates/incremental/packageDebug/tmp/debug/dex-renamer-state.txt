@@ -1,4 +1,4 @@
-#Wed Feb 26 15:58:50 EST 2020
-base.0=C\:\\Users\\Denise\\Desktop\\project-the-cookie-club\\Neko Gains\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Wed Feb 26 23:41:10 EST 2020
+base.0=C\:\\Users\\roylu\\project-the-cookie-club\\Neko Gains\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

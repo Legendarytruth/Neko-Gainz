@@ -24,6 +24,29 @@
                     android:background="#AAAAAA"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"/>
+                <!-- Question 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="What is your name?"
+                        android:textSize="24sp"
+                        android:gravity="center"
+                        android:textColor="#555555"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"/>
+                    <EditText
+                        android:id="@+id/q1a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#BBBBBB"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="200dp"
+                        android:hint="Enter your name here"/>
+                </LinearLayout>
+                <!-- Question 2 -->
                 <TextView
                     android:fontFamily="@font/opensans_semibold"
                     android:text="How Old Are You?"
@@ -32,14 +55,14 @@
                     android:textColor="#555555"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"/>
-
                 <RadioGroup
+                    android:id="@+id/q2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation = "vertical">
 
                     <RadioButton
-                        android:id="@+id/q1a"
+                        android:id="@+id/q2a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="10-19"
@@ -47,7 +70,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q1b"
+                        android:id="@+id/q2b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20-30"
@@ -55,7 +78,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q1c"
+                        android:id="@+id/q2c"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="30-40"
@@ -71,7 +94,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q1e"
+                        android:id="@+id/q2e"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="60+"
@@ -80,7 +103,7 @@
                         android:background ="#6fc492"/>
                 </RadioGroup>
             </LinearLayout>
-            <!-- Question 2 -->
+            <!-- Question 3 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -95,12 +118,13 @@
                     android:layout_height="100dp"/>
 
                 <RadioGroup
+                    android:id="@+id/q3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation = "vertical">
 
                     <RadioButton
-                        android:id="@+id/q2a"
+                        android:id="@+id/q3a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Do not or very seldom exercises"
@@ -108,7 +132,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q2b"
+                        android:id="@+id/q3b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="1-2 times a week"
@@ -116,7 +140,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q2c"
+                        android:id="@+id/q3c"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="3-4 times a week"
@@ -124,7 +148,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q2d"
+                        android:id="@+id/q3d"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="5 or more times a week"
@@ -133,7 +157,7 @@
                         android:background ="#6fc492"/>
                 </RadioGroup>
             </LinearLayout>
-            <!-- Question 3 -->
+            <!-- Question 4 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -147,7 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"/>
                 <EditText
-                    android:id="@+id/q3a"
+                    android:id="@+id/q4a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#BBBBBB"
@@ -156,7 +180,7 @@
                     android:hint="Enter your weight here"/>
 
                 <EditText
-                    android:id="@+id/q3b"
+                    android:id="@+id/q4b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#BBBBBB"
@@ -165,7 +189,7 @@
                     android:layout_marginRight="200dp"
                     android:hint="Enter your height here"/>
             </LinearLayout>
-            <!-- Question 4 -->
+            <!-- Question 5 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -180,11 +204,12 @@
                     android:layout_height="100dp"/>
 
                 <RadioGroup
+                    android:id="@+id/q5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation = "vertical">
                     <RadioButton
-                        android:id="@+id/q4a"
+                        android:id="@+id/q5a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Muscle building"
@@ -192,7 +217,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q4b"
+                        android:id="@+id/q5b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Weight loss"
@@ -200,7 +225,7 @@
                         android:buttonTint="#ffffff"
                         android:background ="#6fc492"/>
                     <RadioButton
-                        android:id="@+id/q4c"
+                        android:id="@+id/q5c"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Healthier lifestyle"
@@ -210,6 +235,7 @@
                 </RadioGroup>
             </LinearLayout>
                 <Button
+                    android:id="@+id/button_send"
                     android:fontFamily="@font/opensans_semibold"
                     android:text="Submit"
                     android:textSize="24sp"

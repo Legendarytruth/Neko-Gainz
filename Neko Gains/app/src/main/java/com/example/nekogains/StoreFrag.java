@@ -1,5 +1,6 @@
 package com.example.nekogains;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 public class StoreFrag extends Fragment implements View.OnClickListener {
     private User user;
+    private UserInventory userInventory = new UserInventory();
     private View view;
     private TextView textView;
     private Button button1;
@@ -27,6 +29,8 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+
         view = inflater.inflate(R.layout.store_frag, container, false);
         textView = view.findViewById(R.id.money);
         button1 = view.findViewById(R.id.button1);
@@ -39,10 +43,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
         button3.setOnClickListener(this);
         button4.setOnClickListener(this);
 
-        MainActivity activity = (MainActivity) getActivity();
-        user = activity.user;
-
-        setMoney(user.userInventory.getMoneyAmount());
+        setMoney(user.getMoneyAmount());
         //textView.setText("Money: "+ user.getMoneyAmount());
         return view;
     }
@@ -52,61 +53,61 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     }
 
     public boolean checkMoney(int amount){
-        return user.userInventory.getMoneyAmount() > amount;
+        return user.getMoneyAmount() > amount;
     }
 
     @Override
     public void onClick(View v){
         switch(v.getId()){
             case R.id.button1:
-                if (user.userInventory.getMoneyAmount() >= foodcost){
-                    if (user.userInventory.hasFood("blueberries")){
-                        user.userInventory.addFood("blueberries");
+                if (user.getMoneyAmount() >= foodcost){
+                    if (userInventory.hasFood("blueberries")){
+                        userInventory.addFood("blueberries");
                     }else{
-                        user.userInventory.createFood("blueberries");
+                        userInventory.createFood("blueberries");
                     }
-                    user.userInventory.removeMoney(foodcost);
-                    setMoney(user.userInventory.getMoneyAmount());
-                    Toast.makeText(getContext(), user.userInventory.showFood(), Toast.LENGTH_SHORT).show();
+                    user.removeMoney(foodcost);
+                    setMoney(user.getMoneyAmount());
+                    Toast.makeText(getContext(), userInventory.showFood(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "Not Enough Money", Toast.LENGTH_SHORT).show();}
                 break;
             case R.id.button2:
-                if (user.userInventory.getMoneyAmount() >= foodcost){
-                    if (user.userInventory.hasFood("catfood")){
-                        user.userInventory.addFood("catfood");
+                if (user.getMoneyAmount() >= foodcost){
+                    if (userInventory.hasFood("catfood")){
+                        userInventory.addFood("catfood");
                     }else{
-                        user.userInventory.createFood("catfood");
+                        userInventory.createFood("catfood");
                     }
-                    user.userInventory.removeMoney(foodcost);
-                    setMoney(user.userInventory.getMoneyAmount());
-                    Toast.makeText(getContext(), user.userInventory.showFood(), Toast.LENGTH_SHORT).show();
+                    user.removeMoney(foodcost);
+                    setMoney(user.getMoneyAmount());
+                    Toast.makeText(getContext(), userInventory.showFood(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "Not Enough Money", Toast.LENGTH_SHORT).show();}
                 break;
             case R.id.button3:
-                if (user.userInventory.getMoneyAmount() >= foodcost){
-                    if (user.userInventory.hasFood("fish")){
-                        user.userInventory.addFood("fish");
+                if (user.getMoneyAmount() >= foodcost){
+                    if (userInventory.hasFood("fish")){
+                        userInventory.addFood("fish");
                     }else{
-                        user.userInventory.createFood("fish");
+                        userInventory.createFood("fish");
                     }
-                    user.userInventory.removeMoney(foodcost);
-                    setMoney(user.userInventory.getMoneyAmount());
-                    Toast.makeText(getContext(), user.userInventory.showFood(), Toast.LENGTH_SHORT).show();
+                    user.removeMoney(foodcost);
+                    setMoney(user.getMoneyAmount());
+                    Toast.makeText(getContext(), userInventory.showFood(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "Not Enough Money", Toast.LENGTH_SHORT).show();}
                 break;
             case R.id.button4:
-                if (user.userInventory.getMoneyAmount() >= foodcost){
-                    if (user.userInventory.hasFood("milk")){
-                        user.userInventory.addFood("milk");
+                if (user.getMoneyAmount() >= foodcost){
+                    if (userInventory.hasFood("milk")){
+                        userInventory.addFood("milk");
                     }else{
-                        user.userInventory.createFood("milk");
+                        userInventory.createFood("milk");
                     }
-                    user.userInventory.removeMoney(foodcost);
-                    setMoney(user.userInventory.getMoneyAmount());
-                    Toast.makeText(getContext(), user.userInventory.showFood(), Toast.LENGTH_SHORT).show();
+                    user.removeMoney(foodcost);
+                    setMoney(user.getMoneyAmount());
+                    Toast.makeText(getContext(), userInventory.showFood(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "Not Enough Money", Toast.LENGTH_SHORT).show();}
                 break;

@@ -1,13 +1,15 @@
 package com.example.nekogains;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -17,21 +19,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseHelper myDb;
-    public User user = new User(); //TEMP: SHOULD TAKE IN THE LOGIN/SIGNUP USER
+    private static Context context;
+    DatabaseHelper dbh;
+    User user;
+    Intent intent;
+    int id = 0;
+    public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //for now, clears database on start until login system is uninitialized
+        this.deleteDatabase("Workout.db");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myDb = new DatabaseHelper(this);
+        context = getContext();
+        dbh = DatabaseHelper.getInstance(this);
+        //run questionnaire and assign values to user
+        intent = new Intent(this, Questionnaire.class);
+        startActivityForResult(intent, REQUEST_CODE);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        /*getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
         FloatingActionButton fab = findViewById(R.id.bot_fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -41,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new PreworkoutFrag();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
             }
-        });
+        });*/
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -92,5 +105,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public int getUserId() {
+        return id;
+    }
+
+    public static Context getContext() {
+        return context;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_FIRST_USER) {
+                String[] result = (String[])data.getExtras().getSerializable("RESULTS");
+                id = dbh.insertNewUser(result[0], result[1], result[2], result[3], result[4], result[5]);
+                System.out.println(id);
+                user = new User(dbh, id);
+            }
+        } else {
+            throw new ActivityNotFoundException();
+        }
     }
 }
