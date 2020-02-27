@@ -41,10 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        /*getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
         FloatingActionButton fab = findViewById(R.id.bot_fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new PreworkoutFrag();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
             }
-        });
+        });*/
 
     }
 
@@ -123,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                 String[] result = (String[])data.getExtras().getSerializable("RESULTS");
                 id = dbh.insertNewUser(result[0], result[1], result[2], result[3], result[4], result[5]);
                 System.out.println(id);
-                dbh.insertNewGame("100", "0");
                 user = new User(dbh, id);
             }
         } else {

@@ -68,9 +68,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
 
         MainActivity activity = (MainActivity) getActivity();
-        user = activity.user;
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
 
-        setPetName(user.pet.getName());
+        setPetName(user.getPet().getName());
         setCatFoodAmount(user.userInventory.numofFood("catfood"));
         setBlueberryAmount(user.userInventory.numofFood("blueberries"));
         setFishAmount(user.userInventory.numofFood("fish"));

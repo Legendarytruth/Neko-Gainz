@@ -9,18 +9,22 @@ public class User implements Serializable {
     DatabaseHelper dbh;
     int id;
 
-    public User(DatabaseHelper dbh, int id) {
-        this.dbh = dbh;
-        this.id = id;
-        this.dbh.insertNewGame("0", "0");
-    }
     private String username;
     private String password;
 
-
-
-    public Pet pet;
+    private int xp;
+    protected Pet pet;
+    protected UserInventory userInventory = new UserInventory();
     private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
+
+    public User(DatabaseHelper dbh, int id) {
+        this.dbh = dbh;
+        this.id = id;
+        this.dbh.insertNewGame("100", "3060");
+        this.username = "newUser";
+        this.password = "1234";
+        this.pet  = new Cat("temppetname");
+    }
 
     //GETTING ATTRIBUTES
     public String getUsername() {
@@ -30,6 +34,8 @@ public class User implements Serializable {
     public String getPassword() {
         return this.password;
     }
+
+    public Pet getPet() { return this.pet; }
 
     public float getWeight() {
         return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
@@ -47,8 +53,8 @@ public class User implements Serializable {
         return Integer.parseInt((dbh.getGameData(id, "MONEY")));
     }
 
-    public int getExperience() {
-        return Integer.parseInt((dbh.getUserData(id, "EXPERIENCE")));
+    public int getXp() {
+        return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
     }
 
     //CHANGING ATTRIBUTES
@@ -77,13 +83,19 @@ public class User implements Serializable {
         this.exercisePlans.get(planName).add(exercise);
     }
 
-    public void addMoney(String amount) {
+    public void addMoney(int amount) {
         dbh.updateGame(id, "MONEY", amount);
     }
 
     public void removeMoney(int amount){
         int balance = getMoneyAmount();
-        dbh.updateGame(id, "MONEY", Integer.toString(balance-amount));
+        dbh.updateGame(id, "MONEY", balance-amount);
+    }
+
+    public void increaseXp(int amount) {
+        int xp = getXp();
+        dbh.updateGame(id, "EXPERIENCE", xp+amount);
+        this.pet.setLevel((int)Math.floor(xp/1000));
     }
 
     //OTHER

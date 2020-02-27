@@ -141,7 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
-    public boolean updateGame(int id, String row, String contents) {
+    public boolean updateGame(int id, String row, int contents) {
         ContentValues cv = new ContentValues();
         cv.put(row, contents);
 
@@ -167,5 +167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
             c.close();
         }
     }
+
+
 
 }
