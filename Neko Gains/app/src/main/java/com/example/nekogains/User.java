@@ -1,18 +1,30 @@
 package com.example.nekogains;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class User {
+public class User implements Serializable {
+
+    DatabaseHelper dbh;
+    int id;
+
     private String username;
     private String password;
 
-    private float weight = 0;
-    private float height = 0;
-    private int money = 0;
-
-    public Pet pet;
+    private int xp;
+    protected Pet pet;
+    protected UserInventory userInventory = new UserInventory();
     private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
+
+    public User(DatabaseHelper dbh, int id) {
+        this.dbh = dbh;
+        this.id = id;
+        this.dbh.insertNewGame("100", "3060");
+        this.username = "newUser";
+        this.password = "1234";
+        this.pet  = new Cat("temppetname");
+    }
 
     //GETTING ATTRIBUTES
     public String getUsername() {
@@ -23,12 +35,14 @@ public class User {
         return this.password;
     }
 
+    public Pet getPet() { return this.pet; }
+
     public float getWeight() {
-        return this.weight;
+        return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
     }
 
     public float getHeight() {
-        return this.height;
+        return Float.parseFloat((dbh.getUserData(id, "HEIGHT")));
     }
 
     public ArrayList<Exercise> getExercisePlan(String name) {
@@ -36,7 +50,11 @@ public class User {
     }
 
     public int getMoneyAmount() {
-        return this.money;
+        return Integer.parseInt((dbh.getGameData(id, "MONEY")));
+    }
+
+    public int getXp() {
+        return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
     }
 
     //CHANGING ATTRIBUTES
@@ -48,12 +66,13 @@ public class User {
         this.password = password;
     }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
+    public void setWeight(String weight) {
+        dbh.updateUserData(id, "WEIGHT", weight);
     }
 
-    public void setHeight(float height) {
-        this.height = height;
+    public void setHeight(String height) {
+        dbh.updateUserData(id, "HEIGHT", height);
+
     }
 
     public void addExercisePlan(String planName, ArrayList<Exercise> exercises) {
@@ -65,11 +84,23 @@ public class User {
     }
 
     public void addMoney(int amount) {
-        this.money += amount;
+        dbh.updateGame(id, "MONEY", amount);
+    }
+
+    public void removeMoney(int amount){
+        int balance = getMoneyAmount();
+        dbh.updateGame(id, "MONEY", balance-amount);
+    }
+
+    public void increaseXp(int amount) {
+        int xp = getXp();
+        dbh.updateGame(id, "EXPERIENCE", xp+amount);
+        this.pet.setLevel((int)Math.floor(xp/1000));
     }
 
     //OTHER
-    public float calculateBMI() {
-        return (float) (this.weight/ Math.pow(this.height, 2));
+    public float getBMI() {
+        return Float.parseFloat((dbh.getUserData(id, "BMI")));
     }
+
 }
