@@ -4,7 +4,6 @@ Everyone has participated
 
 Unfinished Tasks:
 As a user I want to have tutorial panels for each workout so that I now how to properly do each one
-As a user I want to be able to register as a new user.
 
 Practices to continue:
   - messaging in discord when git push/ making a pull request
