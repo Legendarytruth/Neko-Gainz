@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 public class StoreFrag extends Fragment implements View.OnClickListener {
     private User user;
-    private UserInventory userInventory = new UserInventory();
+    private UserInventory userInventory;
     private View view;
     private TextView textView;
     private Button button1;
@@ -30,6 +30,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+        userInventory = user.getUserInventory();
 
         view = inflater.inflate(R.layout.store_frag, container, false);
         textView = view.findViewById(R.id.money);
@@ -45,6 +46,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
 
         setMoney(user.getMoneyAmount());
         //textView.setText("Money: "+ user.getMoneyAmount());
+        System.out.println(user.getUserInventory().numofFood("blueberries"));
         return view;
     }
 
@@ -58,6 +60,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v){
+        System.out.println(user.getUserInventory().numofFood("blueberries"));
         switch(v.getId()){
             case R.id.button1:
                 if (user.getMoneyAmount() >= foodcost){

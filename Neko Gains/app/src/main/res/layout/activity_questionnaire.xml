@@ -39,6 +39,7 @@
                         android:layout_height="100dp"/>
                     <EditText
                         android:id="@+id/q1a"
+                        android:text="Johnson"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#BBBBBB"
@@ -63,6 +64,7 @@
 
                     <RadioButton
                         android:id="@+id/q2a"
+                        android:checked="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="10-19"
@@ -125,6 +127,7 @@
 
                     <RadioButton
                         android:id="@+id/q3a"
+                        android:checked="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Do not or very seldom exercises"
@@ -172,6 +175,7 @@
                     android:layout_height="100dp"/>
                 <EditText
                     android:id="@+id/q4a"
+                    android:text="60"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#BBBBBB"
@@ -181,6 +185,7 @@
 
                 <EditText
                     android:id="@+id/q4b"
+                    android:text="160"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#BBBBBB"
@@ -210,6 +215,7 @@
                     android:orientation = "vertical">
                     <RadioButton
                         android:id="@+id/q5a"
+                        android:checked="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Muscle building"

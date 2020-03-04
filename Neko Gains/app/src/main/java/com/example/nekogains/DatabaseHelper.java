@@ -12,25 +12,25 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
     private static DatabaseHelper sInstance;
 
-    public static final String DATABASE_NAME = "Workout.db";
-    public static final String EXERCISE_TABLE = "Exercises";
-    public static final String USER_TABLE = "Users";
-    public static final String GAME_TABLE = "Games";
-    public static final String COL_2 = "NAME";
-    public static final String COL_3 = "CALORIES";
-    public static final String[] workouts = {"Push-Ups", "Bench-Dips", "Chin-Ups", "Squats", "Lunges", "Calf-Raises", "Planks", "Sit-Ups", "Leg Raises", "Running", "Burpees", "Jumping Jacks"};
-    public static final double[] calories = {1, 3, 1, 14, 0.9, 0.3, 3.5, 0.3, 0.7, 15, 13, 9};
-    public static final String COL_5 = "NAME";
-    public static final String COL_6 = "AGE";
-    public static final String COL_7 = "HABITS";
-    public static final String COL_8 = "WEIGHT";
-    public static final String COL_9 = "HEIGHT";
-    public static final String COL_10 = "GOAL";
+    private static final String DATABASE_NAME = "Workout.db";
+    private static final String EXERCISE_TABLE = "Exercises";
+    private static final String USER_TABLE = "Users";
+    private static final String GAME_TABLE = "Games";
+    private static final String EX_NAME = "NAME";
+    private static final String EX_CAL = "CALORIES";
+    private static final String[] workouts = {"Push-Ups", "Bench-Dips", "Chin-Ups", "Squats", "Lunges", "Calf-Raises", "Planks", "Sit-Ups", "Leg Raises", "Running", "Burpees", "Jumping Jacks"};
+    private static final double[] calories = {1, 3, 1, 14, 0.9, 0.3, 3.5, 0.3, 0.7, 15, 13, 9};
+    //User Table
+    private static final String USER_NAME = "NAME";
+    private static final String USER_AGE = "AGE";
+    private static final String USER_HABIT = "HABITS";
+    private static final String USER_WEIGHT = "WEIGHT";
+    private static final String USER_HEIGHT = "HEIGHT";
+    private static final String USER_GOAL = "GOAL";
+    //Game Table
+    private static final String GAME_MONEY = "MONEY";
+    private static final String GAME_EXPERIENCE = "EXPERIENCE";
 
-
-
-    public static final String COL_13 = "MONEY";
-    public static final String COL_14 = "EXPERIENCE";
 
     private SQLiteDatabase db;
 
@@ -53,16 +53,16 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         ContentValues contentValues;
         for (int i = 0; i < workouts.length; i++) {
             contentValues = new ContentValues();
-            contentValues.put(COL_2, workouts[i]);
-            contentValues.put(COL_3, calories[i]);
+            contentValues.put(EX_NAME, workouts[i]);
+            contentValues.put(EX_CAL, calories[i]);
             db.insert(EXERCISE_TABLE, null, contentValues);
         }
 
         db.execSQL("CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY, NAME TEXT, AGE TEXT, HABITS TEXT, WEIGHT TEXT, HEIGHT TEXT, GOAL TEXT, USERNAME TEXT, PASSWORD TEXT, BMI TEXT);");
         //calculates bmi on inserts
-        db.execSQL("CREATE TRIGGER trg_bmi AFTER UPDATE ON " + USER_TABLE + " WHEN experience > 0 BEGIN UPDATE USER_TABLE SET BMI=WEIGHT/HEIGHT*HEIGHT; END;");
+        db.execSQL("CREATE TRIGGER trg_bmi AFTER UPDATE ON " + USER_TABLE + " WHEN NEW.HEIGHT > 0 BEGIN UPDATE " + USER_TABLE + " SET BMI=WEIGHT/HEIGHT*HEIGHT; END;");
 
-        db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER, BMI INTEGER," +
+        db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER," +
                 " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
     }
 
@@ -74,8 +74,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
     //dynamic adding of exercises may not be needed
     public boolean insertNewExercise(String name, String calories) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, name);
-        contentValues.put(COL_3, calories);
+        contentValues.put(EX_NAME, name);
+        contentValues.put(EX_CAL, calories);
         long result = db.insert(EXERCISE_TABLE, null, contentValues);
         if (result == -1) {
             return false;
@@ -84,14 +84,32 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
+    //Adds new user to table with null stats
+    public int insertEmptyUser() {
+        ContentValues cv = new ContentValues();
+        cv.putNull(USER_NAME);
+        cv.putNull(USER_AGE);
+        cv.putNull(USER_HABIT);
+        cv.putNull(USER_WEIGHT);
+        cv.putNull(USER_HEIGHT);
+        cv.putNull(USER_GOAL);
+        long result = db.insert(USER_TABLE, null, cv);
+        if (result == -1) {
+            return -1;
+        } else {
+            return (int)result;
+        }
+    }
+
+    //Adds new user to table with given stats
     public int insertNewUser(String name, String age, String habits, String weight, String height, String goal) {
         ContentValues cv = new ContentValues();
-        cv.put(COL_5, name);
-        cv.put(COL_6, age);
-        cv.put(COL_7, habits);
-        cv.put(COL_8, weight);
-        cv.put(COL_9, height);
-        cv.put(COL_10, goal);
+        cv.put(USER_NAME, name);
+        cv.put(USER_AGE, age);
+        cv.put(USER_HABIT, habits);
+        cv.put(USER_WEIGHT, weight);
+        cv.put(USER_HEIGHT, height);
+        cv.put(USER_GOAL, goal);
 
         long result = db.insert(USER_TABLE, null, cv);
         if (result == -1) {
@@ -101,7 +119,10 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
+    //Update a row for the user at the given id
     public boolean updateUserData(int id, String row, String contents) {
+        System.out.println(row);
+        System.out.println(contents);
         ContentValues cv = new ContentValues();
         cv.put(row, contents);
 
@@ -113,6 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
+    //Get a row for the user at the given id
     public String getUserData(int id, String row) {
         String data = "";
         Cursor c = null;
@@ -128,10 +150,11 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
+    //Insert new game with it's ID tied to the user
     public boolean insertNewGame(String money, String experience) {
         ContentValues cv = new ContentValues();
-        cv.put(COL_13, money);
-        cv.put(COL_14, experience);
+        cv.put(GAME_MONEY, money);
+        cv.put(GAME_EXPERIENCE, experience);
 
         long result = db.insert(GAME_TABLE, null, cv);
         if (result == -1) {
@@ -141,6 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
+    //Update a row for the game at the given id
     public boolean updateGame(int id, String row, int contents) {
         ContentValues cv = new ContentValues();
         cv.put(row, contents);
@@ -153,6 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
     }
 
+    //Get a row for the user at the given id
     public String getGameData(int id, String row) {
         String data = "";
         Cursor c = null;

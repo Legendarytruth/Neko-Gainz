@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
     private static Context context;
     DatabaseHelper dbh;
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //commented out because homefrag calls for user's xp when a user has not been created yet
+        //perhaps solution would be to start questionnaire/login as the first activity instead?
         /*getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
         FloatingActionButton fab = findViewById(R.id.bot_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +124,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_FIRST_USER) {
-                String[] result = (String[])data.getExtras().getSerializable("RESULTS");
-                id = dbh.insertNewUser(result[0], result[1], result[2], result[3], result[4], result[5]);
+                HashMap<String, String> results = (HashMap<String, String>)data.getExtras().getSerializable("RESULTS");
+                id = dbh.insertEmptyUser();
+                dbh.insertNewGame("100", "30600");
+                for (HashMap.Entry<String, String> entry : results.entrySet()) {
+                    System.out.println(entry.getKey());
+                    System.out.println(entry.getValue());
+                    dbh.updateUserData(id, entry.getKey(), entry.getValue());
+                }
+                //id = dbh.insertNewUser(results[0], results[1], results[2], results[3], results[4], results[5]);
                 System.out.println(id);
                 user = new User(dbh, id);
             }
