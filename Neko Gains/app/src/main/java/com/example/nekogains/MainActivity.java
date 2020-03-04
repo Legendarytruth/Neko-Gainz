@@ -53,14 +53,6 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-
-
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         //commented out because homefrag calls for user's xp when a user has not been created yet
         //perhaps solution would be to start questionnaire/login as the first activity instead?
 
