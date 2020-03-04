@@ -12,15 +12,13 @@ public class User implements Serializable {
     private String username;
     private String password;
 
-    private int xp;
-    protected Pet pet;
-    protected UserInventory userInventory = new UserInventory();
+    private Pet pet;
+    private static UserInventory userInventory = new UserInventory();
     private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
 
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
-        this.dbh.insertNewGame("100", "3060");
         this.username = "newUser";
         this.password = "1234";
         this.pet  = new Cat("temppetname");
@@ -36,6 +34,23 @@ public class User implements Serializable {
     }
 
     public Pet getPet() { return this.pet; }
+
+    //Inventory
+
+    public UserInventory getUserInventory() { return this.userInventory; }
+
+    /*public boolean hasFood(String key){ return userInventory.hasFood(key); }
+
+    public void createFood(String key){ userInventory.createFood(key);}
+
+    public void removeFood(String key){ userInventory.removeFood(key); }
+
+    public void addFood(String key){ userInventory.addFood(key); }
+
+    public int numofFood(String key) { return userInventory.numofFood(key); }
+
+    public String showFood(){ return userInventory.showFood(); }*/
+
 
     public float getWeight() {
         return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
