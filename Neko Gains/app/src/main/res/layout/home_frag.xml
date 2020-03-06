@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/colorPrimary">
 
     <View
         android:id="@+id/divider3"
@@ -16,7 +16,11 @@
         android:layout_marginStart="3dp"
         android:layout_marginEnd="-2dp"
         android:layout_marginBottom="79dp"
-        android:background="#000000" />
+        android:background="#000000"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="-2dp" />
 
     <View
         android:id="@+id/divider2"
@@ -28,7 +32,11 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="26dp"
-        android:background="#000000" />
+        android:background="#000000"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="1dp" />
 
     <TextView
         android:id="@+id/CatFood"
@@ -191,7 +199,11 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="129dp"
-        android:background="#000000" />
+        android:background="#000000"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="1dp" />
 
     <ProgressBar
         android:id="@+id/Experience"
@@ -247,6 +259,10 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="79dp"
         android:layout_marginEnd="-1dp"
-        android:background="?android:attr/listDivider" />
+        android:background="?android:attr/listDivider"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="-1dp" />
 
 </RelativeLayout>
