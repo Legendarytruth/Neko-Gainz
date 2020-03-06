@@ -12,13 +12,16 @@ public class User implements Serializable {
     private String username;
     private String password;
 
-    private Pet pet;
-    private static UserInventory userInventory = new UserInventory();
+    private int xp;
+    private int daily;
+    protected Pet pet;
+    protected UserInventory userInventory = new UserInventory();
     private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
 
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
+        this.dbh.insertNewGame("100", "3060");
         this.username = "newUser";
         this.password = "1234";
         this.pet  = new Cat("temppetname");
@@ -35,22 +38,7 @@ public class User implements Serializable {
 
     public Pet getPet() { return this.pet; }
 
-    //Inventory
-
     public UserInventory getUserInventory() { return this.userInventory; }
-
-    /*public boolean hasFood(String key){ return userInventory.hasFood(key); }
-
-    public void createFood(String key){ userInventory.createFood(key);}
-
-    public void removeFood(String key){ userInventory.removeFood(key); }
-
-    public void addFood(String key){ userInventory.addFood(key); }
-
-    public int numofFood(String key) { return userInventory.numofFood(key); }
-
-    public String showFood(){ return userInventory.showFood(); }*/
-
 
     public float getWeight() {
         return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
@@ -71,6 +59,8 @@ public class User implements Serializable {
     public int getXp() {
         return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
     }
+
+    public int getDaily() {return this.daily;}
 
     //CHANGING ATTRIBUTES
     public void setUsername(String username) {
@@ -113,9 +103,17 @@ public class User implements Serializable {
         this.pet.setLevel((int)Math.floor(xp/1000));
     }
 
+    public void setDaily(int daily) {this.daily = daily;}
+
     //OTHER
     public float getBMI() {
         return Float.parseFloat((dbh.getUserData(id, "BMI")));
     }
+
+    public boolean checkerDaily() {return this.daily == 5;}
+
+    public void resetDaily() {this.daily = 0;}
+
+    public void addDaily() {this.daily++;}
 
 }
