@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         settings = getSharedPreferences("preferences", MODE_PRIVATE);
 
         //If user is not in database create a new user
-        if(!registered()) {
+        if(registered()) {
             System.out.println("Not registered, going to questionnaire");
             setContentView(R.layout.activity_init);
         } else {
