@@ -69,6 +69,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
         MainActivity activity = (MainActivity) getActivity();
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+        System.out.println("THIS IS HOMEFRAG");
         System.out.println(user.getUserInventory().numofFood("blueberries"));
         System.out.println("TESTING\n\n");
 

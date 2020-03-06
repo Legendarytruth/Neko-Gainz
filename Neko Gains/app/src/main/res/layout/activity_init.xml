@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Welcome! Press the button below to get started."
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
 
     <Button
         android:id="@+id/button"
@@ -22,7 +24,7 @@
         android:layout_below="@+id/welcomeMsg"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-
+        android:background="@color/colorAccent"
         android:onClick="startQuestionnaire"
         android:text="@string/action_register" />
 </RelativeLayout>
