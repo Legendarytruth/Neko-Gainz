@@ -252,7 +252,9 @@ attr fontStyle
 attr fontVariationSettings
 attr fontWeight
 attr foregroundInsidePadding
+attr freezesAnimation
 attr gapBetweenBars
+attr gifSource
 attr goIcon
 attr headerLayout
 attr height
@@ -282,6 +284,7 @@ attr indeterminateProgressStyle
 attr initialActivityCount
 attr insetForeground
 attr isLightTheme
+attr isOpaque
 attr itemBackground
 attr itemHorizontalPadding
 attr itemHorizontalTranslationEnabled
@@ -998,8 +1001,10 @@ drawable avd_show_password
 drawable blueberries_small
 drawable blueberries_smallicon
 drawable blueberryicon
+drawable blueshirt_yellowpants_idle
 drawable catfood_small
 drawable catfood_smallicon
+drawable catmovement
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1039,6 +1044,7 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable yellowshirt_orangepants_walking
 font fonts
 font opensans_bold
 font opensans_bolditalic
@@ -1054,8 +1060,11 @@ id ALT
 id Blueberry
 id BlueberryButton
 id CTRL
+id CatBody
 id CatFood
 id CatFoodButton
+id CloseButton
+id ClothingButton
 id Experience
 id FUNCTION
 id Fish
@@ -1067,6 +1076,7 @@ id Milk
 id MilkButton
 id Money
 id PetName
+id PopupRestriction
 id SHIFT
 id SYM
 id action_bar
@@ -1107,6 +1117,7 @@ id button3
 id button4
 id buttonPanel
 id button_send
+id catLayout
 id center
 id center_horizontal
 id center_vertical
@@ -1364,6 +1375,7 @@ layout abc_tooltip
 layout activity_login
 layout activity_main
 layout activity_questionnaire
+layout clothing_popup
 layout content_main
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2013,6 +2025,8 @@ styleable FlowLayout itemSpacing lineSpacing
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
 styleable ForegroundLinearLayout android_foreground android_foregroundGravity foregroundInsidePadding
+styleable GifTextureView gifSource isOpaque
+styleable GifView freezesAnimation
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
 styleable GradientColorItem android_color android_offset
 styleable LinearConstraintLayout android_orientation
