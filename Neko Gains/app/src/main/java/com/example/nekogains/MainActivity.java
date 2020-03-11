@@ -33,12 +33,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //for now, clears database on start until login system is uninitialized
-        this.deleteDatabase("Workout.db");
+        //this.deleteDatabase("Workout.db");
+
         super.onCreate(savedInstanceState);
 
         context = getContext();
         dbh = DatabaseHelper.getInstance(this);
         settings = getSharedPreferences("preferences", MODE_PRIVATE);
+        //SharedPreferences.Editor editor = settings.edit();
+        //editor.putBoolean("registered", false);
+        //editor.apply();
 
         //If user is not in database create a new user
         if(!registered()) {

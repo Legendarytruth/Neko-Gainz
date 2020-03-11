@@ -9,8 +9,7 @@ public class User implements Serializable {
     DatabaseHelper dbh;
     int id;
 
-    private String username;
-    private String password;
+    private String name;
 
     private Pet pet;
     private static UserInventory userInventory = new UserInventory();
@@ -19,21 +18,39 @@ public class User implements Serializable {
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
-        this.username = "newUser";
-        this.password = "1234";
         this.pet  = new Cat("temppetname");
     }
 
     //GETTING ATTRIBUTES
-    public String getUsername() {
-        return this.username;
-    }
+    public String getName() { return dbh.getUserData(id, "NAME"); }
 
-    public String getPassword() {
-        return this.password;
-    }
+    public String getAge() { return dbh.getUserData(id, "AGE"); }
 
     public Pet getPet() { return this.pet; }
+
+    public float getWeight() {
+        return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
+    }
+
+    public float getHeight() {
+        return Float.parseFloat((dbh.getUserData(id, "HEIGHT")));
+    }
+
+    public String getGoal() { return dbh.getUserData(id, "GOAL"); }
+
+    public String getHabit() { return dbh.getUserData(id, "HABITS"); }
+
+    public ArrayList<Exercise> getExercisePlan(String name) { return this.exercisePlans.get(name); }
+
+    public int getMoneyAmount() {
+        return Integer.parseInt((dbh.getGameData(id, "MONEY")));
+    }
+
+    public int getXp() {
+        return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
+    }
+
+
 
     //Inventory
 
@@ -52,33 +69,10 @@ public class User implements Serializable {
     public String showFood(){ return userInventory.showFood(); }*/
 
 
-    public float getWeight() {
-        return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
-    }
-
-    public float getHeight() {
-        return Float.parseFloat((dbh.getUserData(id, "HEIGHT")));
-    }
-
-    public ArrayList<Exercise> getExercisePlan(String name) {
-        return this.exercisePlans.get(name);
-    }
-
-    public int getMoneyAmount() {
-        return Integer.parseInt((dbh.getGameData(id, "MONEY")));
-    }
-
-    public int getXp() {
-        return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
-    }
 
     //CHANGING ATTRIBUTES
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setName(String name) {
+        dbh.updateUserData(id, "NAME", name);
     }
 
     public void setWeight(String weight) {
@@ -87,8 +81,11 @@ public class User implements Serializable {
 
     public void setHeight(String height) {
         dbh.updateUserData(id, "HEIGHT", height);
-
     }
+
+    public void setHabit(String habit) { dbh.updateUserData(id, "HABITS", habit);}
+
+    public void setGoal(String goal) { dbh.updateUserData(id, "GOAL", goal);}
 
     public void addExercisePlan(String planName, ArrayList<Exercise> exercises) {
         this.exercisePlans.put(planName, exercises);
