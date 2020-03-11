@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/colorPrimary">
 
     <FrameLayout
         android:id="@+id/catLayout"
-        android:layout_width="match_parent"
-        android:layout_height="518dp"
+        android:layout_width="wrap_content"
+        android:layout_height="520dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -17,8 +17,9 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="-1dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="133dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="131dp"
+        android:background="@drawable/backgroundart"
         android:clipChildren="false">
 
         <pl.droidsonroids.gif.GifImageView
@@ -261,5 +262,33 @@
         android:layout_marginTop="79dp"
         android:layout_marginEnd="-1dp"
         android:background="?android:attr/listDivider" />
+
+    <ProgressBar
+        android:id="@+id/dailyLogin"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="47dp"
+        android:background="#00FF0000"
+        android:max="5"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dailyProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="47dp"
+        android:text="TextView" />
 
 </RelativeLayout>

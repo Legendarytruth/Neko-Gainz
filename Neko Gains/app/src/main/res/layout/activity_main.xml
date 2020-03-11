@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
@@ -52,7 +54,7 @@
         app:borderWidth="5dp"
         app:elevation="9dp"
         android:src="@drawable/ic_fitness_center_black_24dp"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/colorPrimaryDark"
         />
 
 
@@ -63,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bot_nav"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/colorAccent"
         android:layout_alignParentBottom="true"/>
         <!--
         android:layout_alignParentBottom="true"

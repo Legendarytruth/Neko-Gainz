@@ -1,3 +1,5 @@
+
+
 package com.example.nekogains;
 
 
@@ -26,43 +28,51 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
 
 
-    public static final String DATABASE_NAME = "Workout.db";
+    private static final String DATABASE_NAME = "Workout.db";
 
-    public static final String EXERCISE_TABLE = "Exercises";
+    private static final String EXERCISE_TABLE = "Exercises";
 
-    public static final String USER_TABLE = "Users";
+    private static final String WORKOUT_CALENDAR_TABLE = "Calendar";
 
-    public static final String GAME_TABLE = "Games";
+    private static final String USER_TABLE = "Users";
 
-    public static final String COL_2 = "NAME";
+    private static final String GAME_TABLE = "Games";
 
-    public static final String COL_3 = "CALORIES";
+    //Exercise Table
 
-    public static final String[] workouts = {"Push-Ups", "Bench-Dips", "Chin-Ups", "Squats", "Lunges", "Calf-Raises", "Planks", "Sit-Ups", "Leg Raises", "Running", "Burpees", "Jumping Jacks"};
+    private static final String EX_NAME = "NAME";
 
-    public static final double[] calories = {1, 3, 1, 14, 0.9, 0.3, 3.5, 0.3, 0.7, 15, 13, 9};
+    private static final String EX_CAL = "CALORIES";
 
-    public static final String COL_5 = "NAME";
+    private static final String[] workouts = {"Push-Ups", "Bench-Dips", "Chin-Ups", "Squats", "Lunges", "Calf-Raises", "Planks", "Sit-Ups", "Leg Raises", "Running", "Burpees", "Jumping Jacks"};
 
-    public static final String COL_6 = "AGE";
+    private static final double[] calories = {1, 3, 1, 14, 0.9, 0.3, 3.5, 0.3, 0.7, 15, 13, 9};
 
-    public static final String COL_7 = "HABITS";
+    //User Table
 
-    public static final String COL_8 = "WEIGHT";
+    private static final String USER_NAME = "NAME";
 
-    public static final String COL_9 = "HEIGHT";
+    private static final String USER_SEX = "SEX";
 
-    public static final String COL_10 = "GOAL";
+    private static final String USER_AGE = "AGE";
 
+    private static final String USER_HABIT = "HABITS";
 
+    private static final String USER_WEIGHT = "WEIGHT";
 
+    private static final String USER_HEIGHT = "HEIGHT";
 
+    private static final String USER_INTENSITY = "INTENSITY";
 
+    //Game Table
 
+    private static final String GAME_MONEY = "MONEY";
 
-    public static final String COL_13 = "MONEY";
+    private static final String GAME_EXPERIENCE = "EXPERIENCE";
 
-    public static final String COL_14 = "EXPERIENCE";
+    //Calendar Table
+
+    private static final String DAY = "DAY";
 
 
 
@@ -100,17 +110,23 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
     public void onCreate(SQLiteDatabase db) {
 
+        System.out.println("Creating Database\n\n");
+
         db.execSQL("CREATE TABLE " + EXERCISE_TABLE + " (ID INTEGER PRIMARY KEY, NAME TEXT, CALORIES INTEGER);");
 
         ContentValues contentValues;
+
+
+
+        //populate whole workout table
 
         for (int i = 0; i < workouts.length; i++) {
 
             contentValues = new ContentValues();
 
-            contentValues.put(COL_2, workouts[i]);
+            contentValues.put(EX_NAME, workouts[i]);
 
-            contentValues.put(COL_3, calories[i]);
+            contentValues.put(EX_CAL, calories[i]);
 
             db.insert(EXERCISE_TABLE, null, contentValues);
 
@@ -118,15 +134,21 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
 
 
-        db.execSQL("CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY, NAME TEXT, AGE TEXT, HABITS TEXT, WEIGHT TEXT, HEIGHT TEXT, GOAL TEXT, USERNAME TEXT, PASSWORD TEXT, BMI TEXT);");
-
-        //calculates bmi on inserts
-
-        db.execSQL("CREATE TRIGGER trg_bmi AFTER UPDATE ON " + USER_TABLE + " WHEN experience > 0 BEGIN UPDATE USER_TABLE SET BMI=WEIGHT/HEIGHT*HEIGHT; END;");
+        db.execSQL("CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY, NAME TEXT, SEX TEXT, AGE TEXT, HABITS TEXT, WEIGHT TEXT, HEIGHT TEXT, INTENSITY TEXT, USERNAME TEXT, PASSWORD TEXT);");
 
 
 
-        db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER, BMI INTEGER," +
+        //db.execSQL("CREATE TRIGGER trg_bmi AFTER UPDATE ON " + USER_TABLE + " FOR EACH ROW WHEN OLD.HEIGHT > 0 BEGIN UPDATE " + USER_TABLE + " SET BMI=OLD.WEIGHT/OLD.HEIGHT*OLD.HEIGHT WHERE ID = NEW.ID; END;");
+
+
+
+        db.execSQL("CREATE TABLE " + WORKOUT_CALENDAR_TABLE + " (DAY INTEGER, ID INTEGER, WARMUP TEXT, WREPS TEXT, CARDIO TEXT, CREPS TEXT, ARMS TEXT, AREPS TEXT, CORE TEXT, COREPS TEXT, LEGS TEXT, LREPS TEXT," +
+
+                " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
+
+
+
+        db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER," +
 
                 " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
 
@@ -150,9 +172,9 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL_2, name);
+        contentValues.put(EX_NAME, name);
 
-        contentValues.put(COL_3, calories);
+        contentValues.put(EX_CAL, calories);
 
         long result = db.insert(EXERCISE_TABLE, null, contentValues);
 
@@ -170,21 +192,61 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
 
 
-    public int insertNewUser(String name, String age, String habits, String weight, String height, String goal) {
+    //Adds new user to table with null stats
+
+    public int insertEmptyUser() {
 
         ContentValues cv = new ContentValues();
 
-        cv.put(COL_5, name);
+        cv.putNull(USER_NAME);
 
-        cv.put(COL_6, age);
+        cv.putNull(USER_SEX);
 
-        cv.put(COL_7, habits);
+        cv.putNull(USER_AGE);
 
-        cv.put(COL_8, weight);
+        cv.putNull(USER_HABIT);
 
-        cv.put(COL_9, height);
+        cv.putNull(USER_WEIGHT);
 
-        cv.put(COL_10, goal);
+        cv.putNull(USER_HEIGHT);
+
+        cv.putNull(USER_INTENSITY);
+
+        long result = db.insert(USER_TABLE, null, cv);
+
+        if (result == -1) {
+
+            return -1;
+
+        } else {
+
+            return (int)result;
+
+        }
+
+    }
+
+
+
+    //Adds new user to table with given stats
+
+    public int insertNewUser(String name, String sex, String age, String habits, String weight, String height, String intensity) {
+
+        ContentValues cv = new ContentValues();
+
+        cv.put(USER_NAME, name);
+
+        cv.put(USER_SEX, sex);
+
+        cv.put(USER_AGE, age);
+
+        cv.put(USER_HABIT, habits);
+
+        cv.put(USER_WEIGHT, weight);
+
+        cv.put(USER_HEIGHT, height);
+
+        cv.put(USER_INTENSITY, intensity);
 
 
 
@@ -204,7 +266,13 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
 
 
+    //Update a row for the user at the given id
+
     public boolean updateUserData(int id, String row, String contents) {
+
+        System.out.println(row);
+
+        System.out.println(contents);
 
         ContentValues cv = new ContentValues();
 
@@ -227,6 +295,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
     }
 
 
+
+    //Get a row for the user at the given id
 
     public String getUserData(int id, String row) {
 
@@ -258,13 +328,15 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
 
 
+    //Insert new game with it's ID tied to the user
+
     public boolean insertNewGame(String money, String experience) {
 
         ContentValues cv = new ContentValues();
 
-        cv.put(COL_13, money);
+        cv.put(GAME_MONEY, money);
 
-        cv.put(COL_14, experience);
+        cv.put(GAME_EXPERIENCE, experience);
 
 
 
@@ -283,6 +355,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
     }
 
 
+
+    //Update a row for the game at the given id
 
     public boolean updateGame(int id, String row, int contents) {
 
@@ -308,6 +382,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
 
 
+    //Get a row for the game at the given id
+
     public String getGameData(int id, String row) {
 
         String data = "";
@@ -330,11 +406,153 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
         }finally {
 
-            c.close();
+            //c.close();
 
         }
 
     }
+
+
+
+    public int insertNewDay(int day, int id) {
+
+        ContentValues cv = new ContentValues();
+
+        cv.put(DAY, day);
+
+        cv.put("ID", id);
+
+        cv.putNull("WARMUP");
+
+        cv.put("WREPS", 0);
+
+        cv.putNull("CARDIO");
+
+        cv.put("CREPS", 0);
+
+        cv.putNull("ARMS");
+
+        cv.put("AREPS", 0);
+
+        cv.putNull("CORE");
+
+        cv.put("COREPS", 0);
+
+        cv.putNull("LEGS");
+
+        cv.put("LEGS", 0);
+
+
+
+        long result = db.insert(WORKOUT_CALENDAR_TABLE, null, cv);
+
+        if (result == -1) {
+
+            return -1;
+
+        } else {
+
+            return (int)result;
+
+        }
+
+    }
+
+
+
+    public String getLastDay(int id) {
+
+        String data = "";
+
+        Cursor c = null;
+
+        try {
+
+            c = db.rawQuery("SELECT * FROM " + WORKOUT_CALENDAR_TABLE + " WHERE DAY = (SELECT MAX(DAY) FROM " + WORKOUT_CALENDAR_TABLE + ") AND ID =?", new String[] {id + ""});
+
+            if(c.getCount() > 0) {
+
+                c.moveToFirst();
+
+                data = c.getString(c.getColumnIndex(DAY));
+
+            }
+
+            if (data.isEmpty()) {
+
+                data = "0";
+
+            }
+
+        }finally {
+
+            //c.close();
+
+            return data;
+
+        }
+
+    }
+
+
+
+    //Update a row for the game at the given id
+
+    public boolean updateDay(int day, int id, String row, int contents) {
+
+        ContentValues cv = new ContentValues();
+
+        cv.put(row, contents);
+
+
+
+        long result = db.update(GAME_TABLE, cv, "DAY="+day + " AND ID="+id, null);
+
+        if (result == -1) {
+
+            return false;
+
+        } else {
+
+            return true;
+
+        }
+
+    }
+
+
+
+    public String getUserCalendarData(int day, int id, String row) {
+
+        String data = "";
+
+        Cursor c = null;
+
+        try {
+
+            c = db.rawQuery("SELECT " + row + " FROM " + WORKOUT_CALENDAR_TABLE + " WHERE DAY =? AND ID =?", new String[] {day + "", id + ""});
+
+            if(c.getCount() > 0) {
+
+                c.moveToFirst();
+
+                data = c.getString(c.getColumnIndex(row));
+
+            }
+
+        }finally {
+
+            //c.close();
+
+            return data;
+
+        }
+
+    }
+
+
+
+
 
 
 
