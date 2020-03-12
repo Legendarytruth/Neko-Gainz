@@ -29,4 +29,8 @@
         <item>Healthier lifestyle</item>
     </string-array>
     <string name="save_button">Save</string>
+    <string name="blueshirt">Blue Shirt</string>
+    <string name="yellowshirt">Yellow Shirt</string>
+    <string name="orangepants">Orange Pants</string>
+    <string name="redpants">Red Pants</string>
 </resources>

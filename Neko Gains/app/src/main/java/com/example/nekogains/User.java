@@ -1,8 +1,8 @@
 package com.example.nekogains;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Hashtable;
+
+import static com.example.nekogains.Exercise.*;
 
 public class User implements Serializable {
 
@@ -11,9 +11,14 @@ public class User implements Serializable {
 
     private String name;
 
-    private Pet pet;
+    private Exercise[] workoutPlan1 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
+    private Exercise[] workoutPlan2 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
+    private Exercise[] workoutPlan3 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
+
+    private int daily;
+    private static Pet pet;
     private static UserInventory userInventory = new UserInventory();
-    private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
+    //private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
 
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
@@ -52,23 +57,43 @@ public class User implements Serializable {
 
 
 
-    //Inventory
-
     public UserInventory getUserInventory() { return this.userInventory; }
 
-    /*public boolean hasFood(String key){ return userInventory.hasFood(key); }
+    public int getAge() {
+        return Integer.parseInt((dbh.getUserData(id, "AGE")));
+    }
 
-    public void createFood(String key){ userInventory.createFood(key);}
+    public int getSex() {
+        return Integer.parseInt((dbh.getUserData(id, "SEX")));
+    }
 
-    public void removeFood(String key){ userInventory.removeFood(key); }
+    public int getHabits() {
+        return Integer.parseInt((dbh.getUserData(id, "HABITS")));
+    }
 
-    public void addFood(String key){ userInventory.addFood(key); }
+    public int getIntensity() {
+        return Integer.parseInt((dbh.getUserData(id, "INTENSITY")));
+    }
 
-    public int numofFood(String key) { return userInventory.numofFood(key); }
+    public int getDaily() {return this.daily;}
 
-    public String showFood(){ return userInventory.showFood(); }*/
+    public Exercise[] getWorkoutPlan1() {
+        return workoutPlan1;
+    }
 
+    public Exercise[] getWorkoutPlan2() {
+        return workoutPlan2;
+    }
 
+    public Exercise[] getWorkoutPlan3() {
+        return workoutPlan3;
+    }
+
+    public int getExerciseReps(Exercise exercise) {
+        CalculateUserScore calc = new CalculateUserScore();
+        float score = calc.calculate(this);
+        return exercise.getUserReps(score);
+    }
 
     //CHANGING ATTRIBUTES
     public void setName(String name) {
@@ -110,9 +135,40 @@ public class User implements Serializable {
         this.pet.setLevel((int)Math.floor(xp/1000));
     }
 
+    public void setDaily(int daily) {this.daily = daily;}
+
+    //Calendar functions
+    public int getLastDay() {
+        return Integer.parseInt(dbh.getLastDay(id));
+    }
+
+    //Enters a new into workout calendar for current user
+    public void newDay() {
+        int lastday = this.getLastDay();
+        dbh.insertNewDay(lastday+1, id);
+    }
+
+    //update workout or reps done for a given user on a given day
+    public void updateDay(int day, String row, int contents) {
+        dbh.updateDay(day, id, row, contents);
+    }
+
+    //get workout or reps done for a given user on a given day
+    public String getUserCalendarData(int day, String row) {
+        return dbh.getUserCalendarData(day, id, row);
+    }
+
+
     //OTHER
     public float getBMI() {
-        return Float.parseFloat((dbh.getUserData(id, "BMI")));
+        float height = this.getHeight()/100;
+        return this.getWeight()/(height*height);
     }
+
+    public boolean checkerDaily() {return this.daily == 5;}
+
+    public void resetDaily() {this.daily = 0;}
+
+    public void addDaily() {this.daily+=1;}
 
 }

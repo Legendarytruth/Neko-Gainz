@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,6 +37,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     private View view;
     private User user;
 
+    private ProgressBar dailyAmount;
+    private TextView dailyLogin;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         xpAmount = view.findViewById(R.id.Experience);
         levelAmount= view.findViewById(R.id.Level);
 
+        dailyAmount = view.findViewById((R.id.dailyLogin));
+        dailyLogin = view.findViewById((R.id.dailyProgress));
+
+
         feedCatFood.setOnClickListener(this);
         feedBlueberry.setOnClickListener(this);
         feedFish.setOnClickListener(this);
@@ -69,9 +75,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
         MainActivity activity = (MainActivity) getActivity();
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
-        System.out.println(user.getUserInventory().numofFood("blueberries"));
-        System.out.println("TESTING\n\n");
-
 
         setPetName(user.getPet().getName());
         setCatFoodAmount(user.getUserInventory().numofFood("catfood"));
@@ -82,9 +85,10 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         setHungerAmount(user.getPet().getHunger());
         setXpAmount(user.getXp() - (user.getPet().getLevel()*1000));
         setLevelAmount(user.getPet().getLevel());
+        setDailyAmount(user.getDaily());
+        setLoginAmount(user.getDaily());
 
         return view;
-
     }
 
     public void setPetName(String name){
@@ -114,6 +118,8 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void setLevelAmount(int amount) {
         levelAmount.setText("Lvl " + amount);
     }
+    public void setDailyAmount(int amount) {dailyAmount.setProgress(amount);}
+    public void setLoginAmount(int amount) {dailyLogin.setText("Bonus "+amount + "/5");}
 
     @Override
     public void onClick(View v) {

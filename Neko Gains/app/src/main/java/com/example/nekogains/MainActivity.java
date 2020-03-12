@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,22 +28,25 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences settings;
     User user;
     Intent intent;
-    int id = 0;
+    int id;
     public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //for now, clears database on start until login system is uninitialized
+        //Emergency database fix by uncommenting below:
         //this.deleteDatabase("Workout.db");
 
         super.onCreate(savedInstanceState);
 
-        context = getContext();
+
         dbh = DatabaseHelper.getInstance(this);
+        context = getContext();
         settings = getSharedPreferences("preferences", MODE_PRIVATE);
+        // Temporary below
         //SharedPreferences.Editor editor = settings.edit();
         //editor.putBoolean("registered", false);
         //editor.apply();
+        System.out.println(registered());
 
         //If user is not in database create a new user
         if(!registered()) {
@@ -51,11 +55,17 @@ public class MainActivity extends AppCompatActivity {
         } else {
             System.out.println("Registered, showing home");
             setContentView(R.layout.activity_main);
+            id = settings.getInt("userId", 0);
+            //user = new User(dbh, id);
             BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
             bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
         }
+
+        user = new User(dbh, id);
+        //TESTING: Logs a new into database upon ever open of the app
+        user.newDay();
 
         //commented out because homefrag calls for user's xp when a user has not been created yet
         //perhaps solution would be to start questionnaire/login as the first activity instead?
@@ -72,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+    }
+
+    public void onDestroy() {
+        dbh.close();
+        super.onDestroy();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -118,6 +133,15 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //temporary exit and file refresh for testing purposes
+            SharedPreferences clearNotificationSP = getSharedPreferences("preferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = clearNotificationSP.edit();
+            editor.putBoolean("registered", false).commit();
+            editor.remove("registered").commit();
+
+            this.deleteDatabase("Workout.db");
+            finish();
+            System.exit(0);
             return true;
         }
 
@@ -155,10 +179,8 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(entry.getValue());
                     dbh.updateUserData(id, entry.getKey(), entry.getValue());
                 }
-                //id = dbh.insertNewUser(results[0], results[1], results[2], results[3], results[4], results[5]);
 
                 System.out.println(id);
-                user = new User(dbh, id);
 
                 //Set the view to main
                 setContentView(R.layout.activity_main);
@@ -170,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 //Change user settings to say it's registered
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean("registered", true);
+                editor.putInt("userId", id); //Store user id in settings file
                 editor.apply();
             }
         } else {
