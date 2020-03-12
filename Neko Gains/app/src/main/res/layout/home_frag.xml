@@ -6,183 +6,94 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <View
-        android:id="@+id/divider3"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CatScreen"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="-2dp"
-        android:layout_marginBottom="79dp"
-        android:background="#000000" />
+        android:layout_alignTop="@id/TopDivider"
+        android:layout_alignBottom="@id/BottomDivider"
+        android:background="@drawable/backgroundart"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ClothingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:clickable="true"
+            app:backgroundTint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_more"
+            app:useCompatPadding="true" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|top"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="70dp"
+            android:adjustViewBounds="false"
+            android:baselineAlignBottom="false"
+            android:src="@drawable/hungericonfinal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hungericonfinal" />
+
+        <ProgressBar
+            android:id="@+id/Hunger"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|top"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="70dp"
+            android:background="#00FF0000"
+            android:max="100"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/Money"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="right|top"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="35dp"
+            android:text="TextView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|top"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/moneyiconfinal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/moneyiconfinal" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/CatBody"
+            android:layout_width="350dp"
+            android:layout_height="450dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="26dp"
-        android:background="#000000" />
-
-    <TextView
-        android:id="@+id/CatFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="196dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/Blueberry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="138dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/Fish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="253dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/Milk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="306dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/Money"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="TextView" />
-
-    <ImageButton
-        android:id="@+id/CatFoodButton"
-        android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="185dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/catfood_smallicon" />
-
-    <ImageButton
-        android:id="@+id/BlueberryButton"
-        android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="127dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/blueberries_smallicon" />
-
-    <ProgressBar
-        android:id="@+id/Hunger"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="139dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#00FF0000"
-        android:max="100"
-        android:visibility="visible"
-        tools:visibility="visible" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="44dp"
-        android:layout_height="31dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="93dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginRight="90dp"
-        android:src="@drawable/moneyiconfinal"
-        app:srcCompat="@drawable/moneyiconfinal" />
-
-    <TextView
-        android:id="@+id/PetName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="PetName"
-        android:textSize="40sp" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="45dp"
-        android:layout_height="31dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginRight="89dp"
-        android:src="@drawable/hungericonfinal"
-        app:srcCompat="@drawable/hungericonfinal" />
-
-    <ImageButton
-        android:id="@+id/MilkButton"
-        android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="295dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/milk_smallicon" />
-
-    <View
-        android:id="@+id/divider"
+        android:id="@+id/BottomDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignParentStart="true"
@@ -190,91 +101,110 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="129dp"
+        android:layout_marginBottom="110dp"
         android:background="#000000" />
 
-    <ProgressBar
-        android:id="@+id/Experience"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="302dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginBottom="97dp"
-        android:background="#00FF0000"
-        android:max="1000"
-        android:visibility="visible"
-        tools:visibility="visible" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/BottomStats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@id/BottomDivider">
 
-    <TextView
-        android:id="@+id/Level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="96dp"
-        android:text="TextView" />
+        <View
+            android:id="@+id/FIrstLow"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="50dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/FishButton"
-        android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="242dp"
-        android:scaleType="fitXY"
-        android:tint="#00FFFFFF"
-        android:visibility="visible"
-        app:srcCompat="@drawable/fish_smallicon"
-        tools:srcCompat="@drawable/fish_smallicon" />
+        <ProgressBar
+            android:id="@+id/dailyLogin"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FF0000"
+            android:max="5"
+            android:paddingLeft="100dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/FIrstLow"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/dailyProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:text="TextView"
+            app:layout_constraintLeft_toLeftOf="@id/FIrstLow"
+            app:layout_constraintTop_toBottomOf="@id/FIrstLow" />
+
+        <TextView
+            android:id="@+id/Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:text="TextView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/Experience"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FF0000"
+            android:max="1000"
+            android:paddingLeft="100dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="94dp"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/divider6"
+        android:id="@+id/TopDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp"
+        android:background="?android:attr/listDivider"
+        android:foregroundGravity="center" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/TopName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/TopDivider"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="79dp"
-        android:layout_marginEnd="-1dp"
-        android:background="?android:attr/listDivider" />
+        android:layout_alignParentBottom="false">
 
-    <ProgressBar
-        android:id="@+id/dailyLogin"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="302dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginBottom="47dp"
-        android:background="#00FF0000"
-        android:max="5"
-        android:visibility="visible"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/dailyProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="47dp"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/PetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="PetName"
+            android:textSize="25sp"
+            app:layout_constraintBaseline_toBaselineOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

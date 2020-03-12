@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         user = new User(dbh, id);
         //TESTING: Logs a new into database upon ever open of the app
-        user.newDay();
+        //user.newDay();
 
         //commented out because homefrag calls for user's xp when a user has not been created yet
         //perhaps solution would be to start questionnaire/login as the first activity instead?
