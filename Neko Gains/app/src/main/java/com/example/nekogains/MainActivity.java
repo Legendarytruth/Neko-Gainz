@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(registered());
 
         //If user is not in database create a new user
-        if(!registered()) {
+        if(registered()) {
             System.out.println("Not registered, going to questionnaire");
             setContentView(R.layout.activity_init);
         } else {

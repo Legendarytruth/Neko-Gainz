@@ -1,152 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
+    android:background="@color/colorPrimary">
+
+   <!-- <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lungesGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/squatsGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/runGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/burpeesGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/jacksGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pushUpsGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chinUpsGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/benchDipsGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sitUpsGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/planksGraph" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/legRaisesGraph" />-->
 
 
-    <TextView
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginBottom="489dp"
-        android:text="Push-Ups: x times done"
-        android:textSize="30dp" />
+ <TextView
+     android:id="@+id/progress"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentTop="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginStart="114dp"
+     android:layout_marginLeft="114dp"
+     android:layout_marginTop="47dp"
+     android:text="PROGRESS"
+     android:textSize="40sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginRight="153dp"
-        android:text="Stats"
-        android:textSize="50dp" />
+ <ImageButton
+     android:id="@+id/lungesButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentTop="true"
+     android:layout_marginStart="34dp"
+     android:layout_marginLeft="34dp"
+     android:layout_marginTop="130dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="274dp"
-        android:text="Leg Raises: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/squatsButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentTop="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginStart="147dp"
+     android:layout_marginLeft="147dp"
+     android:layout_marginTop="128dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="237dp"
-        android:text="Burpees: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/pushUpsButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentEnd="true"
+     android:layout_alignParentRight="true"
+     android:layout_centerVertical="true"
+     android:layout_marginTop="238dp"
+     android:layout_marginEnd="41dp"
+     android:layout_marginRight="41dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="202dp"
-        android:text="Running: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/sitUpsButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentBottom="true"
+     android:layout_marginStart="275dp"
+     android:layout_marginLeft="275dp"
+     android:layout_marginBottom="284dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="310dp"
-        android:text="Planks: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/runButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentEnd="true"
+     android:layout_alignParentRight="true"
+     android:layout_marginTop="129dp"
+     android:layout_marginEnd="38dp"
+     android:layout_marginRight="38dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginBottom="346dp"
-        android:text="Lunges: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/planksButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentBottom="true"
+     android:layout_marginStart="34dp"
+     android:layout_marginLeft="34dp"
+     android:layout_marginBottom="177dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginBottom="383dp"
-        android:text="Squats: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/burpeesButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentEnd="true"
+     android:layout_alignParentRight="true"
+     android:layout_centerVertical="true"
+     android:layout_marginTop="239dp"
+     android:layout_marginEnd="276dp"
+     android:layout_marginRight="276dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginBottom="418dp"
-        android:text="Chin-Ups: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/benchDipsButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentEnd="true"
+     android:layout_alignParentRight="true"
+     android:layout_alignParentBottom="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginEnd="161dp"
+     android:layout_marginRight="161dp"
+     android:layout_marginBottom="289dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginBottom="453dp"
-        android:text="Bench-Dips: x times done"
-        android:textSize="30dp" />
+ <ImageButton
+     android:id="@+id/legRaisesButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentBottom="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginBottom="176dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginBottom="159dp"
-        android:text="Jumping Jacks: x times done"
-        android:textSize="25dp" />
+ <ImageButton
+     android:id="@+id/jacksButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentTop="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginStart="149dp"
+     android:layout_marginLeft="149dp"
+     android:layout_marginTop="239dp"
+     app:srcCompat="@drawable/blueberries_small" />
 
+ <ImageButton
+     android:id="@+id/weightLossButton"
+     android:layout_width="97dp"
+     android:layout_height="93dp"
+     android:layout_alignParentEnd="true"
+     android:layout_alignParentRight="true"
+     android:layout_alignParentBottom="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginEnd="36dp"
+     android:layout_marginRight="36dp"
+     android:layout_marginBottom="177dp"
+     app:srcCompat="@drawable/blueberries_smallicon" />
+
+ <ImageButton
+     android:id="@+id/chinUpsButton"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentBottom="true"
+     android:layout_marginStart="34dp"
+     android:layout_marginLeft="34dp"
+     android:layout_marginBottom="290dp"
+     app:srcCompat="@drawable/blueberries_small" />
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:id="@+id/ProgressScreen"
+     android:layout_width="412dp"
+     android:layout_height="match_parent"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentTop="true"
+     android:layout_marginStart="0dp"
+     android:layout_marginLeft="0dp"
+     android:layout_marginTop="0dp">
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
