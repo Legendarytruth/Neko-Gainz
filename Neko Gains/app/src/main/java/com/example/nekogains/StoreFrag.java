@@ -31,7 +31,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     private Integer catfoodcost = 12; //restores 50 hunger
     private Integer fishcost = 7; //restores 30 hunger
     private Integer milkcost = 2; //restores 5 hunger
-    private Integer clothingcost = 200;
+    private Integer clothingcost = 20;
 
 
 
