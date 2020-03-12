@@ -1,7 +1,6 @@
 package com.example.nekogains;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import static com.example.nekogains.Exercise.*;
 
@@ -10,7 +9,8 @@ public class User implements Serializable {
     DatabaseHelper dbh;
     int id;
 
-    private String name;
+    private String username;
+    private String password;
 
     private Exercise[] workoutPlan1 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
     private Exercise[] workoutPlan2 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
@@ -24,29 +24,21 @@ public class User implements Serializable {
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
+        this.username = "newUser";
+        this.password = "1234";
         this.pet  = new Cat("temppetname");
     }
 
     //GETTING ATTRIBUTES
-    public String getName() { return dbh.getUserData(id, "NAME"); }
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
 
     public Pet getPet() { return this.pet; }
-
-    public float getWeight() {
-        return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
-    }
-
-    public float getHeight() {
-        return Float.parseFloat((dbh.getUserData(id, "HEIGHT")));
-    }
-
-    public int getMoneyAmount() {
-        return Integer.parseInt((dbh.getGameData(id, "MONEY")));
-    }
-
-    public int getXp() {
-        return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
-    }
 
     public UserInventory getUserInventory() { return this.userInventory; }
 
@@ -64,6 +56,22 @@ public class User implements Serializable {
 
     public int getIntensity() {
         return Integer.parseInt((dbh.getUserData(id, "INTENSITY")));
+    }
+
+    public float getWeight() {
+        return Float.parseFloat((dbh.getUserData(id, "WEIGHT")));
+    }
+
+    public float getHeight() {
+        return Float.parseFloat((dbh.getUserData(id, "HEIGHT")));
+    }
+
+    public int getMoneyAmount() {
+        return Integer.parseInt((dbh.getGameData(id, "MONEY")));
+    }
+
+    public int getXp() {
+        return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
     }
 
     public int getDaily() {return this.daily;}
@@ -87,8 +95,12 @@ public class User implements Serializable {
     }
 
     //CHANGING ATTRIBUTES
-    public void setName(String name) {
-        dbh.updateUserData(id, "NAME", name);
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setWeight(String weight) {
@@ -97,11 +109,8 @@ public class User implements Serializable {
 
     public void setHeight(String height) {
         dbh.updateUserData(id, "HEIGHT", height);
+
     }
-
-    public void setHabits(String habit) { dbh.updateUserData(id, "HABITS", habit);}
-
-    public void setIntensity(String intensity) { dbh.updateUserData(id, "INTENSITY", intensity);}
 
     public void addMoney(int amount) {
         dbh.updateGame(id, "MONEY", amount);
