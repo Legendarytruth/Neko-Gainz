@@ -24,9 +24,9 @@
         <item>5 or more times a week</item>
     </string-array>
     <string-array name="goal_array">
-        <item>Muscle building</item>
-        <item>Weight loss</item>
-        <item>Healthier lifestyle</item>
+        <item>Low</item>
+        <item>Moderate</item>
+        <item>Vigorous</item>
     </string-array>
     <string name="save_button">Save</string>
     <string name="blueshirt">Blue Shirt</string>

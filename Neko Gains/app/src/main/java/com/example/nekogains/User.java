@@ -1,6 +1,7 @@
 package com.example.nekogains;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import static com.example.nekogains.Exercise.*;
 
@@ -29,8 +30,6 @@ public class User implements Serializable {
     //GETTING ATTRIBUTES
     public String getName() { return dbh.getUserData(id, "NAME"); }
 
-    public String getAge() { return dbh.getUserData(id, "AGE"); }
-
     public Pet getPet() { return this.pet; }
 
     public float getWeight() {
@@ -41,12 +40,6 @@ public class User implements Serializable {
         return Float.parseFloat((dbh.getUserData(id, "HEIGHT")));
     }
 
-    public String getGoal() { return dbh.getUserData(id, "GOAL"); }
-
-    public String getHabit() { return dbh.getUserData(id, "HABITS"); }
-
-    public ArrayList<Exercise> getExercisePlan(String name) { return this.exercisePlans.get(name); }
-
     public int getMoneyAmount() {
         return Integer.parseInt((dbh.getGameData(id, "MONEY")));
     }
@@ -54,8 +47,6 @@ public class User implements Serializable {
     public int getXp() {
         return Integer.parseInt((dbh.getGameData(id, "EXPERIENCE")));
     }
-
-
 
     public UserInventory getUserInventory() { return this.userInventory; }
 
@@ -108,17 +99,9 @@ public class User implements Serializable {
         dbh.updateUserData(id, "HEIGHT", height);
     }
 
-    public void setHabit(String habit) { dbh.updateUserData(id, "HABITS", habit);}
+    public void setHabits(String habit) { dbh.updateUserData(id, "HABITS", habit);}
 
-    public void setGoal(String goal) { dbh.updateUserData(id, "GOAL", goal);}
-
-    public void addExercisePlan(String planName, ArrayList<Exercise> exercises) {
-        this.exercisePlans.put(planName, exercises);
-    }
-
-    public void addExercisetoPlan(String planName, Exercise exercise) {
-        this.exercisePlans.get(planName).add(exercise);
-    }
+    public void setIntensity(String intensity) { dbh.updateUserData(id, "INTENSITY", intensity);}
 
     public void addMoney(int amount) {
         dbh.updateGame(id, "MONEY", amount);

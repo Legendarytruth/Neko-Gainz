@@ -66,8 +66,8 @@ public class SettingFrag extends Fragment {
         editHeight.setText(Float.toString(user.getHeight()));
         editWeight.setText(Float.toString(user.getWeight()));
         editPetName.setText(user.getPet().getName());
-        habitSpinner.setSelection(habitAdapter.getPosition(user.getHabit()));
-        goalSpinner.setSelection(goalAdapter.getPosition(user.getGoal()));
+        habitSpinner.setSelection(user.getHabits());
+        goalSpinner.setSelection(user.getIntensity());
 
         return view;
     }
@@ -78,7 +78,7 @@ public class SettingFrag extends Fragment {
         user.setWeight(editWeight.getText().toString());
         //NOTICE: Currently the pet name resets with every new User
         user.getPet().setName(editPetName.getText().toString());
-        user.setHabit(String.valueOf(habitSpinner.getSelectedItem()));
-        user.setGoal(String.valueOf(goalSpinner.getSelectedItem()));
+        user.setHabits(String.valueOf(habitSpinner.getSelectedItemPosition()));
+        user.setIntensity(String.valueOf(goalSpinner.getSelectedItemPosition()));
     }
 }
