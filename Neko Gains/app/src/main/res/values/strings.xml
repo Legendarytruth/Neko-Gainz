@@ -17,4 +17,8 @@
     <string name="catfood">Cat Food</string>
     <string name="fish">Fish</string>
     <string name="milk">Milk</string>
+    <string name="blueshirt">Blue Shirt</string>
+    <string name="yellowshirt">Yellow Shirt</string>
+    <string name="orangepants">Orange Pants</string>
+    <string name="redpants">Red Pants</string>
 </resources>
