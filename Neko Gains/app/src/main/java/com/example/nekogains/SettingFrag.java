@@ -14,6 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 public class SettingFrag extends Fragment {
     private View view;
     private User user;
@@ -31,7 +35,7 @@ public class SettingFrag extends Fragment {
     private EditText editPetName;
 
 
-    @Nullable
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.setting_frag, container, false);
@@ -84,4 +88,7 @@ public class SettingFrag extends Fragment {
         //Show a pop up message to indicate that it saved successfully
         Toast.makeText(view.getContext(),"Settings saved",Toast.LENGTH_SHORT).show();
     }
+
+
+
 }
