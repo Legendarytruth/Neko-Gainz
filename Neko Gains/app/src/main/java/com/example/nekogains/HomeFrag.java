@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,6 +37,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     private View view;
     private User user;
 
+    private ProgressBar dailyAmount;
+    private TextView dailyLogin;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         xpAmount = view.findViewById(R.id.Experience);
         levelAmount= view.findViewById(R.id.Level);
 
+        dailyAmount = view.findViewById((R.id.dailyLogin));
+        dailyLogin = view.findViewById((R.id.dailyProgress));
+
+
         feedCatFood.setOnClickListener(this);
         feedBlueberry.setOnClickListener(this);
         feedFish.setOnClickListener(this);
@@ -71,17 +77,18 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
 
         setPetName(user.getPet().getName());
-        setCatFoodAmount(user.userInventory.numofFood("catfood"));
-        setBlueberryAmount(user.userInventory.numofFood("blueberries"));
-        setFishAmount(user.userInventory.numofFood("fish"));
-        setMilkAmount(user.userInventory.numofFood("milk"));
-        setMoneyAmount(user.userInventory.getMoneyAmount());
-        setHungerAmount(user.pet.getHunger());
-        setXpAmount(user.getXp() - (user.pet.getLevel()*1000));
-        setLevelAmount(user.pet.getLevel());
+        setCatFoodAmount(user.getUserInventory().numofFood("catfood"));
+        setBlueberryAmount(user.getUserInventory().numofFood("blueberries"));
+        setFishAmount(user.getUserInventory().numofFood("fish"));
+        setMilkAmount(user.getUserInventory().numofFood("milk"));
+        setMoneyAmount(user.getMoneyAmount());
+        setHungerAmount(user.getPet().getHunger());
+        setXpAmount(user.getXp() - (user.getPet().getLevel()*1000));
+        setLevelAmount(user.getPet().getLevel());
+        setDailyAmount(user.getDaily());
+        setLoginAmount(user.getDaily());
 
         return view;
-
     }
 
     public void setPetName(String name){
@@ -111,29 +118,31 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void setLevelAmount(int amount) {
         levelAmount.setText("Lvl " + amount);
     }
+    public void setDailyAmount(int amount) {dailyAmount.setProgress(amount);}
+    public void setLoginAmount(int amount) {dailyLogin.setText("Bonus "+amount + "/5");}
 
     @Override
     public void onClick(View v) {
-        if (user.pet.getHunger() < 100) {
+        if (user.getPet().getHunger() < 100) {
             switch (v.getId()) {
             case R.id.CatFoodButton:
-                if (user.userInventory.hasFood("catfood")) {
-                    user.pet.decreaseHunger(10);
-                    user.userInventory.removeFood("catfood");
-                    setCatFoodAmount(user.userInventory.numofFood("catfood"));
-                    setHungerAmount(user.pet.getHunger());
+                if (user.getUserInventory().hasFood("catfood")) {
+                    user.getPet().decreaseHunger(10);
+                    user.getUserInventory().removeFood("catfood");
+                    setCatFoodAmount(user.getUserInventory().numofFood("catfood"));
+                    setHungerAmount(user.getPet().getHunger());
                     Toast.makeText(getContext(), "-1 Cat Food", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Not Enough Cat Food", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.BlueberryButton:
-                if (user.userInventory.hasFood("blueberries")) {
-                    if (user.pet.getHunger() < 100) {
-                        user.pet.decreaseHunger(10);
-                        user.userInventory.removeFood("blueberries");
-                        setBlueberryAmount(user.userInventory.numofFood("blueberries"));
-                        setHungerAmount(user.pet.getHunger());
+                if (user.getUserInventory().hasFood("blueberries")) {
+                    if (user.getPet().getHunger() < 100) {
+                        user.getPet().decreaseHunger(10);
+                        user.getUserInventory().removeFood("blueberries");
+                        setBlueberryAmount(user.getUserInventory().numofFood("blueberries"));
+                        setHungerAmount(user.getPet().getHunger());
                         Toast.makeText(getContext(), "-1 Blueberry", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -141,12 +150,12 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.FishButton:
-                if (user.userInventory.hasFood("fish")) {
-                    if (user.pet.getHunger() < 100) {
-                        user.pet.decreaseHunger(10);
-                        user.userInventory.removeFood("fish");
-                        setFishAmount(user.userInventory.numofFood("fish"));
-                        setHungerAmount(user.pet.getHunger());
+                if (user.getUserInventory().hasFood("fish")) {
+                    if (user.getPet().getHunger() < 100) {
+                        user.getPet().decreaseHunger(10);
+                        user.getUserInventory().removeFood("fish");
+                        setFishAmount(user.getUserInventory().numofFood("fish"));
+                        setHungerAmount(user.getPet().getHunger());
                         Toast.makeText(getContext(), "-1 Fish", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -154,12 +163,12 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.MilkButton:
-                if (user.userInventory.hasFood("milk")) {
-                    if (user.pet.getHunger() < 100) {
-                        user.pet.decreaseHunger(10);
-                        user.userInventory.removeFood("milk");
-                        setMilkAmount(user.userInventory.numofFood("milk"));
-                        setHungerAmount(user.pet.getHunger());
+                if (user.getUserInventory().hasFood("milk")) {
+                    if (user.getPet().getHunger() < 100) {
+                        user.getPet().decreaseHunger(10);
+                        user.getUserInventory().removeFood("milk");
+                        setMilkAmount(user.getUserInventory().numofFood("milk"));
+                        setHungerAmount(user.getPet().getHunger());
                         Toast.makeText(getContext(), "-1 Milk", Toast.LENGTH_SHORT).show();
                     }
                 } else {
