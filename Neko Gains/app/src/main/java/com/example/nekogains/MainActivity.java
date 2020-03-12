@@ -33,14 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //for now, clears database on start until login system is uninitialized
+        //Emergency database fix by uncommenting below:
+        //this.deleteDatabase("Workout.db");
+
         super.onCreate(savedInstanceState);
 
 
         dbh = DatabaseHelper.getInstance(this);
         context = getContext();
         settings = getSharedPreferences("preferences", MODE_PRIVATE);
-        // Temporary below
+        // If you uncomment the emergency fix uncomment below:
         //SharedPreferences.Editor editor = settings.edit();
         //editor.putBoolean("registered", false);
         //editor.apply();
