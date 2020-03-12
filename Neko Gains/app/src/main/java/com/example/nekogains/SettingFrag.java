@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +23,6 @@ public class SettingFrag extends Fragment {
     private Spinner goalSpinner;
     private ArrayAdapter<CharSequence> goalAdapter;
     private Button saveButton1;
-    //private Button saveButton2;
 
     //Text boxes that will be pre-filled with user info
     private EditText editName;
@@ -80,5 +80,8 @@ public class SettingFrag extends Fragment {
         user.getPet().setName(editPetName.getText().toString());
         user.setHabits(String.valueOf(habitSpinner.getSelectedItemPosition()));
         user.setIntensity(String.valueOf(goalSpinner.getSelectedItemPosition()));
+
+        //Show a pop up message to indicate that it saved successfully
+        Toast.makeText(view.getContext(),"Settings saved",Toast.LENGTH_SHORT).show();
     }
 }
