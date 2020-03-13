@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void onDestroy() {
         dbh.close();
         super.onDestroy();

@@ -2,6 +2,8 @@ package com.example.nekogains;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Hashtable;
+
 
 import static com.example.nekogains.Exercise.*;
 
@@ -13,19 +15,60 @@ public class User implements Serializable {
     private String name;
 
     private Exercise[] workoutPlan1 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
-    private Exercise[] workoutPlan2 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
-    private Exercise[] workoutPlan3 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
+    private Exercise[] workoutPlan2 = {SQUATS, BURPEES, PLANKS, SIT_UPS, LEG_RAISES};
+    private Exercise[] workoutPlan3 = {LUNGES, CHIN_UPS, PUSH_UPS, RUN, BENCH_DIPS};
 
     private int daily;
     private static Pet pet;
     private static UserInventory userInventory = new UserInventory();
-    //private Hashtable<String, ArrayList<Exercise>> exercisePlans = new Hashtable<>();
+    private Hashtable<String, ArrayList<Exercise>> workoutplans = new Hashtable<>();
+    private ArrayList<String> workoutlist = new ArrayList<>();
 
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
         this.pet  = new Cat("temppetname");
     }
+
+    public void createDefaultWorkouts(){
+        ArrayList<Exercise> workoutPlan1 = new ArrayList<>();
+        ArrayList<Exercise> workoutPlan2 = new ArrayList<>();
+        ArrayList<Exercise> workoutPlan3 = new ArrayList<>();
+        for (Exercise e: getWorkoutPlan1()){
+            workoutPlan1.add(e);
+        }
+        for (Exercise e: getWorkoutPlan2()){
+            workoutPlan2.add(e);
+        }
+        for (Exercise e: getWorkoutPlan3()){
+            workoutPlan3.add(e);
+        }
+        addWorkouts("workoutPlan1", workoutPlan1);
+        addtoWorkoutList("workoutPlan1");
+        addWorkouts("workoutPlan2", workoutPlan2);
+        addtoWorkoutList("workoutPlan2");
+        addWorkouts("workoutPlan3", workoutPlan3);
+        addtoWorkoutList("workoutPlan3");
+    }
+
+    public void addExercise(ArrayList<Exercise> exercises,Exercise exercise){
+        exercises.add(exercise);
+    }
+
+    //Arthur Code
+
+    public ArrayList<Exercise> getWorkouts(String name){return workoutplans.get(name); }
+
+    public Hashtable<String, ArrayList<Exercise>> getWorkoutnames(){return workoutplans;}
+
+    public void addWorkouts(String name, ArrayList<Exercise> exercises){workoutplans.put(name,exercises);}
+
+    public void addtoWorkoutList(String name){
+        workoutlist.add(name);
+    }
+
+    public ArrayList<String> getWorkoutlist(){ return workoutlist;}
+
 
     //GETTING ATTRIBUTES
     public String getName() { return dbh.getUserData(id, "NAME"); }
