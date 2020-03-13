@@ -80,7 +80,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         dailyLogin = view.findViewById((R.id.dailyProgress));
 
         MainActivity activity = (MainActivity) getActivity();
-        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
 
         setPetName(user.getPet().getName());
         setCatGif(user.getPet().getShirt(), user.getPet().getPants(), user.getPet().getMotion());

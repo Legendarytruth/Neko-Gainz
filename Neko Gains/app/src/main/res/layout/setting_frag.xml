@@ -14,232 +14,192 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:layout_marginBottom="100dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/userSettings"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="282dp"
-                android:layout_gravity="center"
-                android:background="@color/colorPrimary">
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:id="@+id/textUserSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="User Profile"
+                    android:textSize="24sp" />
+
+                <!-- Edit Name -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-
-                    <TextView
-                        android:id="@+id/textUserSettings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="User Profile"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.01999998" />
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Name"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/editName"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.16000003" />
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="Name" />
 
                     <EditText
                         android:id="@+id/editName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName"
+                        android:layout_marginLeft="15dp"
                         android:text="Name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textName" />
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <!-- Edit Height -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textHeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Height"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/editHeight"
-                        app:layout_constraintTop_toBottomOf="@+id/editName" />
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Height" />
 
-                    <EditText
-                        android:id="@+id/editHeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:text="Height"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/editName"
-                        app:layout_constraintTop_toBottomOf="@+id/textHeight" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textHeightUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="cm"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/editHeight"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toEndOf="@+id/editHeight" />
+                        <EditText
+                            android:id="@+id/editHeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:inputType="numberDecimal"
+                            android:text="Height"
+                            android:singleLine="true"/>
 
-                    <TextView
-                        android:id="@+id/textWeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Weight"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/editWeight"
-                        app:layout_constraintTop_toBottomOf="@+id/editHeight" />
+                        <TextView
+                            android:id="@+id/textHeightUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="cm"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Edit Weight -->
+                <TextView
+                    android:id="@+id/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Weight" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/editWeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
+                        android:layout_marginLeft="15dp"
+                        android:inputType="numberDecimal"
                         android:text="Weight"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/editHeight"
-                        app:layout_constraintTop_toBottomOf="@+id/textWeight" />
+                        android:singleLine="true"/>
 
                     <TextView
                         android:id="@+id/textWeightUnit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
                         android:text="kg"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/editWeight"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toEndOf="@+id/editWeight" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
 
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/otherSettings"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_gravity="center"
-                android:background="@color/colorPrimary">
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
+                <TextView
+                    android:id="@+id/textOtherSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:height="50dp"
+                    android:text="Other Settings"
+                    android:textSize="24sp" />
 
-                    <TextView
-                        android:id="@+id/textOtherSettings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Other Settings"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                <!-- Edit Pet Name -->
+                <TextView
+                    android:id="@+id/textPetName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pet Name"
+                    android:layout_marginLeft="15dp"/>
 
-                    <TextView
-                        android:id="@+id/textPetName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pet Name"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/editPetName"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.13999999" />
+                <EditText
+                    android:id="@+id/editPetName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Pet Name"
+                    android:layout_marginLeft="15dp"
+                    android:singleLine="true"/>
 
-                    <EditText
-                        android:id="@+id/editPetName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="Pet Name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textPetName" />
+                <!-- Edit Habit -->
+                <TextView
+                    android:id="@+id/textHabit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="How often do you exercise?"
+                    android:layout_marginLeft="15dp"/>
 
-                    <TextView
-                        android:id="@+id/textHabit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="How often do you exercise?"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/spinnerHabit"
-                        app:layout_constraintTop_toBottomOf="@+id/editPetName" />
+                <Spinner
+                    android:id="@+id/spinnerHabit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"/>
 
-                    <Spinner
-                        android:id="@+id/spinnerHabit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/editPetName"
-                        app:layout_constraintTop_toBottomOf="@+id/textHabit" />
+                <!-- Edit Goal -->
+                <TextView
+                    android:id="@+id/textGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Goal"
+                    android:layout_marginLeft="15dp"/>
 
-                    <TextView
-                        android:id="@+id/textGoal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Goal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/spinnerGoal"
-                        app:layout_constraintTop_toBottomOf="@+id/spinnerHabit" />
+                <Spinner
+                    android:id="@+id/spinnerGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"/>
 
-                    <Spinner
-                        android:id="@+id/spinnerGoal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/spinnerHabit"
-                        app:layout_constraintTop_toBottomOf="@+id/textGoal" />
-
-                    <Button
-                        android:id="@+id/buttonSaveSettings1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/save_button"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.75"
-                        android:background="@color/colorAccent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                <Button
+                    android:id="@+id/buttonSaveSettings1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:text="@string/save_button"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

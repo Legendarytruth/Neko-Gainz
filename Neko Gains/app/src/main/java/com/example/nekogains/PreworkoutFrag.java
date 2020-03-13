@@ -42,7 +42,7 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
         view = inflater.inflate(R.layout.preworkout_frag, container, false);
         user.createDefaultWorkouts();
         spinner = view.findViewById(R.id.spinner1);
