@@ -13,6 +13,7 @@ THEC-11: As a user I want to see my progress via numbers or graphs so that I'm i
 THEC-22: As a user I want to be able to get a reward for consecutive workouts so that I am motivated to continue exercising
 THEC-45: As a user I want to be have workouts plans tailored to my profile so I can effectively exercise
 THEC-52:As a user I want to do the questionnaire without potentially crashing the app by leaving a field empty
+THEC-54 As a user I want to be able to change my setting without it crashing
 
 Team Capacity
 ------------
