@@ -43,4 +43,6 @@ public enum Exercise {
         int max = reps.second;
         return Math.round(score*(max - min) + min);
     }
+
+
 }

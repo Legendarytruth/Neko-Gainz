@@ -17,6 +17,18 @@
     <string name="catfood">Cat Food</string>
     <string name="fish">Fish</string>
     <string name="milk">Milk</string>
+    <string-array name="habit_array">
+        <item>Do not or very seldom exercises</item>
+        <item>1-2 times a week</item>
+        <item>3-4 times a week</item>
+        <item>5 or more times a week</item>
+    </string-array>
+    <string-array name="goal_array">
+        <item>Low</item>
+        <item>Moderate</item>
+        <item>Vigorous</item>
+    </string-array>
+    <string name="save_button">Save</string>
     <string name="blueshirt">Blue Shirt</string>
     <string name="yellowshirt">Yellow Shirt</string>
     <string name="orangepants">Orange Pants</string>
