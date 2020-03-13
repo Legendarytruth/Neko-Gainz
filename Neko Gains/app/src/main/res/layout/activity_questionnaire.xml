@@ -100,6 +100,7 @@
                 <EditText
                     android:id="@+id/q_age"
                     android:text="22"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAccent"
@@ -184,6 +185,7 @@
                     <EditText
                         android:id="@+id/q_weight"
                         android:text="60"
+                        android:inputType="numberDecimal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorAccent"
@@ -193,7 +195,7 @@
                     <TextView
                         android:fontFamily="@font/opensans_semibold"
                         android:text="kg"
-                        android:textSize="12sp"
+                        android:textSize="14dp"
                         android:textColor="#555555"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -209,6 +211,7 @@
                     <EditText
                         android:id="@+id/q_height"
                         android:text="160"
+                        android:inputType="numberDecimal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorAccent"
@@ -217,7 +220,7 @@
                     <TextView
                         android:fontFamily="@font/opensans_semibold"
                         android:text="cm"
-                        android:textSize="12sp"
+                        android:textSize="14dp"
                         android:textColor="#555555"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

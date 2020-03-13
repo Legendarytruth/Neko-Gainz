@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Emergency database fix by uncommenting below:
-        this.deleteDatabase("Workout.db");
+        //this.deleteDatabase("Workout.db");
 
         super.onCreate(savedInstanceState);
 
@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
         context = getContext();
         settings = getSharedPreferences("preferences", MODE_PRIVATE);
         // If you uncomment the emergency fix uncomment below:
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean("registered", false);
-        editor.apply();
+        //SharedPreferences.Editor editor = settings.edit();
+        //editor.putBoolean("registered", false);
+        //editor.apply();
         System.out.println(registered());
 
         //If user is not in database create a new user
