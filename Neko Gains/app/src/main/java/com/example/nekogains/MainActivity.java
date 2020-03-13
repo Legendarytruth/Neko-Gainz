@@ -33,27 +33,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //for now, clears database on start until login system is uninitialized
+        //Emergency database fix by uncommenting below:
+        //this.deleteDatabase("Workout.db");
+
         super.onCreate(savedInstanceState);
 
 
         dbh = DatabaseHelper.getInstance(this);
         context = getContext();
         settings = getSharedPreferences("preferences", MODE_PRIVATE);
-        // Temporary below
+        // If you uncomment the emergency fix uncomment below:
         //SharedPreferences.Editor editor = settings.edit();
         //editor.putBoolean("registered", false);
         //editor.apply();
         System.out.println(registered());
 
         //If user is not in database create a new user
-        if(registered()) {
+        if(!registered()) {
             System.out.println("Not registered, going to questionnaire");
             setContentView(R.layout.activity_init);
         } else {
             System.out.println("Registered, showing home");
             setContentView(R.layout.activity_main);
-            id = settings.getInt("userId", 0);
+            id = settings.getInt("userId", 1);
             //user = new User(dbh, id);
             BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
             bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         user = new User(dbh, id);
         //TESTING: Logs a new into database upon ever open of the app
-        user.newDay();
+        //user.newDay();
 
         //commented out because homefrag calls for user's xp when a user has not been created yet
         //perhaps solution would be to start questionnaire/login as the first activity instead?
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
     }
+
 
     public void onDestroy() {
         dbh.close();
@@ -146,9 +149,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public int getUserId() {
-        return id;
-    }
+    public int getAppUserId() { return id; }
 
     public static Context getContext() {
         return context;

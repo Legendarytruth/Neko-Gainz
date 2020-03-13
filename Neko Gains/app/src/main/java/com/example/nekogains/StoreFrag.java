@@ -31,14 +31,14 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     private Integer catfoodcost = 12; //restores 50 hunger
     private Integer fishcost = 7; //restores 30 hunger
     private Integer milkcost = 2; //restores 5 hunger
-    private Integer clothingcost = 200;
+    private Integer clothingcost = 20;
 
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
         userInventory = user.getUserInventory();
 
         view = inflater.inflate(R.layout.store_frag, container, false);
