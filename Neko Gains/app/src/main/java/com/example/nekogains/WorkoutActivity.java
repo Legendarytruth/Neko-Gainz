@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -24,6 +25,7 @@ public class WorkoutActivity extends AppCompatActivity {
         //for now, clears database on start until login system is uninitialized
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new TutorialFrag()).commit();
 
     }
 
@@ -43,10 +45,17 @@ public class WorkoutActivity extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void replaceFragments(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frag_container, fragment)
+                .commit();
     }
 
 
