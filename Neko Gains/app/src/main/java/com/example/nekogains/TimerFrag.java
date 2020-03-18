@@ -26,6 +26,8 @@ public class TimerFrag extends Fragment {
     int sets = 0;
     int rep_time = 1;
 
+    CountDownTimer timer;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class TimerFrag extends Fragment {
         sets = activity.getExerciseSets();
 
         // set title card to current exercise being done
-        titleView.setText(activity.getExerciseName());
+        titleView.setText(activity.getExerciseName().replace("_", " "));
         setView.setText("Sets left: " + Integer.toString(sets));
 
         return view;
@@ -61,10 +63,9 @@ public class TimerFrag extends Fragment {
         set_time = activity.getExerciseReps()*rep_time*1000; //currently 3 seconds for each rep
 
         // begin timer
-        new CountDownTimer(set_time, rep_time*1000) {
+        timer = new CountDownTimer(set_time, rep_time*1000) {
 
             public void onTick(long millisUntilFinished) {
-                //mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
                 int percentFinished = (int)(set_time-millisUntilFinished)*100/set_time;
                 progressView.setProgress(percentFinished);
                 countView.setText(Integer.toString(reps));
@@ -86,8 +87,14 @@ public class TimerFrag extends Fragment {
     }
 
     public void toTutorial() {
+        timer.cancel();
+        activity.getSupportFragmentManager().popBackStack();
         activity.finishExercise();
-        activity.replaceFragments(new TutorialFrag());
+        if (activity.isFinished()) {
+            activity.replaceFragments(new EndWorkoutFrag());
+        } else {
+            activity.replaceFragments(new TutorialFrag());
+        }
     }
 
 }
