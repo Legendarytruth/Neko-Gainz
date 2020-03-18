@@ -84,6 +84,7 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String var = parent.getItemAtPosition(position).toString();
         ArrayList<preworkout_item> list = new ArrayList<>();
+        currentPlan.clear();
         if (user.getWorkoutnames().containsKey(var)) {
             for(Exercise e: user.getWorkoutnames().get(var)){
                 //Toast.makeText(getContext(), var, Toast.LENGTH_SHORT).show();
