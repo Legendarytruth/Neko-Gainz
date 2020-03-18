@@ -18,15 +18,22 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.PriorityQueue;
+
 public class WorkoutActivity extends AppCompatActivity {
+
+    PriorityQueue<Exercise> currentPlan;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //for now, clears database on start until login system is uninitialized
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+        currentPlan = (PriorityQueue<Exercise>)getIntent().getExtras().getSerializable("PLAN");
+        int userID = (int)getIntent().getExtras().getSerializable("ID");
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), userID);
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new TutorialFrag()).commit();
-
     }
 
 
@@ -58,6 +65,25 @@ public class WorkoutActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public int getExerciseReps() {
+        return user.getExerciseReps(currentPlan.peek());
+    }
+
+    public int getExerciseSets() {
+        return currentPlan.peek().getSets();
+    }
+
+    public String getExerciseName() {
+        return currentPlan.peek().getName();
+    }
+
+    public void finishExercise() {
+        currentPlan.remove(currentPlan.peek());
+    }
+
+    public boolean isFinished() {
+        return currentPlan.isEmpty();
+    }
 
 
 }

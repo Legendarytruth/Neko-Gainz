@@ -26,6 +26,10 @@ public enum Exercise {
         this.reps = reps;
     }
 
+    public String getName() {
+        return this.name();
+    }
+
     public float getCalories() {
         return calories;
     }

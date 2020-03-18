@@ -9,24 +9,48 @@
     android:background="@color/colorPrimary">
 
     <TextView
+        android:fontFamily="@font/opensans_semibold"
+        android:id="@+id/title"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Timer"
-        android:textSize="100dp"
+        android:textSize="75dp"
         android:layout_centerInParent="true"
+        android:textColor="@color/colorText"
+        />
+
+    <TextView
+        android:id="@+id/rep_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="75dp"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorText"
+        />
+
+    <TextView
+        android:fontFamily="@font/opensans_regular"
+        android:id="@+id/set_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="190dp"
+        android:text="Sets left:  "
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorText"
         />
 
     <ProgressBar
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?android:progressBarStyleHorizontal"
-        android:progress="80"
-        android:text="Timer"
-        android:textSize="100dp"
-        android:minHeight="100dp"
-        android:minWidth="100dp"
+        android:progress="100"
+        android:minHeight="200dp"
+        android:minWidth="200dp"
         android:layout_centerInParent="true"
         android:progressDrawable="@drawable/circle"
         />
@@ -41,6 +65,8 @@
         android:layout_gravity="center"
         android:text="Next Workout"
         android:textSize="20dp"
+        android:textColor="@color/colorText"
+        android:background="@color/colorAccent"
         tools:text="Continue" />
 
 
