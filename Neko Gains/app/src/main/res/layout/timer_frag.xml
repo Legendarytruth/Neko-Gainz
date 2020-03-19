@@ -1,16 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark">
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
 
     <TextView
+        android:fontFamily="@font/opensans_semibold"
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Timer"
-        android:textSize="100dp"
+        android:textSize="75dp"
         android:layout_centerInParent="true"
+        android:textColor="@color/colorText"
         />
+
+    <TextView
+        android:id="@+id/rep_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="75dp"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorText"
+        />
+
+    <TextView
+        android:fontFamily="@font/opensans_regular"
+        android:id="@+id/set_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="190dp"
+        android:text="Sets left:  "
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorText"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:progressBarStyleHorizontal"
+        android:progress="100"
+        android:minHeight="200dp"
+        android:minWidth="200dp"
+        android:layout_centerInParent="true"
+        android:progressDrawable="@drawable/circle"
+        />
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:id="@+id/continueButton"
+        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
+        android:text="Next Workout"
+        android:textSize="20dp"
+        android:textColor="@color/colorText"
+        android:background="@color/colorAccent"
+        tools:text="Continue" />
 
 
 </RelativeLayout>
