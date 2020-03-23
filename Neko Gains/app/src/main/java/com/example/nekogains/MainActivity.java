@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     private static Context context;
     DatabaseHelper dbh;
-    SharedPreferences settings;
+    private static SharedPreferences settings;
     User user;
     Intent intent;
     int id;
@@ -154,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
     public static Context getContext() {
         return context;
     }
+
+    public static SharedPreferences getSettings(){ return settings; }
 
     public boolean registered() {
         return settings.getBoolean("registered", false);
