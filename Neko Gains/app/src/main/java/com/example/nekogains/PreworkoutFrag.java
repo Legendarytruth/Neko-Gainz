@@ -46,12 +46,10 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
         currentPlan = new PriorityQueue<>();
         view = inflater.inflate(R.layout.preworkout_frag, container, false);
-        user.createDefaultWorkouts();
+        user.loadWorkout();
         spinner = view.findViewById(R.id.spinner1);
         workoutlist = user.getWorkoutlist().toArray(new String[0]);
         System.out.println(workoutlist);
-
-
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.workoutplans,android.R.layout.simple_spinner_item);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, workoutlist);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
