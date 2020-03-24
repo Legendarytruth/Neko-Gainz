@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 public class TutorialFrag extends Fragment {
 
@@ -17,7 +16,7 @@ public class TutorialFrag extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tutorial_frag, container, false);
-        Button button = view.findViewById(R.id.continueButton);
+        Button button = view.findViewById(R.id.finishButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 toTimer();

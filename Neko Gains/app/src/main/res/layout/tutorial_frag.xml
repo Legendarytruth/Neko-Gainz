@@ -19,7 +19,7 @@
 
 
     <Button
-        android:id="@+id/continueButton"
+        android:id="@+id/finishButton"
         android:layout_width="125dp"
         android:layout_height="65dp"
         android:layout_alignParentRight="true"

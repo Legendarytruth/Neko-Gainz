@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
 
     <LinearLayout
@@ -57,7 +58,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Squats-->
@@ -79,7 +82,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Run-->
@@ -101,7 +106,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Burpees-->
@@ -123,7 +130,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Jacks-->
@@ -145,7 +154,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Push Ups-->
@@ -167,7 +178,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Chin Ups-->
@@ -189,7 +202,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Bench Dips-->
@@ -211,7 +226,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Sit Ups-->
@@ -233,7 +250,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Planks-->
@@ -255,7 +274,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
         <!--Leg Raises-->
@@ -277,7 +298,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorText"
+                android:background="@color/colorAccent"/>
 
         </RelativeLayout>
 
@@ -297,7 +320,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:text="Save" />
+        android:text="Save"
+        android:textColor="@color/colorText"
+        android:background="@color/colorAccent"/>
 
     <Button
         android:id="@+id/customworkoutBack"
@@ -306,7 +331,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_margin="10dp"
-        android:text="Back" />
+        android:text="Back"
+        android:textColor="@color/colorText"
+        android:background="@color/colorAccent"/>
 
 </RelativeLayout>
 

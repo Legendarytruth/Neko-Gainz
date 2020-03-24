@@ -190,7 +190,8 @@ public class User implements Serializable {
     public void setIntensity(String intensity) { dbh.updateUserData(id, "INTENSITY", intensity);}
 
     public void addMoney(int amount) {
-        dbh.updateGame(id, "MONEY", amount);
+        int currentMoney = getMoneyAmount();
+        dbh.updateGame(id, "MONEY", currentMoney+amount);
     }
 
     public void removeMoney(int amount){

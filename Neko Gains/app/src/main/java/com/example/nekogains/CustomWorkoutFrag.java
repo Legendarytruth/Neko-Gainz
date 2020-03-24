@@ -3,6 +3,8 @@ package com.example.nekogains;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -88,79 +91,112 @@ public class CustomWorkoutFrag extends Fragment implements View.OnClickListener 
         switch (v.getId()){
             case R.id.addLunges:
                 if (newcustomworkouts.contains(Exercise.LUNGES)){
-                    Toast.makeText(getContext(), "Lunges are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Lunges removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.LUNGES);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.LUNGES);
                 }
                 break;
 
             case R.id.addSquats:
                 if (newcustomworkouts.contains(Exercise.SQUATS)){
-                    Toast.makeText(getContext(), "Squats are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Squats removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.SQUATS);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.SQUATS);
                 }
                 break;
             case R.id.addRun:
                 if (newcustomworkouts.contains(Exercise.RUN)){
-                    Toast.makeText(getContext(), "Running is already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Running removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.RUN);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.RUN);
                 }
                 break;
             case R.id.addBurpees:
                 if (newcustomworkouts.contains(Exercise.BURPEES)){
-                    Toast.makeText(getContext(), "Burpees are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Burpees removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.BURPEES);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.BURPEES);
                 }
                 break;
             case R.id.addJacks:
                 if (newcustomworkouts.contains(Exercise.JACKS)){
-                    Toast.makeText(getContext(), "Jacks are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Jacks removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.JACKS);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.JACKS);
                 }
                 break;
             case R.id.addPushups:
                 if (newcustomworkouts.contains(Exercise.PUSH_UPS)){
-                    Toast.makeText(getContext(), "Push ups are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Push ups removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.PUSH_UPS);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.PUSH_UPS);
                 }
                 break;
             case R.id.addChinups:
                 if (newcustomworkouts.contains(Exercise.CHIN_UPS)){
-                    Toast.makeText(getContext(), "Chin ups are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Chin ups removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.CHIN_UPS);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.CHIN_UPS);
                 }
                 break;
             case R.id.addBenchdips:
                 if (newcustomworkouts.contains(Exercise.BENCH_DIPS)){
-                    Toast.makeText(getContext(), "Bench Dips are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Bench dips removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.BENCH_DIPS);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.BENCH_DIPS);
                 }
                 break;
             case R.id.addSitups:
                 if (newcustomworkouts.contains(Exercise.SIT_UPS)){
-                    Toast.makeText(getContext(), "Sit ups are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Sit ups removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.SIT_UPS);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.SIT_UPS);
                 }
                 break;
             case R.id.addPlanks:
                 if (newcustomworkouts.contains(Exercise.PLANKS)){
-                    Toast.makeText(getContext(), "Planks are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Planks removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.PLANKS);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.PLANKS);
                 }
                 break;
             case R.id.addLegraises:
                 if (newcustomworkouts.contains(Exercise.LEG_RAISES)){
-                    Toast.makeText(getContext(), "Leg raises are already in workouts!", Toast.LENGTH_SHORT).show();
+                    ((Button)v).setText("Add");
+                    Toast.makeText(getContext(), "Leg raises removed from workout plan", Toast.LENGTH_SHORT).show();
+                    newcustomworkouts.remove(Exercise.LEG_RAISES);
                 }else{
+                    ((Button)v).setText("Remove");
                     newcustomworkouts.add(Exercise.LEG_RAISES);
                 }
                 break;
