@@ -65,6 +65,10 @@ public class WorkoutActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public int getExerciseReps() {
         return user.getExerciseReps(currentPlan.peek());
     }

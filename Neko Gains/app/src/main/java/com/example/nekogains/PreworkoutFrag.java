@@ -86,7 +86,7 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
         if (user.getWorkoutnames().containsKey(var)) {
             for(Exercise e: user.getWorkoutnames().get(var)){
                 //Toast.makeText(getContext(), var, Toast.LENGTH_SHORT).show();
-                list.add(new preworkout_item(e.name(), e, e.getSets(), user));
+                list.add(new preworkout_item(e.name().replace("_", " "), e, e.getSets(), user));
                 //fill up queue with exercises for this plan
                 currentPlan.add(e);
             }
