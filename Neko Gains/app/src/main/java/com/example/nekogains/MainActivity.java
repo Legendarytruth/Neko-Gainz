@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_FIRST_USER) {
                 HashMap<String, String> results = (HashMap<String, String>)data.getExtras().getSerializable("RESULTS");
                 id = dbh.insertEmptyUser();
-                dbh.insertNewGame("100", "30600");
+                dbh.insertNewGame("1000000", "30600");
                 for (HashMap.Entry<String, String> entry : results.entrySet()) {
                     System.out.println(entry.getKey());
                     System.out.println(entry.getValue());

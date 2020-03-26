@@ -49,6 +49,13 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     private TextView noShirtOwned;
     private Button putOnNoShirt;
 
+    private TextView orangePantsOwned;
+    private Button putOnOrangePants;
+    private TextView redPantsOwned;
+    private Button putOnRedPants;
+    private TextView noPantsOwned;
+    private Button putOnNoPants;
+
 
     private TextView moneyAmount;
     private ProgressBar hungerAmount;
@@ -88,9 +95,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
 
         setPetName(user.getPet().getName());
-        //setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
-        //changeClothing.setOnClickListener(this);
+        setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
 
+        changeClothing.setOnClickListener(this);
         setMoneyAmount(user.getMoneyAmount());
         setHungerAmount(user.getPet().getHunger());
         setXpAmount(user.getXp() - (user.getPet().getLevel()*1000));
@@ -128,51 +135,52 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void setLevelAmount(int amount) {
         levelAmount.setText("Lvl " + amount);
     }
+
     public void setCatGif(String shirt, String pants) {
         if (shirt == "yellow") {
             if (pants == "orange") {
                 Toast.makeText(getContext(), user.getUserInventory().returnShirt(), Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_orangepants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_orangepants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             } else if (pants == "red") {
                 Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_redpants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_redpants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             }
             else if (pants == "none") {
                 Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_nopants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_nopants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             }
         } else if (shirt == "blue") {
             if (pants == "orange") {
                 Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_orangepants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_orangepants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             } else if (pants == "red") {
                 Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_yellowpants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_redpants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             }
             else if (pants == "none") {
                 Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_nopants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_nopants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             }
         }
         else if (shirt == "none") {
             if (pants == "orange") {
                 Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_orangepants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_orangepants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             } else if (pants == "red") {
                 Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_redpants_blink", null, getActivity().getPackageName());
+                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_redpants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             }
             else if (pants == "none") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_nopants_jump", null, getActivity().getPackageName());
+                Toast.makeText(getContext(), "no shirt", Toast.LENGTH_SHORT).show();
+                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_nopants_idle", null, getActivity().getPackageName());
                 catImage.setImageResource(imageResource);
             }
         }
@@ -212,9 +220,16 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 blueShirtOwned = popupView.findViewById(R.id.blueShirtText);
                 putOnBlueShirt = popupView.findViewById(R.id.blueShirtButton);
                 yellowShirtOwned = popupView.findViewById(R.id.yellowShirtText);
-                putOnBlueShirt = popupView.findViewById(R.id.yellowShirtButton);
+                putOnYellowShirt = popupView.findViewById(R.id.yellowShirtButton);
                 noShirtOwned = popupView.findViewById(R.id.noShirtText);
                 putOnNoShirt = popupView.findViewById(R.id.noShirtButton);
+
+                orangePantsOwned = popupView.findViewById(R.id.orangePantsText);
+                putOnOrangePants = popupView.findViewById(R.id.orangePantsButton);
+                redPantsOwned = popupView.findViewById(R.id.redPantsText);
+                putOnRedPants = popupView.findViewById(R.id.redPantsButton);
+                noPantsOwned = popupView.findViewById(R.id.noPantsText);
+                putOnNoPants = popupView.findViewById(R.id.noPantsButton);
 
 
                 feedCatFood.setOnClickListener(this);
@@ -222,7 +237,11 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 feedFish.setOnClickListener(this);
                 feedMilk.setOnClickListener(this);
                 putOnBlueShirt.setOnClickListener(this);
-
+                putOnYellowShirt.setOnClickListener(this);
+                putOnNoShirt.setOnClickListener(this);
+                putOnOrangePants.setOnClickListener(this);
+                putOnRedPants.setOnClickListener(this);
+                putOnNoPants.setOnClickListener(this);
 
                 setCatFoodAmount(user.getUserInventory().numofFood("catfood"));
                 setBlueberryAmount(user.getUserInventory().numofFood("blueberries"));
@@ -241,6 +260,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 } else {
                     Toast.makeText(getContext(), "Not Enough Cat Food", Toast.LENGTH_SHORT).show();
                 }
+                setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
                 break;
             case R.id.blueberryButton:
                 if (user.getUserInventory().hasFood("blueberries")) {
@@ -254,6 +274,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 } else {
                     Toast.makeText(getContext(), "Not Enough Blueberry", Toast.LENGTH_SHORT).show();
                 }
+                setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
                 break;
             case R.id.fishButton:
                 if (user.getUserInventory().hasFood("fish")) {
@@ -267,6 +288,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 } else {
                     Toast.makeText(getContext(), "Not Enough Fish", Toast.LENGTH_SHORT).show();
                 }
+                setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
                 break;
             case R.id.milkButton:
                 if (user.getUserInventory().hasFood("milk")) {
@@ -280,21 +302,53 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 } else {
                     Toast.makeText(getContext(), "Not Enough Milk", Toast.LENGTH_SHORT).show();
                 }
+                setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
                 break;
             case R.id.blueShirtButton:
-                Toast.makeText(getContext(), "blue shirt", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getContext(), "blue shirt", Toast.LENGTH_SHORT).show();
-                    //user.getPet().setShirt("blue");
-                    //user.getPet().setPants("yellow");
-                    //user.getPet().setMotion("idle");
-
-                user.getUserInventory().setShirt("blue");
-                setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
+                if (user.getUserInventory().hasShirt("blueshirt")) {
+                    user.getUserInventory().setShirt("blue");
+                    setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
+                    Toast.makeText(getContext(), "blue shirt", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "NOT OWNED", Toast.LENGTH_SHORT).show();
+                }
                 break;
-
             case R.id.yellowShirtButton:
-                user.getUserInventory().setShirt("yellow");
+                if (user.getUserInventory().hasShirt("yellowshirt")) {
+                    user.getUserInventory().setShirt("yellow");
+                    setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
+                    Toast.makeText(getContext(), "yellow shirt", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "NOT OWNED", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.noShirtButton:
+                user.getUserInventory().setShirt("none");
                 setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
+                Toast.makeText(getContext(), "shirtless", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.orangePantsButton:
+                if (user.getUserInventory().hasPant("orangepants")) {
+                    user.getUserInventory().setPant("orange");
+                    setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
+                    Toast.makeText(getContext(), "orange pants", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "NOT OWNED", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.redPantsButton:
+                if (user.getUserInventory().hasPant("redpants")) {
+                    user.getUserInventory().setPant("red");
+                    setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
+                    Toast.makeText(getContext(), "red pants", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "NOT OWNED", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.noPantsButton:
+                user.getUserInventory().setPant("none");
+                setCatGif(user.getUserInventory().returnShirt(), user.getUserInventory().returnPants());
+                Toast.makeText(getContext(), "pantsless", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
