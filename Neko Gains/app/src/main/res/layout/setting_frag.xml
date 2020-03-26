@@ -198,7 +198,8 @@
                     android:background="@color/colorAccent"
                     android:text="@string/save_button"
                     android:layout_gravity="center"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="35dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
