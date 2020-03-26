@@ -6,8 +6,8 @@ public class UserInventory {
     private Hashtable<String, Integer> food = new Hashtable<>();
     private  Hashtable<String, Boolean> shirts = new Hashtable<>();
     private  Hashtable<String, Boolean> pants = new Hashtable<>();
-    private String shirt = "yellow"; //The shirt that is currently being worn
-    private String pant = "orange"; //The pant that is currently being worn
+    private String shirt = "none"; //The shirt that is currently being worn
+    private String pant = "none"; //The pant that is currently being worn
 
     //For Food Items
     public boolean hasFood(String key){ return (food.containsKey(key) && food.get(key) > 0);}

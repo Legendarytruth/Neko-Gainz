@@ -25,36 +25,37 @@
 17-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:9:9-54
 18        android:supportsRtl="true"
 18-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:10:9-35
-19        android:theme="@style/AppTheme" >
-19-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:11:9-40
-20        <activity android:name="com.example.nekogains.Questionnaire" />
-20-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:12:9-60
-20-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:12:19-48
-21        <activity
-21-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:13:9-22:20
-22            android:name="com.example.nekogains.MainActivity"
-22-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:14:13-41
-23            android:label="@string/app_name"
-23-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:15:13-45
-24            android:theme="@style/AppTheme.NoActionBar" >
-24-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:16:13-56
-25            <intent-filter>
-25-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:17:13-21:29
-26                <action android:name="android.intent.action.MAIN" />
-26-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:18:17-69
-26-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:18:25-66
-27
-28                <category android:name="android.intent.category.LAUNCHER" />
-28-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:20:17-77
-28-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:20:27-74
-29            </intent-filter>
-30        </activity>
-31        <activity android:name="com.example.nekogains.LoginActivity" />
-31-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:23:9-51
-31-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:23:19-48
-32        <activity android:name="com.example.nekogains.WorkoutActivity" />
-32-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:24:9-52
-32-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:24:19-50
-33    </application>
-34
-35</manifest>
+19        android:testOnly="true"
+20        android:theme="@style/AppTheme" >
+20-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:11:9-40
+21        <activity android:name="com.example.nekogains.Questionnaire" />
+21-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:12:9-60
+21-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:12:19-48
+22        <activity
+22-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:13:9-22:20
+23            android:name="com.example.nekogains.MainActivity"
+23-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:14:13-41
+24            android:label="@string/app_name"
+24-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:15:13-45
+25            android:theme="@style/AppTheme.NoActionBar" >
+25-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:16:13-56
+26            <intent-filter>
+26-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:17:13-21:29
+27                <action android:name="android.intent.action.MAIN" />
+27-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:18:17-69
+27-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:18:25-66
+28
+29                <category android:name="android.intent.category.LAUNCHER" />
+29-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:20:17-77
+29-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:20:27-74
+30            </intent-filter>
+31        </activity>
+32        <activity android:name="com.example.nekogains.LoginActivity" />
+32-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:23:9-51
+32-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:23:19-48
+33        <activity android:name="com.example.nekogains.WorkoutActivity" />
+33-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:24:9-52
+33-->C:\Users\Denise\Desktop\project-the-cookie-club\Neko Gains\app\src\main\AndroidManifest.xml:24:19-50
+34    </application>
+35
+36</manifest>
