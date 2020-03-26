@@ -20,12 +20,15 @@ public class TimerFrag extends Fragment {
     TextView titleView;
     TextView setView;
     TextView countView;
+    TextView cheerView;
     ProgressBar progressView;
     int set_time = 0;
     int reps = 0;
     int sets = 0;
     int rep_time = 1;
-
+    String[] cheers = {"Meow can do this!", "Neko believes in you!", "Hang in there Meow!", "Stay pawsitive, you got this!",
+    "Looking feline good~ Keep it up!", "You're so Catheltic, you.", "Purr-fect, that's what I'm meowing about!", "Pawdon me, that was furristic!",
+            "You're PAWESOME!"};
     CountDownTimer timer;
 
     @Nullable
@@ -43,13 +46,15 @@ public class TimerFrag extends Fragment {
         titleView = view.findViewById(R.id.title);
         countView = view.findViewById(R.id.rep_count);
         setView = view.findViewById(R.id.set_count);
+        cheerView = view.findViewById(R.id.cheer_msg);
         progressView = view.findViewById(R.id.progress);
         sets = activity.getExerciseSets();
 
         // set title card to current exercise being done
         titleView.setText(activity.getExerciseName().replace("_", " "));
         setView.setText("Sets left: " + Integer.toString(sets));
-
+        int y = (int) (Math.random()*cheers.length);
+        cheerView.setText(cheers[y]);
         return view;
     }
 
@@ -69,6 +74,10 @@ public class TimerFrag extends Fragment {
                 int percentFinished = (int)(set_time-millisUntilFinished)*100/set_time;
                 progressView.setProgress(percentFinished);
                 countView.setText(Integer.toString(reps));
+                if (reps % 3 == 0) {
+                    int y = (int) (Math.random() * cheers.length);
+                    cheerView.setText(cheers[y]);
+                }
                 reps--;
             }
 
