@@ -1,14 +1,21 @@
 package com.example.nekogains;
 
+import android.content.SharedPreferences;
+
+import java.util.Calendar;
+
 public abstract class Pet {
     DatabaseHelper dbh;
 
+    //private final int SATIATION_HOURS = 12;
+    private final int SATIATION_HOURS = 1; //For testing purposes
     private int userId;
     private String name;
     private int hunger; //HUNGER range[0,100]
     private int level; //LEVEL range[0,100] (for every 1000xp pet will level up by 1
     private String pants;
     private String shirt;
+    private long lastFed;
     private String motion;
 
     public Pet(DatabaseHelper dbh, String newName, int id) {
@@ -19,6 +26,7 @@ public abstract class Pet {
         this.level = 30;
         this.pants = "none";
         this.shirt = "none";
+        this.lastFed = -1; //Timestamp of when the pet was fed
 
         if(!dbh.insertNewPet(id, newName)) {
             //Inserting new pet failed
@@ -38,6 +46,9 @@ public abstract class Pet {
         this.level = Integer.parseInt(dbh.getPetData(id, "level"));
         this.pants = dbh.getPetData(id, "pants");
         this.shirt = dbh.getPetData(id, "shirt");
+        //Used to calculate hunger
+        this.lastFed = MainActivity.getSettings().getLong("lastFedTime", -1);
+        System.out.println("Last fed: "+this.lastFed);
     }
 
     //GETTING ATTRIBUTES
@@ -46,7 +57,26 @@ public abstract class Pet {
     }
 
     public int getHunger() {
-        return this.hunger;
+        /*
+        * Returns the hunger that was reduced from time passing since the pet was last fed
+         */
+        Calendar cal = Calendar.getInstance();
+        long currTime =  cal.getTimeInMillis();
+        int decreaseAmount = 0;
+
+
+        if(this.lastFed != -1) {
+            //Number of times hunger should go down by
+            decreaseAmount = (int) Math.floor((currTime - this.lastFed) / (3600000 * SATIATION_HOURS));
+            //Pet reduces hunger by 5 every 12 (SATIATION_HOURS) hours
+
+        } else {
+            //Settings file has been deleted, put the new time in
+            SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+            editor.putLong("lastFedTime", currTime);
+            editor.apply();
+        }
+        return this.hunger - 5 * decreaseAmount;
     }
 
     public int getLevel() {
@@ -80,8 +110,12 @@ public abstract class Pet {
         }
     }
 
-    public void decreaseHunger(int value) {
-        this.hunger += value;
+    public void decreaseHunger(int refillAmount) {
+        /*
+        * Uses a mix of stored hunger when the pet was fed and the reduced hunger after time
+        * passed to calculate the current hunger, then replenishes it by the refillAmount.
+         */
+        this.hunger = getHunger() + refillAmount;
         if (this.getHunger() > 100) {
             this.hunger = 100;
         }
@@ -92,13 +126,17 @@ public abstract class Pet {
         this.dbh.updatePet(this.userId, "hunger", Integer.toString(this.hunger));
     }
 
-    public void increaseHunger(int value) {
-        this.hunger -= value;
-        if (this.getHunger() < 0) {
-            this.hunger = 0;
-        }
-        //Update database
-        this.dbh.updatePet(this.userId, "hunger", Integer.toString(this.hunger));
+
+    public void feed(String food) {
+        /*
+        * Feeds the pet with food to increase their hunger bar
+         */
+        decreaseHunger(UserInventory.getFoodFill(food));
+
+        //Update the time in the settings file to be the current time
+        SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+        editor.putLong("lastFedTime", Calendar.getInstance().getTimeInMillis());
+        editor.apply();
     }
 
 }

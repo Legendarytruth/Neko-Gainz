@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -197,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean("registered", true);
                 editor.putInt("userId", id); //Store user id in settings file
+                editor.putLong("lastFedTime", Calendar.getInstance().getTimeInMillis());
                 editor.apply();
             }
         } else {
