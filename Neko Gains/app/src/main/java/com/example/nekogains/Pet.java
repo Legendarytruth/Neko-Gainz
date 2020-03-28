@@ -12,9 +12,8 @@ public abstract class Pet {
         this.name = newName;
         this.hunger = 80;
         this.level = 30;
-        this.pants = "orange";
-        this.shirt = "yellow";
-        this.motion = "walking";
+        this.pants = "none";
+        this.shirt = "none";
     }
 
     //GETTING ATTRIBUTES

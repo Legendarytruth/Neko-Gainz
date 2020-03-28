@@ -258,19 +258,27 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/yellowshirt" />
+
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/yellowShirtText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView" />
 
                     <Button
-                        android:id="@+id/button30"
+                        android:id="@+id/yellowShirtButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Button" />
+
                 </LinearLayout>
 
                 <View
@@ -285,15 +293,22 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/noShirtText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView" />
 
                     <Button
-                        android:id="@+id/button31"
+                        android:id="@+id/noShirtButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -331,15 +346,22 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/orangepants" />
+
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/orangePantsText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView" />
 
                     <Button
-                        android:id="@+id/button35"
+                        android:id="@+id/orangePantsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -357,15 +379,22 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/redpants" />
+
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/redPantsText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView" />
 
                     <Button
-                        android:id="@+id/button32"
+                        android:id="@+id/redPantsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -380,20 +409,28 @@
                     android:background="#000000" />
 
                 <LinearLayout
+                    android:id="@+id/Linear"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/noPantsText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView" />
 
                     <Button
-                        android:id="@+id/button33"
+                        android:id="@+id/noPantsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

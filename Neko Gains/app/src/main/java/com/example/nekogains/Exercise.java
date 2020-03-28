@@ -7,7 +7,7 @@ public enum Exercise {
     SQUATS (0.3f, 3, new Pair(10, 20)),
     RUN (15f, 1, new Pair(30, 60)),
     BURPEES (13f, 3, new Pair(3, 10)),
-    JACKS (9f, 3, new Pair(5, 10)),
+    JACKS (9f, 3, new Pair(10, 30)),
     PUSH_UPS (1, 3, new Pair(10, 20)),
     CHIN_UPS (1, 3, new Pair(5, 15)),
     BENCH_DIPS (3, 3, new Pair(10, 20)),
@@ -24,6 +24,10 @@ public enum Exercise {
         this.calories = calories;
         this.sets = sets;
         this.reps = reps;
+    }
+
+    public String getName() {
+        return this.name();
     }
 
     public float getCalories() {

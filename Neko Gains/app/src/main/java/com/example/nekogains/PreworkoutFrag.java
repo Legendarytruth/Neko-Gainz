@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Hashtable;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 
 public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -33,8 +34,8 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
     View view;
     User user;
     Spinner spinner;
-    Hashtable<String, ArrayList<Exercise>> workout;
     String[] workoutlist;
+    PriorityQueue<Exercise> currentPlan;
     private Button startbutton;
     private Button customworkoutbutton;
 
@@ -43,10 +44,12 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
+        currentPlan = new PriorityQueue<>();
         view = inflater.inflate(R.layout.preworkout_frag, container, false);
-        user.createDefaultWorkouts();
+        user.loadWorkout();
         spinner = view.findViewById(R.id.spinner1);
         workoutlist = user.getWorkoutlist().toArray(new String[0]);
+        System.out.println(workoutlist);
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.workoutplans,android.R.layout.simple_spinner_item);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, workoutlist);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -79,10 +82,14 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String var = parent.getItemAtPosition(position).toString();
         ArrayList<preworkout_item> list = new ArrayList<>();
+        currentPlan.clear();
         if (user.getWorkoutnames().containsKey(var)) {
             for(Exercise e: user.getWorkoutnames().get(var)){
                 //Toast.makeText(getContext(), var, Toast.LENGTH_SHORT).show();
-                list.add(new preworkout_item(e.name(), e, e.getSets(), user));}
+                list.add(new preworkout_item(e.name().replace("_", " "), e, e.getSets(), user));
+                //fill up queue with exercises for this plan
+                currentPlan.add(e);
+            }
         }
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
@@ -98,6 +105,8 @@ public class PreworkoutFrag extends Fragment implements AdapterView.OnItemSelect
 
     public void openWorkoutActivity(){
         Intent intent = new Intent(getContext(), WorkoutActivity.class);
+        intent.putExtra("PLAN", currentPlan);
+        intent.putExtra("ID", ((MainActivity)this.getActivity()).getAppUserId());
         startActivity(intent);
     }
 
