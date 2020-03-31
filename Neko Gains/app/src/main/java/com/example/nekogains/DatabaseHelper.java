@@ -564,8 +564,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         cv.put("name", name);
         cv.put("level", 0); //Default starting level is 0
         cv.put("hunger", 80); //Default starting hunger is 80
-        cv.put("pants", "none"); //No clothes by default
-        cv.put("shirt", "none");
+        cv.put("pants", "no"); //No clothes by default
+        cv.put("shirt", "no");
 
         long result = db.insert(PET_TABLE, null, cv);
 

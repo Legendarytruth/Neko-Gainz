@@ -15,8 +15,10 @@ public abstract class Pet {
     private int level; //LEVEL range[0,100] (for every 1000xp pet will level up by 1
     private String pants;
     private String shirt;
+    private String action;
     private long lastFed;
     private String motion;
+
 
     public Pet(DatabaseHelper dbh, String newName, int id) {
         this.userId = id;
@@ -24,8 +26,8 @@ public abstract class Pet {
         this.name = newName;
         this.hunger = 80;
         this.level = 30;
-        this.pants = "none";
-        this.shirt = "none";
+        this.pants = "no";
+        this.shirt = "no";
         this.lastFed = -1; //Timestamp of when the pet was fed
 
         if(!dbh.insertNewPet(id, newName)) {
@@ -46,6 +48,8 @@ public abstract class Pet {
         this.level = Integer.parseInt(dbh.getPetData(id, "level"));
         this.pants = dbh.getPetData(id, "pants");
         this.shirt = dbh.getPetData(id, "shirt");
+        this.action = "idle";
+        this.motion = "@drawable/cat1_"+shirt+"shirt_"+pants+"pants_"+action;
         //Used to calculate hunger
         this.lastFed = MainActivity.getSettings().getLong("lastFedTime", -1);
         System.out.println("Last fed: "+this.lastFed);
@@ -76,7 +80,9 @@ public abstract class Pet {
             editor.putLong("lastFedTime", currTime);
             editor.apply();
         }
-        return this.hunger - 5 * decreaseAmount;
+        int newHunger = this.hunger - 5 * decreaseAmount;
+        if(newHunger < 0) newHunger = 0;
+        return newHunger;
     }
 
     public int getLevel() {
@@ -93,20 +99,27 @@ public abstract class Pet {
         this.dbh.updatePet(this.userId, "name", newName);
     }
     public void setShirt(String newShirt) {
-        this.name = newShirt;
+        this.shirt = newShirt;
         this.dbh.updatePet(this.userId, "shirt", newShirt);
+        this.setMotion();
     }
     public void setPants(String newPants) {
-        this.name = newPants;
+        this.pants = newPants;
         this.dbh.updatePet(this.userId, "pants", newPants);
+        this.setMotion();
     }
-    public void setMotion(String newMotion) {
-        this.name = newMotion;
+    public void setMotion() {
+        this.motion = "@drawable/cat1_"+shirt+"shirt_"+pants+"pants_"+action;
+    }
+
+    public void setMotion(String shirt, String pants) {
+        this.motion = "@drawable/cat1_"+shirt+"shirt_"+pants+"pants_"+action;
     }
 
     public void setLevel(int newLevel) {
         if (newLevel <= 100) {
             this.level = newLevel;
+            this.dbh.updatePet(this.userId, "level", Integer.toString(this.level));
         }
     }
 

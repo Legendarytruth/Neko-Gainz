@@ -6,8 +6,8 @@ public class UserInventory {
     private Hashtable<String, Integer> food = new Hashtable<>();
     private  Hashtable<String, Boolean> shirts = new Hashtable<>();
     private  Hashtable<String, Boolean> pants = new Hashtable<>();
-    private String shirt = "none"; //The shirt that is currently being worn
-    private String pant = "none"; //The pant that is currently being worn
+    private String shirt = "no"; //The shirt that is currently being worn
+    private String pant = "no"; //The pant that is currently being worn
 
     private static final Hashtable<String, Integer> FOOD_TO_HUNGER = new Hashtable<String, Integer>()
     {{
@@ -42,23 +42,23 @@ public class UserInventory {
 
 
     //For Clothing Items
-    public String returnShirt() {return shirt;}
-    public String returnPants() {return pant;}
+    //public String returnShirt() {return shirt;}
+    //public String returnPants() {return pant;}
 
     public boolean hasShirt(String key){return shirts.containsKey(key);}
 
     public boolean hasPant(String key){return pants.containsKey(key);}
 
-    public void setShirt(String key){ shirt = key;}
+    //public void setShirt(String key){ shirt = key;}
 
-    public void setPant(String key){pant = key;}
+    //public void setPant(String key){pant = key;}
 
-    public void addShirt(String key){shirts.put(key, true); setShirt(key);}
+    public void addShirt(String key){shirts.put(key, true); }
 
-    public void addPant(String key){pants.put(key, true); setPant(key);}
+    public void addPant(String key){pants.put(key, true); }
 
-    public void changeShirt(String key){shirts.put(shirt, false); addShirt(key);}
+    //public void changeShirt(String key){shirts.put(shirt, false); addShirt(key);}
 
-    public void changePant(String key){shirts.put(pant, false); addPant(key);}
+    //public void changePant(String key){shirts.put(pant, false); addPant(key);}
 
 }
