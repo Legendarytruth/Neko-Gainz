@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class TimerFrag extends Fragment {
-
+    User user;
     WorkoutActivity activity;
     View view;
     TextView titleView;
@@ -38,11 +38,13 @@ public class TimerFrag extends Fragment {
         Button button = view.findViewById(R.id.finishButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                updateDay();
                 toTutorial();
             }
         });
         activity = ((WorkoutActivity)this.getActivity());
 
+        user = activity.getUser();
         titleView = view.findViewById(R.id.title);
         countView = view.findViewById(R.id.rep_count);
         setView = view.findViewById(R.id.set_count);
@@ -93,6 +95,41 @@ public class TimerFrag extends Fragment {
                 }
             }
         }.start();
+    }
+
+    public void updateDay() {
+        String exerciseType = "";
+        String repType = "";
+        switch (activity.getExercise()) {
+            case LUNGES:
+            case SQUATS:
+                exerciseType = "WARMUP";
+                repType = "WREPS";
+                break;
+            case RUN:
+            case JACKS:
+            case BURPEES:
+                exerciseType = "CARDIO";
+                repType = "CREPS";
+                break;
+            case PUSH_UPS:
+            case CHIN_UPS:
+            case BENCH_DIPS:
+                exerciseType = "ARMS";
+                repType = "AREPS";
+                break;
+            case SIT_UPS:
+            case PLANKS:
+                exerciseType = "CORE";
+                repType = "COREPS";
+                break;
+            case LEG_RAISES:
+                exerciseType = "LEGS";
+                repType = "LREPS";
+                break;
+        }
+        user.updateDay(user.getLastDay(), exerciseType, activity.getExerciseName());
+        user.updateDay(user.getLastDay(), repType, Integer.toString(activity.getExerciseReps() - reps + activity.getExerciseReps()*(activity.getExerciseSets() - sets)));
     }
 
     public void toTutorial() {

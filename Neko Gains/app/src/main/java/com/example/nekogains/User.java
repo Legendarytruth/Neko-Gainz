@@ -219,7 +219,7 @@ public class User implements Serializable {
     }
 
     //update workout or reps done for a given user on a given day
-    public void updateDay(int day, String row, int contents) {
+    public void updateDay(int day, String row, String contents) {
         dbh.updateDay(day, id, row, contents);
     }
 
