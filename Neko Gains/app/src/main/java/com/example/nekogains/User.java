@@ -216,6 +216,7 @@ public class User implements Serializable {
     public void newDay() {
         int lastday = this.getLastDay();
         dbh.insertNewDay(lastday+1, id);
+        System.out.println(lastday);
     }
 
     //update workout or reps done for a given user on a given day

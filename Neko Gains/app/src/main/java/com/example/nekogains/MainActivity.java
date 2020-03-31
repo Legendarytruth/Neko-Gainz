@@ -171,7 +171,11 @@ public class MainActivity extends AppCompatActivity {
                 for (HashMap.Entry<String, String> entry : results.entrySet()) {
                     System.out.println(entry.getKey());
                     System.out.println(entry.getValue());
-                    dbh.updateUserData(id, entry.getKey(), entry.getValue());
+                    if (entry.getKey().equals("PETNAME")) {
+                        dbh.updatePet(id, "name", entry.getValue());
+                    } else {
+                        dbh.updateUserData(id, entry.getKey(), entry.getValue());
+                    }
                 }
 
                 System.out.println(id);

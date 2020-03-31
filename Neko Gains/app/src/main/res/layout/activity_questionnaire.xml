@@ -40,7 +40,7 @@
                         android:layout_height="100dp"/>
                     <EditText
                         android:id="@+id/q_name"
-                        android:text="Johnson"
+                        android:text="Gary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorAccent"
@@ -274,6 +274,29 @@
                         />
                 </RadioGroup>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="What would you like to name your pet?"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:textColor="#555555"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
+                <EditText
+                    android:id="@+id/q_petname"
+                    android:text="Liton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="200dp"
+                    android:singleLine="true"
+                    android:hint="Enter your name here"/>
+            </LinearLayout>
                 <Button
                     android:id="@+id/button_send"
                     android:fontFamily="@font/opensans_semibold"
@@ -288,5 +311,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"/>
         </LinearLayout>
+
     </ScrollView>
 </LinearLayout>
