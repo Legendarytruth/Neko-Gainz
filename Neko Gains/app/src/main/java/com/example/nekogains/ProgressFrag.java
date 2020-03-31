@@ -128,8 +128,11 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
         addPoint(leg_raises_series, 0,0);
 
         weightLossButton = view.findViewById(R.id.weightLossButton);
-        addPoint(weight_loss_series, 0,0);
+        addPoint(weight_loss_series, 0,(int)user.getWeight());
 
+        System.out.println(user.getWeight());
+
+        getLastWeek();
 
         lungesButton.setOnClickListener(this);
         squatsButton.setOnClickListener(this);
@@ -153,15 +156,16 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
 
     public void addPoint (LineGraphSeries<DataPoint> line, int x, int y ){
             line.appendData(new DataPoint(x,y), true, 752);
+            System.out.println("adding... x:" + x +"y:"+ y +"to" + line.toString());
     }
 
     public void getLastWeek(){
-
         int lastday = user.getLastDay();
-        System.out.println("lastday: "+ lastday);
-        for (int i = 1; i < lastday; i++){
-            String warmup = user.getUserCalendarData(i, "WREPS");
-            if (warmup == "LUNGES") {
+        //System.out.println("lastday: "+ lastday);
+        for (int i = 1; i <= lastday; i++){
+            String warmup = user.getUserCalendarData(i, "WARMUP");
+            System.out.println(warmup);
+            if (warmup.equals("LUNGES")) {
                 addPoint(lunges_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "WREPS"))));
                 addPoint(squats_series, i, 0);
 
@@ -169,13 +173,13 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
                 addPoint(squats_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "WREPS"))));
                 addPoint(lunges_series, i, 0);
             }
-            String cardio = user.getUserCalendarData(i, "CREPS");
-            if(cardio == "RUN") {
+            String cardio = user.getUserCalendarData(i, "CARDIO");
+            if(cardio.equals("RUN")) {
                 addPoint(run_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
                 addPoint(jacks_series, i, 0);
                 addPoint(burpees_series, i, 0);
             }
-            else if(cardio == "JACKS"){
+            else if(cardio.equals("JACKS")){
                 addPoint(run_series, i,0);
                 addPoint(jacks_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
                 addPoint(burpees_series, i, 0);
@@ -185,13 +189,13 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
                 addPoint(jacks_series, i,0);
                 addPoint(burpees_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
             }
-            String arms = user.getUserCalendarData(i, "AREPS");
-            if (arms == "PUSH_UPS") {
+            String arms = user.getUserCalendarData(i, "ARMS");
+            if (arms.equals("PUSH_UPS")){
                 addPoint(pushups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
                 addPoint(chin_ups_series, i,0);
                 addPoint(bench_dips_series, i,0);
             }
-            else if (arms == "CHIN_UPS"){
+            else if (arms.equals("CHIN_UPS")){
                 addPoint(pushups_series, i,0);
                 addPoint(chin_ups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
                 addPoint(bench_dips_series, i,0);
@@ -202,8 +206,8 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
                 addPoint(bench_dips_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
 
             }
-            String core = user.getUserCalendarData(i, "COREPS");
-            if (core == "SIT_UPS") {
+            String core = user.getUserCalendarData(i, "CORE");
+            if (core.equals("SIT_UPS")) {
                 addPoint(sit_ups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "COREPS"))));
                 addPoint(planks_series, i,0);
             }
@@ -212,7 +216,7 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
                 addPoint(planks_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "COREPS"))));
             }
             addPoint(leg_raises_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "LREPS"))));
-            addPoint(weight_loss_series, i, (int) user.getWeight());
+            addPoint(weight_loss_series, i, (int)user.getWeight());
         }
     }
     @Override
@@ -221,7 +225,6 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
         //System.out.println("Something was pressed owo");
         View popupView;
         Button closeButton;
-        getLastWeek();
 
         switch (v.getId()) {
             case R.id.lungesButton:
