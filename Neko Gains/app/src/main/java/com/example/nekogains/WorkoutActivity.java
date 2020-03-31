@@ -34,6 +34,7 @@ public class WorkoutActivity extends AppCompatActivity {
         int userID = (int)getIntent().getExtras().getSerializable("ID");
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), userID);
         user.newDay();
+        user.updateDay(user.getLastDay(), "WEIGHT", Float.toString(user.getWeight()));
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new TutorialFrag()).commit();
     }
 

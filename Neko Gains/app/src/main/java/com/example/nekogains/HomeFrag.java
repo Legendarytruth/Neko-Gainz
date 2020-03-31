@@ -97,6 +97,8 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
         MainActivity activity = (MainActivity) getActivity();
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
+        user.loadInventory();
+
         pet = user.getPet();
 
         setPetName(pet.getName());
@@ -369,5 +371,11 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "pantsless", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        user.saveInventory();
     }
 }

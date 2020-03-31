@@ -90,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         }
         db.execSQL("CREATE TABLE " + USER_TABLE + " (ID INTEGER PRIMARY KEY, NAME TEXT, SEX TEXT, AGE TEXT, HABITS TEXT, WEIGHT TEXT, HEIGHT TEXT, INTENSITY TEXT, USERNAME TEXT, PASSWORD TEXT);");
         //db.execSQL("CREATE TRIGGER trg_bmi AFTER UPDATE ON " + USER_TABLE + " FOR EACH ROW WHEN OLD.HEIGHT > 0 BEGIN UPDATE " + USER_TABLE + " SET BMI=OLD.WEIGHT/OLD.HEIGHT*OLD.HEIGHT WHERE ID = NEW.ID; END;");
-        db.execSQL("CREATE TABLE " + WORKOUT_CALENDAR_TABLE + " (ID INTEGER, DAY INTEGER, WARMUP TEXT, WREPS TEXT, CARDIO TEXT, CREPS TEXT, ARMS TEXT, AREPS TEXT, CORE TEXT, COREPS TEXT, LEGS TEXT, LREPS TEXT," +
+        db.execSQL("CREATE TABLE " + WORKOUT_CALENDAR_TABLE + " (ID INTEGER, DAY INTEGER, WARMUP TEXT, WREPS TEXT, CARDIO TEXT, CREPS TEXT, ARMS TEXT, AREPS TEXT, CORE TEXT, COREPS TEXT, LEGS TEXT, LREPS TEXT, WEIGHT TEXT," +
                 " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
         db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER," +
                 " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
@@ -250,7 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         String data = "";
         Cursor c = null;
         try {
-            c = db.rawQuery("SELECT * FROM " + WORKOUT_CALENDAR_TABLE + " WHERE DAY = (SELECT MAX(DAY) FROM " + WORKOUT_CALENDAR_TABLE + ") AND ID =?", new String[]{id + ""});
+            c = db.rawQuery("SELECT DAY FROM " + WORKOUT_CALENDAR_TABLE + " WHERE DAY = (SELECT MAX(DAY) FROM " + WORKOUT_CALENDAR_TABLE + ") AND ID =?", new String[]{id + ""});
             if (c.getCount() > 0) {
                 c.moveToFirst();
                 data = c.getString(c.getColumnIndex(DAY));
