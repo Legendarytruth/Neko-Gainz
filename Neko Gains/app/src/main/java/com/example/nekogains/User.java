@@ -34,7 +34,7 @@ public class User implements Serializable {
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
-        this.pet  = new Cat("temppetname");
+        this.pet  = new Cat(dbh, id);
     }
 
     //Preworkout&CustomWorkout Code

@@ -80,6 +80,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/moneyiconfinal" />
 
+        <!-- Normal cat width, height: 200, 300dp -->
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/CatBody"
             android:layout_width="200dp"
