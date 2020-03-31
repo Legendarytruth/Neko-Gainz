@@ -38,6 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
     private static final String GAME_TABLE = "Games";
 
+    private static final String PET_TABLE = "Pet";
+
     //Exercise Table
 
     private static final String EX_NAME = "NAME";
@@ -151,6 +153,9 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER," +
 
                 " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
+
+        db.execSQL("CREATE TABLE " + PET_TABLE + " (id INTEGER PRIMARY KEY, name TEXT, hunger INT, level INT, pants TEXT, shirt TEXT,"+
+                " CONSTRAINT fk_users FOREIGN KEY (id) REFERENCES USERS(ID));");
 
     }
 
@@ -548,6 +553,59 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
 
         }
 
+    }
+
+
+
+    public boolean insertNewPet(int id, String name) {
+        ContentValues cv = new ContentValues();
+
+        cv.put("id", id);
+        cv.put("name", name);
+        cv.put("level", 0); //Default starting level is 0
+        cv.put("hunger", 80); //Default starting hunger is 80
+        cv.put("pants", "no"); //No clothes by default
+        cv.put("shirt", "no");
+
+        long result = db.insert(PET_TABLE, null, cv);
+
+        if (result != -1) return true;
+        System.out.println("Database failed to insert new Pet");
+        return false;
+    }
+
+    public boolean updatePet(int id, String row, String contents) {
+        ContentValues cv = new ContentValues();
+        cv.put(row, contents);
+
+        long result = db.update(PET_TABLE, cv, "id="+id, null);
+
+        if (result != -1) return true;
+        System.out.println("Database failed to update Pet table");
+        return false;
+    }
+
+    public String getPetData(int id, String row) {
+        /*
+        * Method written by Kana
+        * I don't know how the code works, I'm just copying it from Roy's code
+        */
+        String data = "";
+        Cursor c = null;
+
+        try {
+            c = db.rawQuery("SELECT "+row+" FROM "+PET_TABLE+" WHERE ID=?",
+                    new String[] {id + ""});
+
+            if(c.getCount() > 0) {
+                c.moveToFirst();
+                data = c.getString(c.getColumnIndex(row));
+            }
+        } catch (Exception e) {
+            System.out.println("Exception caused at getPetData() in DatabaseHelper");
+            System.out.println(e.getMessage());
+        }
+        return data;
     }
 
 
