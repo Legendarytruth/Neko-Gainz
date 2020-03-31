@@ -3,6 +3,7 @@ package com.example.nekogains;
 import android.content.SharedPreferences;
 
 import java.util.Calendar;
+import java.util.Random;
 
 public abstract class Pet {
     DatabaseHelper dbh;
@@ -18,6 +19,7 @@ public abstract class Pet {
     private String action;
     private long lastFed;
     private String motion;
+    private String craving;
 
 
     public Pet(DatabaseHelper dbh, String newName, int id) {
@@ -29,6 +31,7 @@ public abstract class Pet {
         this.pants = "no";
         this.shirt = "no";
         this.lastFed = -1; //Timestamp of when the pet was fed
+        this.craving = "none";
 
         if(!dbh.insertNewPet(id, newName)) {
             //Inserting new pet failed
@@ -50,6 +53,7 @@ public abstract class Pet {
         this.shirt = dbh.getPetData(id, "shirt");
         this.action = "idle";
         this.motion = "@drawable/cat1_"+shirt+"shirt_"+pants+"pants_"+action;
+        this.craving = "none";
         //Used to calculate hunger
         this.lastFed = MainActivity.getSettings().getLong("lastFedTime", -1);
         System.out.println("Last fed: "+this.lastFed);
@@ -120,6 +124,39 @@ public abstract class Pet {
         if (newLevel <= 100) {
             this.level = newLevel;
             this.dbh.updatePet(this.userId, "level", Integer.toString(this.level));
+        }
+    }
+
+    public void setRandomCraving() {
+        Random rand = new Random();
+        int choice = rand.nextInt(4);
+        switch (choice){
+            case 0:
+                this.craving = "milk";
+                break;
+            case 1:
+                this.craving = "blueberries";
+                break;
+            case 2:
+                this.craving = "fish";
+                break;
+            case 3:
+                this.craving = "catfood";
+                break;
+            case 4:
+                this.craving = "none";
+                break;
+        }
+        //Immediately switch the action to show craving
+        setAction(false);
+        setMotion();
+    }
+
+    public void setAction(boolean idle) {
+        if(idle || this.craving.equals("none")) {
+            this.action = "idle";
+        } else {
+            this.action = "hunger_"+craving;
         }
     }
 

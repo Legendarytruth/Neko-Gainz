@@ -63,14 +63,11 @@ public class MainActivity extends AppCompatActivity {
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            //user = new User(dbh, id);
+            user = new User(dbh, id);
             //TESTING: Logs a new into database upon ever open of the app
             //user.newDay();
 
-            //commented out because homefrag calls for user's xp when a user has not been created yet
-            //perhaps solution would be to start questionnaire/login as the first activity instead?
-
-            /*getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
             FloatingActionButton fab = findViewById(R.id.bot_fab);
             fab.setOnClickListener(new View.OnClickListener() {
 
@@ -80,18 +77,10 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new PreworkoutFrag();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
                 }
-            });*/
+            });
         }
-
-
-
     }
 
-
-    public void onDestroy() {
-        //dbh.close();
-        super.onDestroy();
-    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {

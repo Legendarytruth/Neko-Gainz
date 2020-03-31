@@ -26,6 +26,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 import android.view.Gravity;
 
+import java.io.IOException;
+
 
 public class HomeFrag extends Fragment implements View.OnClickListener {
 
@@ -142,9 +144,16 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void setCatGif() {
         Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
         int imageResource = getResources().getIdentifier(pet.getMotion(), null, getActivity().getPackageName());
-        System.out.println("\t"+pet.getMotion());
-        //GifDrawable drawable = new GifDrawable(getResources(), R.drawable.cat1_noshirt_nopants_idle);
-        catImage.setImageResource(imageResource);
+        try {
+            GifDrawable drawable = new GifDrawable(getResources(), imageResource);
+            drawable.setSpeed(0.6f);
+            catImage.setImageDrawable(drawable);
+        } catch (IOException e) {
+            System.out.println("\t In setCatGif() in HomeFrag:");
+            System.out.println(e.getMessage());
+            catImage.setImageResource(imageResource);
+        }
+
         /*
         if (shirt == "yellow") {
             if (pants == "orange") {
