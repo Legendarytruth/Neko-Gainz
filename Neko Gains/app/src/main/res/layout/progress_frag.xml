@@ -5,51 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-   <!-- <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lungesGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/squatsGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/runGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/burpeesGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/jacksGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/pushUpsGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/chinUpsGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/benchDipsGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/sitUpsGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/planksGraph" />
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/legRaisesGraph" />-->
-
 
  <LinearLayout
      android:layout_width="match_parent"
@@ -64,7 +19,8 @@
       android:paddingTop="10dp"
       android:paddingBottom="10dp"
       android:text="PROGRESS"
-      android:textSize="40sp" />
+      android:textSize="40sp"
+      android:layout_marginLeft="114dp" />
 
   <LinearLayout
       android:layout_width="match_parent"
@@ -76,21 +32,21 @@
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/chin_ups" />
 
    <ImageButton
        android:id="@+id/lungesButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/lunges" />
 
    <ImageButton
        android:id="@+id/burpeesButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/burpees" />
 
   </LinearLayout>
 
@@ -104,21 +60,21 @@
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/sit_ups" />
 
    <ImageButton
        android:id="@+id/runButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/run" />
 
    <ImageButton
        android:id="@+id/pushUpsButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/push_ups" />
 
   </LinearLayout>
 
@@ -132,21 +88,21 @@
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/bench_dips" />
 
    <ImageButton
        android:id="@+id/squatsButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/squats" />
 
    <ImageButton
        android:id="@+id/planksButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/planks" />
   </LinearLayout>
 
   <LinearLayout
@@ -159,21 +115,21 @@
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/leg_raises" />
 
    <ImageButton
        android:id="@+id/jacksButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/jacks" />
 
    <ImageButton
        android:id="@+id/weightLossButton"
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:layout_weight="1"
-       app:srcCompat="@drawable/blueberries_small" />
+       app:srcCompat="@drawable/weight_loss" />
 
   </LinearLayout>
 
