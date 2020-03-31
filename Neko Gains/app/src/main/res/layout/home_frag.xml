@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_alignTop="@id/TopDivider"
         android:layout_alignBottom="@id/BottomDivider"
-        android:background="@drawable/backgroundart"
+        android:background="    @drawable/backgroundart"
         android:layout_height="wrap_content">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

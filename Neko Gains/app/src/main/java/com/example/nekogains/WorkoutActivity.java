@@ -33,6 +33,7 @@ public class WorkoutActivity extends AppCompatActivity {
         currentPlan = (PriorityQueue<Exercise>)getIntent().getExtras().getSerializable("PLAN");
         int userID = (int)getIntent().getExtras().getSerializable("ID");
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), userID);
+        user.newDay();
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new TutorialFrag()).commit();
     }
 
@@ -80,6 +81,8 @@ public class WorkoutActivity extends AppCompatActivity {
     public String getExerciseName() {
         return currentPlan.peek().getName();
     }
+
+    public Exercise getExercise() { return currentPlan.peek(); }
 
     public void finishExercise() {
         currentPlan.remove(currentPlan.peek());
