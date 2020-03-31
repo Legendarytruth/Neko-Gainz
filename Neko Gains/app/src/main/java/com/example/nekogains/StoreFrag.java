@@ -31,14 +31,15 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     private Integer catfoodcost = 12; //restores 50 hunger
     private Integer fishcost = 7; //restores 30 hunger
     private Integer milkcost = 2; //restores 5 hunger
-    private Integer clothingcost = 20;
+    private Integer clothingcost = 200;
 
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getUserId());
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
+        user.loadInventory();
         userInventory = user.getUserInventory();
 
         view = inflater.inflate(R.layout.store_frag, container, false);
@@ -51,7 +52,6 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
         button6 = view.findViewById(R.id.button6);
         button7 = view.findViewById(R.id.button7);
         button8 = view.findViewById(R.id.button8);
-
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -176,10 +176,10 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
                 break;
             case R.id.button8:
                 if (user.getMoneyAmount() >= clothingcost){
-                    if (userInventory.hasPant("bluepants")){
+                    if (userInventory.hasPant("redpants")){
                         Toast.makeText(getContext(), "You already own this item!", Toast.LENGTH_SHORT).show();
                     }else{
-                        userInventory.addPant("bluepants");
+                        userInventory.addPant("redpants");
                         user.removeMoney(clothingcost);
                         setMoney(user.getMoneyAmount());
                         Toast.makeText(getContext(), "You now own some blue pants!", Toast.LENGTH_SHORT).show();
@@ -193,5 +193,9 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        user.saveInventory();
+    }
 }

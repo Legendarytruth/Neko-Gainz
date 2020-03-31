@@ -1,6 +1,13 @@
 package com.example.nekogains;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -21,14 +28,16 @@ public class User implements Serializable {
     private int daily;
     private static Pet pet;
     private static UserInventory userInventory = new UserInventory();
-    private Hashtable<String, ArrayList<Exercise>> workoutplans = new Hashtable<>();
-    private ArrayList<String> workoutlist = new ArrayList<>();
+    private static Hashtable<String, ArrayList<Exercise>> workoutplans;// = new Hashtable<>();
+    private static ArrayList<String> workoutlist; //= new ArrayList<>();
 
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
-        this.pet  = new Cat("temppetname");
+        this.pet  = new Cat(dbh, id);
     }
+
+    //Preworkout&CustomWorkout Code
 
     public void createDefaultWorkouts(){
         ArrayList<Exercise> workoutPlan1 = new ArrayList<>();
@@ -51,11 +60,17 @@ public class User implements Serializable {
         addtoWorkoutList("workoutPlan3");
     }
 
+    public void setWorkoutplans(Hashtable <String, ArrayList<Exercise>> table){
+        workoutplans = table;
+    }
+
+    public void setWorkoutlist(ArrayList<String> names){
+        workoutlist = names;
+    }
+
     public void addExercise(ArrayList<Exercise> exercises,Exercise exercise){
         exercises.add(exercise);
     }
-
-    //Arthur Code
 
     public ArrayList<Exercise> getWorkouts(String name){return workoutplans.get(name); }
 
@@ -68,6 +83,52 @@ public class User implements Serializable {
     }
 
     public ArrayList<String> getWorkoutlist(){ return workoutlist;}
+
+    public void saveWorkout(){
+        SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+        Gson gson = new Gson();
+        Gson gson2 = new Gson();
+        String json = gson.toJson(workoutlist);
+        String json2 = gson2.toJson(workoutplans);
+        editor.putString("workoutlist", json);
+        editor.putString("workoutplans", json2);
+        editor.apply();
+    }
+
+    public void loadWorkout(){
+        Gson gson = new Gson();
+        Gson gson2 = new Gson();
+        String json = MainActivity.getSettings().getString("workoutlist", null);
+        String json2 = MainActivity.getSettings().getString("workoutplans", null);
+        Type type = new TypeToken<ArrayList<String>>(){}.getType();
+        Type type2 = new TypeToken<Hashtable<String, ArrayList<Exercise>>>(){}.getType();
+        workoutlist = gson.fromJson(json,type);
+        workoutplans = gson2.fromJson(json2,type2);
+        if (workoutlist == null){
+            workoutlist = new ArrayList<>();
+        }if(workoutplans == null){
+            workoutplans = new Hashtable<>();
+            createDefaultWorkouts();
+        }
+    }
+
+    public void saveInventory(){
+        SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userInventory);
+        editor.putString("userInventory", json);
+        editor.apply();
+    }
+
+    public void loadInventory(){
+        Gson gson = new Gson();
+        String json = MainActivity.getSettings().getString("userInventory", null);
+        Type type = new TypeToken<UserInventory>(){}.getType();
+        userInventory = gson.fromJson(json,type);
+        if (userInventory == null){
+            userInventory = new UserInventory();
+        }
+    }
 
 
     //GETTING ATTRIBUTES
@@ -147,7 +208,8 @@ public class User implements Serializable {
     public void setIntensity(String intensity) { dbh.updateUserData(id, "INTENSITY", intensity);}
 
     public void addMoney(int amount) {
-        dbh.updateGame(id, "MONEY", amount);
+        int currentMoney = getMoneyAmount();
+        dbh.updateGame(id, "MONEY", currentMoney+amount);
     }
 
     public void removeMoney(int amount){
@@ -172,10 +234,11 @@ public class User implements Serializable {
     public void newDay() {
         int lastday = this.getLastDay();
         dbh.insertNewDay(lastday+1, id);
+        System.out.println(lastday);
     }
 
     //update workout or reps done for a given user on a given day
-    public void updateDay(int day, String row, int contents) {
+    public void updateDay(int day, String row, String contents) {
         dbh.updateDay(day, id, row, contents);
     }
 

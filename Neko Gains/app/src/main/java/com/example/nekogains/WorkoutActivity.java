@@ -14,17 +14,28 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.PriorityQueue;
+
 public class WorkoutActivity extends AppCompatActivity {
+
+    PriorityQueue<Exercise> currentPlan;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //for now, clears database on start until login system is uninitialized
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-
+        currentPlan = (PriorityQueue<Exercise>)getIntent().getExtras().getSerializable("PLAN");
+        int userID = (int)getIntent().getExtras().getSerializable("ID");
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), userID);
+        user.newDay();
+        user.updateDay(user.getLastDay(), "WEIGHT", Float.toString(user.getWeight()));
+        getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new TutorialFrag()).commit();
     }
 
 
@@ -43,12 +54,44 @@ public class WorkoutActivity extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    public void replaceFragments(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frag_container, fragment)
+                .commit();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public int getExerciseReps() {
+        return user.getExerciseReps(currentPlan.peek());
+    }
+
+    public int getExerciseSets() {
+        return currentPlan.peek().getSets();
+    }
+
+    public String getExerciseName() {
+        return currentPlan.peek().getName();
+    }
+
+    public Exercise getExercise() { return currentPlan.peek(); }
+
+    public void finishExercise() {
+        currentPlan.remove(currentPlan.peek());
+    }
+
+    public boolean isFinished() {
+        return currentPlan.isEmpty();
+    }
 
 
 }

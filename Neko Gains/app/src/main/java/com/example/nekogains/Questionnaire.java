@@ -49,6 +49,8 @@ public class Questionnaire extends AppCompatActivity {
         RadioButton q_int_button = findViewById(q_int_group.getCheckedRadioButtonId());
         String q_intensity = Integer.toString(q_int_group.indexOfChild(q_int_button));
 
+        String q_petname = ((EditText)findViewById(R.id.q_petname)).getText().toString();
+
 
         HashMap<String, String> results = new HashMap<>();
         results.put("NAME", q_name);
@@ -58,6 +60,7 @@ public class Questionnaire extends AppCompatActivity {
         results.put("WEIGHT", q_weight);
         results.put("HEIGHT", q_height);
         results.put("INTENSITY", q_intensity);
+        results.put("PETNAME", q_petname);
 
         for (String entry : results.values()) {
             if (entry.isEmpty()) {

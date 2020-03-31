@@ -40,12 +40,13 @@
                         android:layout_height="100dp"/>
                     <EditText
                         android:id="@+id/q_name"
-                        android:text="Johnson"
+                        android:text="Gary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorAccent"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="200dp"
+                        android:singleLine="true"
                         android:hint="Enter your name here"/>
                 </LinearLayout>
                 <!-- Question 1 -->
@@ -99,11 +100,13 @@
                 <EditText
                     android:id="@+id/q_age"
                     android:text="22"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAccent"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="200dp"
+                    android:singleLine="true"
                     android:hint="Enter your name here"/>
             </LinearLayout>
             <!-- Question 3 -->
@@ -175,26 +178,54 @@
                     android:textColor="#555555"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"/>
-                <EditText
-                    android:id="@+id/q_weight"
-                    android:text="60"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="200dp"
-                    android:hint="Enter your weight here"/>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/q_weight"
+                        android:text="60"
+                        android:inputType="numberDecimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        android:layout_marginLeft="20dp"
+                        android:singleLine="true"
+                        android:hint="Enter your weight here"/>
+                    <TextView
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="kg"
+                        android:textSize="14dp"
+                        android:textColor="#555555"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"/>
+                </LinearLayout>
 
-                <EditText
-                    android:id="@+id/q_height"
-                    android:text="160"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
+                    android:orientation="horizontal"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="200dp"
-                    android:hint="Enter your height here"/>
+                    android:layout_marginLeft="20dp">
+                    <EditText
+                        android:id="@+id/q_height"
+                        android:text="160"
+                        android:inputType="numberDecimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        android:singleLine="true"
+                        android:hint="Enter your height here"/>
+                    <TextView
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="cm"
+                        android:textSize="14dp"
+                        android:textColor="#555555"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"/>
+                </LinearLayout>
             </LinearLayout>
             <!-- Question 5 -->
             <LinearLayout
@@ -243,6 +274,29 @@
                         />
                 </RadioGroup>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="What would you like to name your pet?"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:textColor="#555555"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
+                <EditText
+                    android:id="@+id/q_petname"
+                    android:text="Liton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="200dp"
+                    android:singleLine="true"
+                    android:hint="Enter your name here"/>
+            </LinearLayout>
                 <Button
                     android:id="@+id/button_send"
                     android:fontFamily="@font/opensans_semibold"
@@ -257,5 +311,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"/>
         </LinearLayout>
+
     </ScrollView>
 </LinearLayout>

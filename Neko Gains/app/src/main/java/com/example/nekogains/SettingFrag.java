@@ -64,7 +64,7 @@ public class SettingFrag extends Fragment {
         editPetName = view.findViewById(R.id.editPetName);
 
         //Prefill the text boxes with user data for user convenience
-        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)getActivity()).getUserId());
+        user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)getActivity()).getAppUserId());
         editName.setText(user.getName());
         System.out.println(user.getHeight());
         editHeight.setText(Float.toString(user.getHeight()));
