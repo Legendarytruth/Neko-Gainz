@@ -39,6 +39,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         user = new User(DatabaseHelper.getInstance(MainActivity.getContext()), ((MainActivity)this.getActivity()).getAppUserId());
+        user.loadInventory();
         userInventory = user.getUserInventory();
 
         view = inflater.inflate(R.layout.store_frag, container, false);
@@ -51,7 +52,6 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
         button6 = view.findViewById(R.id.button6);
         button7 = view.findViewById(R.id.button7);
         button8 = view.findViewById(R.id.button8);
-
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -193,5 +193,9 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        user.saveInventory();
+    }
 }

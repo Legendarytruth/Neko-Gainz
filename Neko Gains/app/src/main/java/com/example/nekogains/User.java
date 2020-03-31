@@ -112,6 +112,24 @@ public class User implements Serializable {
         }
     }
 
+    public void saveInventory(){
+        SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userInventory);
+        editor.putString("userInventory", json);
+        editor.apply();
+    }
+
+    public void loadInventory(){
+        Gson gson = new Gson();
+        String json = MainActivity.getSettings().getString("userInventory", null);
+        Type type = new TypeToken<UserInventory>(){}.getType();
+        userInventory = gson.fromJson(json,type);
+        if (userInventory == null){
+            userInventory = new UserInventory();
+        }
+    }
+
 
     //GETTING ATTRIBUTES
     public String getName() { return dbh.getUserData(id, "NAME"); }
