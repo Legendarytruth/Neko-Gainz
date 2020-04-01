@@ -95,43 +95,66 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
 
         lungesButton = view.findViewById(R.id.lungesButton);
         addPoint(lunges_series, 0, 0);
-
+        lunges_series.setColor(Color.BLACK);
+        lunges_series.setThickness(5);
 
         squatsButton = view.findViewById(R.id.squatsButton);
         addPoint(squats_series, 0, 0);
         runButton = view.findViewById(R.id.runButton);
         addPoint(run_series, 0, 0);
-
+        run_series.setColor(Color.BLACK);
+        run_series.setThickness(5);
 
         burpeesButton = view.findViewById(R.id.burpeesButton);
         addPoint(burpees_series, 0, 0);
+        burpees_series.setColor(Color.BLACK);
+        burpees_series.setThickness(5);
 
         jacksButton = view.findViewById(R.id.jacksButton);
         addPoint(jacks_series, 0, 0);
+        jacks_series.setColor(Color.BLACK);
+        jacks_series.setThickness(5);
 
         pushUpsButton = view.findViewById(R.id.pushUpsButton);
         addPoint(pushups_series, 0, 0);
+        pushups_series.setColor(Color.BLACK);
+        pushups_series.setThickness(5);
 
         chinUpsButton = view.findViewById(R.id.chinUpsButton);
         addPoint(chin_ups_series, 0, 0);
+        chin_ups_series.setColor(Color.BLACK);
+        chin_ups_series.setThickness(5);
 
         benchDipsButton = view.findViewById(R.id.benchDipsButton);
         addPoint(bench_dips_series, 0, 0);
+        bench_dips_series.setColor(Color.BLACK);
+        bench_dips_series.setThickness(5);
 
         sitUpsButton = view.findViewById(R.id.sitUpsButton);
         addPoint(sit_ups_series, 0,0);
+        sit_ups_series.setColor(Color.BLACK);
+        sit_ups_series.setThickness(5);
 
         planksButton = view.findViewById(R.id.planksButton);
         addPoint(planks_series, 0,0);
+        planks_series.setColor(Color.BLACK);
+        planks_series.setThickness(5);
 
         legRaisesButton = view.findViewById(R.id.legRaisesButton);
         addPoint(leg_raises_series, 0,0);
+        leg_raises_series.setColor(Color.BLACK);
+        leg_raises_series.setThickness(5);
 
         weightLossButton = view.findViewById(R.id.weightLossButton);
-        addPoint(weight_loss_series, 0,(int)user.getWeight());
+        weight_loss_series.setColor(Color.BLACK);
+        weight_loss_series.setThickness(5);
 
-        System.out.println(user.getWeight());
-
+        if(user.getUserCalendarData(0, "WEIGHT")!=null) {
+            addPoint(weight_loss_series, 0, (Double.parseDouble(user.getUserCalendarData(1, "WEIGHT"))));
+        }
+        else{
+            addPoint(weight_loss_series, 0, 0);
+        }
         getLastWeek();
 
         lungesButton.setOnClickListener(this);
@@ -154,7 +177,7 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    public void addPoint (LineGraphSeries<DataPoint> line, int x, int y ){
+    public void addPoint (LineGraphSeries<DataPoint> line, int x, double y ){
             line.appendData(new DataPoint(x,y), true, 752);
             System.out.println("adding... x:" + x +"y:"+ y +"to" + line.toString());
     }
@@ -165,58 +188,88 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
         for (int i = 1; i <= lastday; i++){
             String warmup = user.getUserCalendarData(i, "WARMUP");
             System.out.println(warmup);
-            if (warmup.equals("LUNGES")) {
-                addPoint(lunges_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "WREPS"))));
-                addPoint(squats_series, i, 0);
+            if (warmup!= null) {
+                if (warmup.equals("LUNGES")) {
+                    addPoint(lunges_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "WREPS"))));
+                    addPoint(squats_series, i, 0);
 
-            } else {
-                addPoint(squats_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "WREPS"))));
+                } else {
+                    addPoint(squats_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "WREPS"))));
+                    addPoint(lunges_series, i, 0);
+                }
+            }
+            else{
+                addPoint(squats_series, i, 0);
                 addPoint(lunges_series, i, 0);
             }
             String cardio = user.getUserCalendarData(i, "CARDIO");
-            if(cardio.equals("RUN")) {
-                addPoint(run_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
+            if (cardio!= null) {
+                if (cardio.equals("RUN")) {
+                    addPoint(run_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
+                    addPoint(jacks_series, i, 0);
+                    addPoint(burpees_series, i, 0);
+                } else if (cardio.equals("JACKS")) {
+                    addPoint(run_series, i, 0);
+                    addPoint(jacks_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
+                    addPoint(burpees_series, i, 0);
+                } else {
+                    addPoint(run_series, i, 0);
+                    addPoint(jacks_series, i, 0);
+                    addPoint(burpees_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
+                }
+            }
+            else{
+                addPoint(run_series, i, 0);
                 addPoint(jacks_series, i, 0);
                 addPoint(burpees_series, i, 0);
             }
-            else if(cardio.equals("JACKS")){
-                addPoint(run_series, i,0);
-                addPoint(jacks_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
-                addPoint(burpees_series, i, 0);
-            }
-            else{
-                addPoint(run_series, i,0);
-                addPoint(jacks_series, i,0);
-                addPoint(burpees_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "CREPS"))));
-            }
             String arms = user.getUserCalendarData(i, "ARMS");
-            if (arms.equals("PUSH_UPS")){
-                addPoint(pushups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
-                addPoint(chin_ups_series, i,0);
-                addPoint(bench_dips_series, i,0);
-            }
-            else if (arms.equals("CHIN_UPS")){
-                addPoint(pushups_series, i,0);
-                addPoint(chin_ups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
-                addPoint(bench_dips_series, i,0);
+            if (arms != null) {
+                if (arms.equals("PUSH_UPS")) {
+                    addPoint(pushups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
+                    addPoint(chin_ups_series, i, 0);
+                    addPoint(bench_dips_series, i, 0);
+                } else if (arms.equals("CHIN_UPS")) {
+                    addPoint(pushups_series, i, 0);
+                    addPoint(chin_ups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
+                    addPoint(bench_dips_series, i, 0);
+                } else {
+                    addPoint(pushups_series, i, 0);
+                    addPoint(chin_ups_series, i, 0);
+                    addPoint(bench_dips_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
+
+                }
             }
             else{
-                addPoint(pushups_series, i,0);
-                addPoint(chin_ups_series, i,0);
-                addPoint(bench_dips_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "AREPS"))));
-
+                addPoint(pushups_series, i, 0);
+                addPoint(chin_ups_series, i, 0);
+                addPoint(bench_dips_series, i, 0);
             }
             String core = user.getUserCalendarData(i, "CORE");
-            if (core.equals("SIT_UPS")) {
-                addPoint(sit_ups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "COREPS"))));
-                addPoint(planks_series, i,0);
+            if (core != null) {
+                if (core.equals("SIT_UPS")) {
+                    addPoint(sit_ups_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "COREPS"))));
+                    addPoint(planks_series, i, 0);
+                } else {
+                    addPoint(sit_ups_series, i, 0);
+                    addPoint(planks_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "COREPS"))));
+                }
             }
             else{
-                addPoint(sit_ups_series, i,0);
-                addPoint(planks_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "COREPS"))));
+                addPoint(planks_series, i, 0);
+                addPoint(sit_ups_series, i, 0);
             }
-            addPoint(leg_raises_series, i, Integer.parseInt(user.getUserCalendarData(i, user.getUserCalendarData(i, "LREPS"))));
-            addPoint(weight_loss_series, i, (int)user.getWeight());
+            if (user.getUserCalendarData(i, "LREPS") != null) {
+                addPoint(leg_raises_series, i, Integer.parseInt(user.getUserCalendarData(i, "LREPS")));
+            }else{
+                addPoint(leg_raises_series, i, 0);
+            }
+            if(user.getUserCalendarData(i, "WEIGHT")!=null) {
+                addPoint(weight_loss_series, i, (Double.parseDouble(user.getUserCalendarData(i, "WEIGHT"))));
+            }
+            else{
+                addPoint(weight_loss_series, i, 0);
+            }
         }
     }
     @Override
