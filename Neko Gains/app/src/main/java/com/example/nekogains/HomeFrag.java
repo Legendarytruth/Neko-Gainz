@@ -3,6 +3,7 @@ package com.example.nekogains;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,6 +112,8 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         setLevelAmount(user.getPet().getLevel());
         setDailyAmount(user.getDaily()); //For the bar
         setLoginAmount(user.getDaily()); //For the text
+
+       // Log.d("Create","Here is daily, "+user.getDaily());
 
         return view;
     }
@@ -378,5 +381,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
         user.saveInventory();
+        user.saveDaily();
     }
 }
