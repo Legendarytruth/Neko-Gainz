@@ -101,6 +101,11 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         user.loadInventory();
 
         pet = user.getPet();
+        // Set cat mood before displaying the gif
+        if(pet.getHunger() < 50) {
+            pet.setRandomCraving(false);
+            System.out.println("Pet craving: "+pet.getCraving());
+        }
 
         setPetName(pet.getName());
         setCatGif();
@@ -108,6 +113,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         changeClothing.setOnClickListener(this);
         setMoneyAmount(user.getMoneyAmount());
         setHungerAmount(user.getPet().getHunger());
+        System.out.println("PET HUNGER: "+ Integer.toString(pet.getHunger()));
         setXpAmount(user.getXp() - (user.getPet().getLevel()*1000));
         setLevelAmount(user.getPet().getLevel());
         setDailyAmount(user.getDaily());
@@ -145,6 +151,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     }
 
     public void setCatGif() {
+        System.out.println("Cat motion: "+pet.getMotion());
         int imageResource = getResources().getIdentifier(pet.getMotion(), null, getActivity().getPackageName());
         try {
             GifDrawable drawable = new GifDrawable(getResources(), imageResource);
@@ -155,55 +162,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
             System.out.println(e.getMessage());
             catImage.setImageResource(imageResource);
         }
-
-        /*
-        if (shirt == "yellow") {
-            if (pants == "orange") {
-                Toast.makeText(getContext(), user.getUserInventory().returnShirt(), Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_orangepants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            } else if (pants == "red") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_redpants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            }
-            else if (pants == "none") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_yellowshirt_nopants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            }
-        } else if (shirt == "blue") {
-            if (pants == "orange") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_orangepants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            } else if (pants == "red") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_redpants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            }
-            else if (pants == "none") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_blueshirt_nopants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            }
-        }
-        else if (shirt == "none") {
-            if (pants == "orange") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_orangepants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            } else if (pants == "red") {
-                Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_redpants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            }
-            else if (pants == "none") {
-                Toast.makeText(getContext(), "no shirt", Toast.LENGTH_SHORT).show();
-                int imageResource = getResources().getIdentifier("@drawable/cat1_noshirt_nopants_idle", null, getActivity().getPackageName());
-                catImage.setImageResource(imageResource);
-            }
-        }*/
     }
 
     public void setDailyAmount(int amount) {dailyAmount.setProgress(amount);}
@@ -278,6 +236,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                     user.getUserInventory().removeFood("catfood");
                     setCatFoodAmount(user.getUserInventory().numofFood("catfood"));
                     setHungerAmount(user.getPet().getHunger());
+                    System.out.println("PET HUNGER: "+ Integer.toString(pet.getHunger()));
                     Toast.makeText(getContext(), "-1 Cat Food", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Not Enough Cat Food", Toast.LENGTH_SHORT).show();
@@ -291,6 +250,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                         user.getUserInventory().removeFood("blueberries");
                         setBlueberryAmount(user.getUserInventory().numofFood("blueberries"));
                         setHungerAmount(user.getPet().getHunger());
+                        System.out.println("PET HUNGER: "+ Integer.toString(pet.getHunger()));
                         Toast.makeText(getContext(), "-1 Blueberry", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -305,6 +265,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                         user.getUserInventory().removeFood("fish");
                         setFishAmount(user.getUserInventory().numofFood("fish"));
                         setHungerAmount(user.getPet().getHunger());
+                        System.out.println("PET HUNGER: "+ Integer.toString(pet.getHunger()));
                         Toast.makeText(getContext(), "-1 Fish", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -319,6 +280,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                         user.getUserInventory().removeFood("milk");
                         setMilkAmount(user.getUserInventory().numofFood("milk"));
                         setHungerAmount(user.getPet().getHunger());
+                        System.out.println("PET HUNGER: "+ Integer.toString(pet.getHunger()));
                         Toast.makeText(getContext(), "-1 Milk", Toast.LENGTH_SHORT).show();
                     }
                 } else {

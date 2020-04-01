@@ -8,8 +8,8 @@ import java.util.Random;
 public abstract class Pet {
     DatabaseHelper dbh;
 
-    //private final int SATIATION_HOURS = 12;
-    private final int SATIATION_HOURS = 1; //For testing purposes
+    private final int SATIATION_HOURS = 12;
+    //private final int SATIATION_HOURS = 1; //For testing purposes
     private int userId;
     private String name;
     private int hunger; //HUNGER range[0,100]
@@ -51,9 +51,9 @@ public abstract class Pet {
         this.level = Integer.parseInt(dbh.getPetData(id, "level"));
         this.pants = dbh.getPetData(id, "pants");
         this.shirt = dbh.getPetData(id, "shirt");
-        this.action = "idle";
+        this.craving = dbh.getPetData(id, "craving");
+        setAction(false);
         this.motion = "@drawable/cat1_"+shirt+"shirt_"+pants+"pants_"+action;
-        this.craving = "none";
         //Used to calculate hunger
         this.lastFed = MainActivity.getSettings().getLong("lastFedTime", -1);
         System.out.println("Last fed: "+this.lastFed);
@@ -76,7 +76,7 @@ public abstract class Pet {
         if(this.lastFed != -1) {
             //Number of times hunger should go down by
             decreaseAmount = (int) Math.floor((currTime - this.lastFed) / (3600000 * SATIATION_HOURS));
-            //Pet reduces hunger by 5 every 12 (SATIATION_HOURS) hours
+            //Pet reduces hunger by 10 every 12 (SATIATION_HOURS) hours
 
         } else {
             //Settings file has been deleted, put the new time in
@@ -84,7 +84,7 @@ public abstract class Pet {
             editor.putLong("lastFedTime", currTime);
             editor.apply();
         }
-        int newHunger = this.hunger - 5 * decreaseAmount;
+        int newHunger = this.hunger - 10 * decreaseAmount;
         if(newHunger < 0) newHunger = 0;
         return newHunger;
     }
@@ -96,6 +96,7 @@ public abstract class Pet {
     public String getPants() {return this.pants;}
     public String getShirt() {return this.shirt;}
     public String getMotion() {return this.motion;}
+    public String getCraving() {return this.craving;}
 
     //CHANGING ATTRIBUTES
     public void setName(String newName) {
@@ -127,7 +128,13 @@ public abstract class Pet {
         }
     }
 
-    public void setRandomCraving() {
+    public void setRandomCraving(boolean override) {
+        /**
+         * Sets a randomly selected craving, which will replenish double the hunger when fulfilled.
+         * boolean override: Select a new craving even if one is already selected.
+         */
+        if(!this.craving.equals("none") && !override) return;
+
         Random rand = new Random();
         int choice = rand.nextInt(4);
         switch (choice){
@@ -150,6 +157,7 @@ public abstract class Pet {
         //Immediately switch the action to show craving
         setAction(false);
         setMotion();
+        this.dbh.updatePet(this.userId, "craving", this.craving);
     }
 
     public void setAction(boolean idle) {
@@ -181,7 +189,15 @@ public abstract class Pet {
         /*
         * Feeds the pet with food to increase their hunger bar
          */
-        decreaseHunger(UserInventory.getFoodFill(food));
+        if(food.equals(this.craving)) {
+            decreaseHunger(UserInventory.getFoodFill(food) * 2);
+            this.craving = "none";
+            this.dbh.updatePet(this.userId, "craving", this.craving);
+            setAction(true);
+            setMotion();
+        } else {
+            decreaseHunger(UserInventory.getFoodFill(food));
+        }
 
         //Update the time in the settings file to be the current time
         SharedPreferences.Editor editor = MainActivity.getSettings().edit();
