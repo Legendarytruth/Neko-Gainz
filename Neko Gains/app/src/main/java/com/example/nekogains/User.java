@@ -22,8 +22,8 @@ public class User implements Serializable {
     private String name;
 
     private Exercise[] workoutPlan1 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
-    private Exercise[] workoutPlan2 = {SQUATS, BURPEES, PLANKS, SIT_UPS, LEG_RAISES};
-    private Exercise[] workoutPlan3 = {LUNGES, CHIN_UPS, PUSH_UPS, RUN, BENCH_DIPS};
+    private Exercise[] workoutPlan2 = {SQUATS, BURPEES, BENCH_DIPS, PLANKS, LEG_RAISES};
+    private Exercise[] workoutPlan3 = {LUNGES, RUN, CHIN_UPS, SIT_UPS, LEG_RAISES};
 
     private int daily;
     private static Pet pet;
