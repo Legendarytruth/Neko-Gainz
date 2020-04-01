@@ -94,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
                 " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
         db.execSQL("CREATE TABLE " + GAME_TABLE + " (ID INTEGER PRIMARY KEY, MONEY INTEGER, EXPERIENCE INTEGER," +
                 " CONSTRAINT fk_users FOREIGN KEY (ID) REFERENCES USERS(ID));");
-        db.execSQL("CREATE TABLE " + PET_TABLE + " (id INTEGER PRIMARY KEY, name TEXT, hunger INT, level INT, pants TEXT, shirt TEXT,"+
+        db.execSQL("CREATE TABLE " + PET_TABLE + " (id INTEGER PRIMARY KEY, name TEXT, hunger INT, craving TEXT, level INT, pants TEXT, shirt TEXT,"+
                 " CONSTRAINT fk_users FOREIGN KEY (id) REFERENCES USERS(ID));");
 
     }
@@ -298,6 +298,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable {
         cv.put("name", name);
         cv.put("level", 0); //Default starting level is 0
         cv.put("hunger", 80); //Default starting hunger is 80
+        cv.put("craving", "none");
         cv.put("pants", "no"); //No clothes by default
         cv.put("shirt", "no");
 
