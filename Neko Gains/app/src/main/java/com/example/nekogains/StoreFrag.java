@@ -139,6 +139,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
                         Toast.makeText(getContext(), "You already own this item!", Toast.LENGTH_SHORT).show();
                     }else{
                         userInventory.addShirt("yellowshirt");
+                        ((Button)v).setText("Own");
                         user.removeMoney(clothingcost);
                         setMoney(user.getMoneyAmount());
                         Toast.makeText(getContext(), "You now own a yellow shirt!", Toast.LENGTH_SHORT).show();
@@ -152,6 +153,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
                         Toast.makeText(getContext(), "You already own this item!", Toast.LENGTH_SHORT).show();
                     }else{
                         userInventory.addShirt("blueshirt");
+                        ((Button)v).setText("Own");
                         user.removeMoney(clothingcost);
                         setMoney(user.getMoneyAmount());
                         Toast.makeText(getContext(), "You now own a blue shirt!", Toast.LENGTH_SHORT).show();
@@ -166,6 +168,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
                         Toast.makeText(getContext(), "You already own this item!", Toast.LENGTH_SHORT).show();
                     }else{
                         userInventory.addPant("orangepants");
+                        ((Button)v).setText("Own");
                         user.removeMoney(clothingcost);
                         setMoney(user.getMoneyAmount());
                         Toast.makeText(getContext(), "You now own some orange pants!", Toast.LENGTH_SHORT).show();
@@ -180,6 +183,7 @@ public class StoreFrag extends Fragment implements View.OnClickListener {
                         Toast.makeText(getContext(), "You already own this item!", Toast.LENGTH_SHORT).show();
                     }else{
                         userInventory.addPant("redpants");
+                        ((Button)v).setText("Own");
                         user.removeMoney(clothingcost);
                         setMoney(user.getMoneyAmount());
                         Toast.makeText(getContext(), "You now own some blue pants!", Toast.LENGTH_SHORT).show();
