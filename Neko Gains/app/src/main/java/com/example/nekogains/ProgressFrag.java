@@ -148,13 +148,7 @@ public class ProgressFrag extends Fragment implements View.OnClickListener {
         weightLossButton = view.findViewById(R.id.weightLossButton);
         weight_loss_series.setColor(Color.BLACK);
         weight_loss_series.setThickness(5);
-
-        if(user.getUserCalendarData(0, "WEIGHT")!=null) {
-            addPoint(weight_loss_series, 0, (Double.parseDouble(user.getUserCalendarData(1, "WEIGHT"))));
-        }
-        else{
-            addPoint(weight_loss_series, 0, 0);
-        }
+        
         getLastWeek();
 
         lungesButton.setOnClickListener(this);
