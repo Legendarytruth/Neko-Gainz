@@ -1,6 +1,7 @@
 package com.example.nekogains;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -144,7 +145,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     }
 
     public void setCatGif() {
-        Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
         int imageResource = getResources().getIdentifier(pet.getMotion(), null, getActivity().getPackageName());
         try {
             GifDrawable drawable = new GifDrawable(getResources(), imageResource);
@@ -217,6 +217,8 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 View popupView = inflater.inflate(R.layout.clothing_popup, null);
                 clothingPopup = new PopupWindow(popupView, 800, 1000);
                 //clothingPopup = new PopupWindow(popupView, 225, 280);
+                clothingPopup.setTouchable(true);
+                clothingPopup.setFocusable(true);
                 clothingPopup.showAtLocation(view.findViewById(R.id.CatScreen), Gravity.CENTER, 0, 0);
                 Button closeButton = popupView.findViewById(R.id.CloseButton);
                 closeButton.setOnClickListener(new View.OnClickListener() {

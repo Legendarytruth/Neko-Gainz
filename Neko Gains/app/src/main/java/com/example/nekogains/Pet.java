@@ -27,7 +27,7 @@ public abstract class Pet {
         this.dbh = dbh;
         this.name = newName;
         this.hunger = 80;
-        this.level = 30;
+        this.level = 0;
         this.pants = "no";
         this.shirt = "no";
         this.lastFed = -1; //Timestamp of when the pet was fed
