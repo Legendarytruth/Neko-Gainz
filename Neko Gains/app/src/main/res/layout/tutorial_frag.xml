@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light">
+    >
+
 
     <TextView
         android:id="@+id/workoutName"
@@ -12,11 +13,10 @@
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="75dp"
-        android:layout_marginRight="84dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
         android:text="Workout Name"
         android:textSize="30dp" />
-
 
     <Button
         android:id="@+id/finishButton"
@@ -25,8 +25,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="35dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="151dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginBottom="50dp"
         android:text="Start"
         android:textSize="20dp"
         tools:text="Continue" />
@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/workoutDescription"
         android:layout_width="wrap_content"
-        android:layout_height="358dp"
+        android:layout_height="501dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -42,8 +42,8 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="93dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginBottom="137dp"
         android:text="Workout Description"
-        android:textSize="30dp" />
+        android:textSize="24dp" />
 
 </RelativeLayout>

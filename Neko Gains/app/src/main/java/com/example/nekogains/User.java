@@ -25,7 +25,7 @@ public class User implements Serializable {
     private Exercise[] workoutPlan2 = {SQUATS, BURPEES, PLANKS, SIT_UPS, LEG_RAISES};
     private Exercise[] workoutPlan3 = {LUNGES, CHIN_UPS, PUSH_UPS, RUN, BENCH_DIPS};
 
-    private int daily;
+    private int daily = 3;
     private static Pet pet;
     private static UserInventory userInventory = new UserInventory();
     private static Hashtable<String, ArrayList<Exercise>> workoutplans;// = new Hashtable<>();

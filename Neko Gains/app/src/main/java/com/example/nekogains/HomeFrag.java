@@ -109,8 +109,8 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         setHungerAmount(user.getPet().getHunger());
         setXpAmount(user.getXp() - (user.getPet().getLevel()*1000));
         setLevelAmount(user.getPet().getLevel());
-        setDailyAmount(user.getDaily());
-        setLoginAmount(user.getDaily());
+        setDailyAmount(user.getDaily()); //For the bar
+        setLoginAmount(user.getDaily()); //For the text
 
         return view;
     }
@@ -142,6 +142,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void setLevelAmount(int amount) {
         levelAmount.setText("Lvl " + amount);
     }
+    public void setLoginAmount(int amount) {dailyLogin.setText("Bonus "+amount + "/5");}
+    public void setDailyAmount(int amount) {dailyAmount.setProgress(amount);}
+
 
     public void setCatGif() {
         Toast.makeText(getContext(), "Entered setCatGif", Toast.LENGTH_SHORT).show();
@@ -206,8 +209,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         }*/
     }
 
-    public void setDailyAmount(int amount) {dailyAmount.setProgress(amount);}
-    public void setLoginAmount(int amount) {dailyLogin.setText("Bonus "+amount + "/5");}
 
     @Override
     public void onClick(View v) {

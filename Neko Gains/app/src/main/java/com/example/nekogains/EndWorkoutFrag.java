@@ -1,6 +1,7 @@
 package com.example.nekogains;
 
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -29,7 +30,18 @@ public class EndWorkoutFrag extends Fragment {
         activity = ((WorkoutActivity)this.getActivity());
         user = activity.getUser();
         user.increaseXp(100);
-        user.addMoney(100);
+
+        if(user.checkerDaily()){
+            user.addMoney(200);
+            user.resetDaily();
+        }
+        else{
+            user.addMoney(100);
+            user.addDaily();
+        }
+
+        Log.d("Create","Here is daily, "+user.getDaily());
+
 
         return view;
     }
