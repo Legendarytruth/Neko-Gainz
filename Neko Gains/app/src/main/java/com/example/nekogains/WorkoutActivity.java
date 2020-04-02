@@ -83,6 +83,8 @@ public class WorkoutActivity extends AppCompatActivity {
         return currentPlan.peek().getName();
     }
 
+    public String getExerciseDescription() {return currentPlan.peek().getDescription();}
+
     public Exercise getExercise() { return currentPlan.peek(); }
 
     public void finishExercise() {

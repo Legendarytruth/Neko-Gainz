@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,8 +117,10 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         System.out.println("PET HUNGER: "+ Integer.toString(pet.getHunger()));
         setXpAmount(user.getXp() - (user.getPet().getLevel()*1000));
         setLevelAmount(user.getPet().getLevel());
-        setDailyAmount(user.getDaily());
-        setLoginAmount(user.getDaily());
+        setDailyAmount(user.getDaily()); //For the bar
+        setLoginAmount(user.getDaily()); //For the text
+
+       // Log.d("Create","Here is daily, "+user.getDaily());
 
         return view;
     }
@@ -149,6 +152,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void setLevelAmount(int amount) {
         levelAmount.setText("Lvl " + amount);
     }
+    public void setLoginAmount(int amount) {dailyLogin.setText("Bonus "+amount + "/5");}
+    public void setDailyAmount(int amount) {dailyAmount.setProgress(amount);}
+
 
     public void setCatGif() {
         System.out.println("Cat motion: "+pet.getMotion());
@@ -164,8 +170,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void setDailyAmount(int amount) {dailyAmount.setProgress(amount);}
-    public void setLoginAmount(int amount) {dailyLogin.setText("Bonus "+amount + "/5");}
 
     @Override
     public void onClick(View v) {
@@ -341,5 +345,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
         user.saveInventory();
+        user.saveDaily();
     }
 }

@@ -25,7 +25,7 @@ public class User implements Serializable {
     private Exercise[] workoutPlan2 = {SQUATS, BURPEES, BENCH_DIPS, PLANKS, LEG_RAISES};
     private Exercise[] workoutPlan3 = {LUNGES, RUN, CHIN_UPS, SIT_UPS, LEG_RAISES};
 
-    private int daily;
+    private static int daily;
     private static Pet pet;
     private static UserInventory userInventory = new UserInventory();
     private static Hashtable<String, ArrayList<Exercise>> workoutplans;// = new Hashtable<>();
@@ -128,6 +128,16 @@ public class User implements Serializable {
         if (userInventory == null){
             userInventory = new UserInventory();
         }
+    }
+
+    public void saveDaily(){
+        SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+        editor.putInt("daily", this.getDaily());
+        editor.apply();
+    }
+
+    public void updateDaily(){
+        this.daily = MainActivity.getSettings().getInt("daily", 0);
     }
 
 
