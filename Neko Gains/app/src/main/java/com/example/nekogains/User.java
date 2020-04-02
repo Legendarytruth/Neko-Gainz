@@ -22,10 +22,10 @@ public class User implements Serializable {
     private String name;
 
     private Exercise[] workoutPlan1 = {LUNGES, JACKS, PUSH_UPS, SIT_UPS, LEG_RAISES};
-    private Exercise[] workoutPlan2 = {SQUATS, BURPEES, PLANKS, SIT_UPS, LEG_RAISES};
-    private Exercise[] workoutPlan3 = {LUNGES, CHIN_UPS, PUSH_UPS, RUN, BENCH_DIPS};
+    private Exercise[] workoutPlan2 = {SQUATS, BURPEES, BENCH_DIPS, PLANKS, LEG_RAISES};
+    private Exercise[] workoutPlan3 = {LUNGES, RUN, CHIN_UPS, SIT_UPS, LEG_RAISES};
 
-    private int daily;
+    private static int daily;
     private static Pet pet;
     private static UserInventory userInventory = new UserInventory();
     private static Hashtable<String, ArrayList<Exercise>> workoutplans;// = new Hashtable<>();
@@ -34,7 +34,7 @@ public class User implements Serializable {
     public User(DatabaseHelper dbh, int id) {
         this.dbh = dbh;
         this.id = id;
-        this.pet  = new Cat("temppetname");
+        this.pet  = new Cat(dbh, id);
     }
 
     //Preworkout&CustomWorkout Code
@@ -110,6 +110,34 @@ public class User implements Serializable {
             workoutplans = new Hashtable<>();
             createDefaultWorkouts();
         }
+    }
+
+    public void saveInventory(){
+        SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userInventory);
+        editor.putString("userInventory", json);
+        editor.apply();
+    }
+
+    public void loadInventory(){
+        Gson gson = new Gson();
+        String json = MainActivity.getSettings().getString("userInventory", null);
+        Type type = new TypeToken<UserInventory>(){}.getType();
+        userInventory = gson.fromJson(json,type);
+        if (userInventory == null){
+            userInventory = new UserInventory();
+        }
+    }
+
+    public void saveDaily(){
+        SharedPreferences.Editor editor = MainActivity.getSettings().edit();
+        editor.putInt("daily", this.getDaily());
+        editor.apply();
+    }
+
+    public void updateDaily(){
+        this.daily = MainActivity.getSettings().getInt("daily", 0);
     }
 
 
@@ -216,10 +244,11 @@ public class User implements Serializable {
     public void newDay() {
         int lastday = this.getLastDay();
         dbh.insertNewDay(lastday+1, id);
+        System.out.println(lastday);
     }
 
     //update workout or reps done for a given user on a given day
-    public void updateDay(int day, String row, int contents) {
+    public void updateDay(int day, String row, String contents) {
         dbh.updateDay(day, id, row, contents);
     }
 

@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,39 +57,30 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Registered, showing home");
             setContentView(R.layout.activity_main);
             id = settings.getInt("userId", 1);
-            //user = new User(dbh, id);
+
             BottomNavigationView bottomNavigationView = findViewById(R.id.bot_nav);
             bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+
+            user = new User(dbh, id);
+            //TESTING: Logs a new into database upon ever open of the app
+            //user.newDay();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
+            FloatingActionButton fab = findViewById(R.id.bot_fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Fragment selectedFragment = null;
+                    selectedFragment = new PreworkoutFrag();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
+                }
+            });
         }
-
-        user = new User(dbh, id);
-        //TESTING: Logs a new into database upon ever open of the app
-        //user.newDay();
-
-        //commented out because homefrag calls for user's xp when a user has not been created yet
-        //perhaps solution would be to start questionnaire/login as the first activity instead?
-
-        /*getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFrag()).commit();
-        FloatingActionButton fab = findViewById(R.id.bot_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Fragment selectedFragment = null;
-                selectedFragment = new PreworkoutFrag();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFragment).commit();
-            }
-        });*/
-
     }
 
-
-    public void onDestroy() {
-        //dbh.close();
-        super.onDestroy();
-    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -139,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = clearNotificationSP.edit();
             editor.putBoolean("registered", false).commit();
             editor.remove("registered").commit();
+            editor.remove("workoutlist").commit();
+            editor.remove("workoutplans").commit();
+            editor.remove("userInventory").commit();
+            editor.remove("daily").commit();
 
             this.deleteDatabase("Workout.db");
             finish();
@@ -174,11 +170,16 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_FIRST_USER) {
                 HashMap<String, String> results = (HashMap<String, String>)data.getExtras().getSerializable("RESULTS");
                 id = dbh.insertEmptyUser();
-                dbh.insertNewGame("1000000", "30600");
+                dbh.insertNewPet(id, "Tempest");
+                dbh.insertNewGame("500", "0");
                 for (HashMap.Entry<String, String> entry : results.entrySet()) {
                     System.out.println(entry.getKey());
                     System.out.println(entry.getValue());
-                    dbh.updateUserData(id, entry.getKey(), entry.getValue());
+                    if (entry.getKey().equals("PETNAME")) {
+                        dbh.updatePet(id, "name", entry.getValue());
+                    } else {
+                        dbh.updateUserData(id, entry.getKey(), entry.getValue());
+                    }
                 }
 
                 System.out.println(id);
@@ -194,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean("registered", true);
                 editor.putInt("userId", id); //Store user id in settings file
+                editor.putLong("lastFedTime", Calendar.getInstance().getTimeInMillis());
                 editor.apply();
             }
         } else {

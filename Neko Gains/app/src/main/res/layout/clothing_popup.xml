@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <Button
@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
-        android:background="#FF0000"
-        android:text="Button" />
+        android:background="@color/colorText"
+        android:text="EXIT" />
 
     <View
         android:id="@+id/divider3"
@@ -35,6 +35,7 @@
                 android:id="@+id/FoodTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
                 android:text="FOOD"
                 android:textSize="30sp" />
 
@@ -59,7 +60,7 @@
 
                 <TextView
                     android:id="@+id/blueberryText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView" />
@@ -69,7 +70,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="@color/colorAccent"
+                    android:text="EAT" />
 
             </LinearLayout>
 
@@ -94,7 +96,7 @@
 
                 <TextView
                     android:id="@+id/catFoodText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView" />
@@ -104,7 +106,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="@color/colorAccent"
+                    android:text="EAT"
+                    android:textColorHighlight="@color/colorAccent" />
 
             </LinearLayout>
 
@@ -129,7 +133,7 @@
 
                 <TextView
                     android:id="@+id/fishText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView" />
@@ -139,7 +143,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="@color/colorAccent"
+                    android:text="EAT" />
             </LinearLayout>
 
             <View
@@ -164,7 +169,7 @@
 
                 <TextView
                     android:id="@+id/milkText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView" />
@@ -174,7 +179,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="@color/colorAccent"
+                    android:text="EAT" />
             </LinearLayout>
 
             <View
@@ -188,6 +194,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
                 android:text="CLOTHES"
                 android:textSize="30sp" />
 
@@ -201,6 +208,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
                 android:text="Shirts"
                 android:textSize="20sp" />
 
@@ -231,17 +239,18 @@
 
                     <TextView
                         android:id="@+id/blueShirtText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="Blue" />
 
                     <Button
                         android:id="@+id/blueShirtButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:background="@color/colorAccent"
+                        android:text="WEAR" />
 
                 </LinearLayout>
 
@@ -267,17 +276,18 @@
 
                     <TextView
                         android:id="@+id/yellowShirtText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="Yellow" />
 
                     <Button
                         android:id="@+id/yellowShirtButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:background="@color/colorAccent"
+                        android:text="WEAR" />
 
                 </LinearLayout>
 
@@ -302,17 +312,18 @@
 
                     <TextView
                         android:id="@+id/noShirtText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="Naked" />
 
                     <Button
                         android:id="@+id/noShirtButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:background="@color/colorAccent"
+                        android:text="WEAR" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -327,6 +338,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
                 android:text="PANTS"
                 android:textSize="20sp" />
 
@@ -355,17 +367,18 @@
 
                     <TextView
                         android:id="@+id/orangePantsText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="Orange" />
 
                     <Button
                         android:id="@+id/orangePantsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:background="@color/colorAccent"
+                        android:text="WEAR" />
                 </LinearLayout>
 
                 <View
@@ -388,17 +401,18 @@
 
                     <TextView
                         android:id="@+id/redPantsText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="Red" />
 
                     <Button
                         android:id="@+id/redPantsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:background="@color/colorAccent"
+                        android:text="WEAR" />
 
                 </LinearLayout>
 
@@ -424,17 +438,18 @@
 
                     <TextView
                         android:id="@+id/noPantsText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="Naked" />
 
                     <Button
                         android:id="@+id/noPantsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:background="@color/colorAccent"
+                        android:text="WEAR" />
 
                 </LinearLayout>
             </LinearLayout>
