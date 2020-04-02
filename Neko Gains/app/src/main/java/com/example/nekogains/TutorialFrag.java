@@ -29,7 +29,7 @@ public class TutorialFrag extends Fragment {
 
         activity = ((WorkoutActivity)this.getActivity());
 
-        setWorkoutName(activity.getExerciseName());
+        setWorkoutName(activity.getExerciseName().replace("_", " "));
         setWorkoutDescription(activity.getExerciseDescription());
 
         Button button = view.findViewById(R.id.finishButton);

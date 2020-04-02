@@ -131,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = clearNotificationSP.edit();
             editor.putBoolean("registered", false).commit();
             editor.remove("registered").commit();
+            editor.remove("workoutlist").commit();
+            editor.remove("workoutplans").commit();
+            editor.remove("userInventory").commit();
+            editor.remove("daily").commit();
 
             this.deleteDatabase("Workout.db");
             finish();
@@ -167,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 HashMap<String, String> results = (HashMap<String, String>)data.getExtras().getSerializable("RESULTS");
                 id = dbh.insertEmptyUser();
                 dbh.insertNewPet(id, "Tempest");
-                dbh.insertNewGame("1000000", "0");
+                dbh.insertNewGame("500", "0");
                 for (HashMap.Entry<String, String> entry : results.entrySet()) {
                     System.out.println(entry.getKey());
                     System.out.println(entry.getValue());
